@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/upload/helpRequest/0a0057b6-01bb-411b-869d-672dac62d682.png",
+      "PackagePath": "staticwebassets/upload/helpRequest/0a0057b6-01bb-411b-869d-672dac62d682.png"
+    },
+    {
+      "Id": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/upload/helpRequest/69376b53-b92f-49ad-b22d-ec51bfc971b7.png",
+      "PackagePath": "staticwebassets/upload/helpRequest/69376b53-b92f-49ad-b22d-ec51bfc971b7.png"
+    },
+    {
+      "Id": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/upload/helpRequest/cea6be28-828e-4525-ba3d-00d5d6482dfb.png",
+      "PackagePath": "staticwebassets/upload/helpRequest/cea6be28-828e-4525-ba3d-00d5d6482dfb.png"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.RegionServicesapi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.RegionServicesapi.props",
+      "PackagePath": "build\\RegionServicesapi.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.RegionServicesapi.props",
+      "PackagePath": "buildMultiTargeting\\RegionServicesapi.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.RegionServicesapi.props",
+      "PackagePath": "buildTransitive\\RegionServicesapi.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "zvJJCO0VcvFKqAbX7+RqqzSVgIu3Wk9+38KKzSVFCHA=",
+  "Source": "RegionServicesapi",
+  "BasePath": "_content/RegionServicesapi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "RegionServicesapi/wwwroot",
+      "Source": "RegionServicesapi",
+      "ContentRoot": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/",
+      "BasePath": "_content/RegionServicesapi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/upload/helpRequest/0a0057b6-01bb-411b-869d-672dac62d682.png",
+      "SourceId": "RegionServicesapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/",
+      "BasePath": "_content/RegionServicesapi",
+      "RelativePath": "upload/helpRequest/0a0057b6-01bb-411b-869d-672dac62d682.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/upload/helpRequest/0a0057b6-01bb-411b-869d-672dac62d682.png"
+    },
+    {
+      "Identity": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/upload/helpRequest/69376b53-b92f-49ad-b22d-ec51bfc971b7.png",
+      "SourceId": "RegionServicesapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/",
+      "BasePath": "_content/RegionServicesapi",
+      "RelativePath": "upload/helpRequest/69376b53-b92f-49ad-b22d-ec51bfc971b7.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/upload/helpRequest/69376b53-b92f-49ad-b22d-ec51bfc971b7.png"
+    },
+    {
+      "Identity": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/upload/helpRequest/cea6be28-828e-4525-ba3d-00d5d6482dfb.png",
+      "SourceId": "RegionServicesapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/",
+      "BasePath": "_content/RegionServicesapi",
+      "RelativePath": "upload/helpRequest/cea6be28-828e-4525-ba3d-00d5d6482dfb.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/upload/helpRequest/cea6be28-828e-4525-ba3d-00d5d6482dfb.png"
+    }
+  ]
+}
