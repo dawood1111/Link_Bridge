@@ -1,5 +1,6 @@
 ﻿<Project>
   <ItemGroup>
+<<<<<<< HEAD
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\ConstructionProject\22f6d853-b6f2-45e0-a723-2228e41c2c3a.png))">
       <SourceType>Package</SourceType>
       <SourceId>RegionServicesapi</SourceId>
@@ -48,6 +49,8 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\ConstructionProject\ed32741c-1f9d-4f53-a855-57513487d3f6.jfif))</OriginalItemSpec>
     </StaticWebAsset>
+=======
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\helpRequest\0a0057b6-01bb-411b-869d-672dac62d682.png))">
       <SourceType>Package</SourceType>
       <SourceId>RegionServicesapi</SourceId>

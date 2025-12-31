@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "OKduqA1lRHYBkQ3+VM1U2sHfZs7lh1qPyDGasSZ9H4c=",
+=======
+  "Hash": "zvJJCO0VcvFKqAbX7+RqqzSVgIu3Wk9+38KKzSVFCHA=",
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
   "Source": "RegionServicesapi",
   "BasePath": "_content/RegionServicesapi",
   "Mode": "Default",
@@ -8,15 +12,22 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
+<<<<<<< HEAD
       "Name": "RegionServicesapi\\wwwroot",
       "Source": "RegionServicesapi",
       "ContentRoot": "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\wwwroot\\",
+=======
+      "Name": "RegionServicesapi/wwwroot",
+      "Source": "RegionServicesapi",
+      "ContentRoot": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/",
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       "BasePath": "_content/RegionServicesapi",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\dawoo\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.0\\staticwebassets\\V5\\css\\site.css",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
@@ -1218,6 +1229,12 @@
       "SourceId": "RegionServicesapi",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\wwwroot\\",
+=======
+      "Identity": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/upload/helpRequest/0a0057b6-01bb-411b-869d-672dac62d682.png",
+      "SourceId": "RegionServicesapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/",
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       "BasePath": "_content/RegionServicesapi",
       "RelativePath": "upload/helpRequest/0a0057b6-01bb-411b-869d-672dac62d682.png",
       "AssetKind": "All",
@@ -1230,6 +1247,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "wwwroot\\upload\\helpRequest\\0a0057b6-01bb-411b-869d-672dac62d682.png"
     },
     {
@@ -1237,6 +1255,15 @@
       "SourceId": "RegionServicesapi",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\wwwroot\\",
+=======
+      "OriginalItemSpec": "wwwroot/upload/helpRequest/0a0057b6-01bb-411b-869d-672dac62d682.png"
+    },
+    {
+      "Identity": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/upload/helpRequest/69376b53-b92f-49ad-b22d-ec51bfc971b7.png",
+      "SourceId": "RegionServicesapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/",
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       "BasePath": "_content/RegionServicesapi",
       "RelativePath": "upload/helpRequest/69376b53-b92f-49ad-b22d-ec51bfc971b7.png",
       "AssetKind": "All",
@@ -1249,6 +1276,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "wwwroot\\upload\\helpRequest\\69376b53-b92f-49ad-b22d-ec51bfc971b7.png"
     },
     {
@@ -1256,6 +1284,15 @@
       "SourceId": "RegionServicesapi",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\wwwroot\\",
+=======
+      "OriginalItemSpec": "wwwroot/upload/helpRequest/69376b53-b92f-49ad-b22d-ec51bfc971b7.png"
+    },
+    {
+      "Identity": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/upload/helpRequest/cea6be28-828e-4525-ba3d-00d5d6482dfb.png",
+      "SourceId": "RegionServicesapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/dawood/Desktop/RegionServices/RegionServicesapi/wwwroot/",
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       "BasePath": "_content/RegionServicesapi",
       "RelativePath": "upload/helpRequest/cea6be28-828e-4525-ba3d-00d5d6482dfb.png",
       "AssetKind": "All",
@@ -1268,7 +1305,11 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "wwwroot\\upload\\helpRequest\\cea6be28-828e-4525-ba3d-00d5d6482dfb.png"
+=======
+      "OriginalItemSpec": "wwwroot/upload/helpRequest/cea6be28-828e-4525-ba3d-00d5d6482dfb.png"
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
     }
   ]
 }

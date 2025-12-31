@@ -138,6 +138,7 @@
 /home/dawood/Desktop/RegionServices/RegionServicesapi/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /home/dawood/Desktop/RegionServices/RegionServicesapi/bin/Debug/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 /home/dawood/Desktop/RegionServices/RegionServicesapi/bin/Debug/net8.0/RegionServicesapi.staticwebassets.runtime.json
+<<<<<<< HEAD
 C:\Users\dawoo\OneDrive\Desktop\RegionServices\RegionServicesapi\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\dawoo\OneDrive\Desktop\RegionServices\RegionServicesapi\bin\Debug\net8.0\appsettings.json
 C:\Users\dawoo\OneDrive\Desktop\RegionServices\RegionServicesapi\bin\Debug\net8.0\RegionServicesapi.staticwebassets.runtime.json
@@ -282,3 +283,5 @@ C:\Users\dawoo\OneDrive\Desktop\RegionServices\RegionServicesapi\obj\Debug\net8.
 C:\Users\dawoo\OneDrive\Desktop\RegionServices\RegionServicesapi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\dawoo\OneDrive\Desktop\RegionServices\RegionServicesapi\bin\Debug\net8.0\RegionServicesFE\package-lock.json
 C:\Users\dawoo\OneDrive\Desktop\RegionServices\RegionServicesapi\bin\Debug\net8.0\RegionServicesFE\package.json
+=======
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b

@@ -40,9 +40,13 @@ namespace RegionServicesapi.Controller
                 UserName = registerDTO.FirstName + registerDTO.LastName,
                 Email = registerDTO.Email,
                 PhoneNumber = registerDTO.PhoneNumber,
+<<<<<<< HEAD
                 Role = registerDTO.Role,
               
               
+=======
+                Role = registerDTO.Role
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
                 
             };
 

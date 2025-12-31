@@ -7,9 +7,13 @@ using Microsoft.OpenApi.Models;
 using RegionServicesapi.DBcontext;
 using RegionServicesapi.GenerateToken;
 using RegionServicesapi.IInterface;
+<<<<<<< HEAD
 using RegionServicesapi.Interface;
 using RegionServicesapi.Model;
 using RegionServicesapi.Repository;
+=======
+using RegionServicesapi.Model;
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -93,6 +97,7 @@ builder.Services.AddAuthentication(a =>
 
 
 builder.Services.AddScoped<ICreateToken, Token>();
+<<<<<<< HEAD
 builder.Services.AddScoped<IConstructionCompany,ConstructionProjectRepo>();
 
 
@@ -118,6 +123,10 @@ builder.Services.AddCors(options =>
         });
 });
 
+=======
+
+
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
 var app = builder.Build();
 
 var webRootPath = Path.Combine(builder.Environment.ContentRootPath, "wwwroot");
@@ -134,10 +143,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+<<<<<<< HEAD
 app.UseCors("AllowReactApp");
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseDefaultFiles();
+=======
+app.UseAuthentication();
+app.UseAuthorization();
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
 app.MapControllers();
 
 app.Run();

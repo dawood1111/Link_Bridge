@@ -17,6 +17,7 @@ namespace RegionServicesapi.DBcontext
         public ApplicationDBcontext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
 
+
         }
          public DbSet<AboutCompanies> AboutCompanies { get; set; }
         public DbSet<ConstructionProject> ConstructionProjects { get; set; }
@@ -32,33 +33,12 @@ namespace RegionServicesapi.DBcontext
 
 
                 
-            base.OnModelCreating(modelBuilder);
 
-
-
-
-            //seed roles(we can also add it to program cs)
-            List<IdentityRole> Role = new List<IdentityRole>
-            {
-                new IdentityRole{
-                    Name="Admin",
-                    NormalizedName="ADMIN"
-
-                },
-                new IdentityRole{
-                    Name="ConstructionCompany",
-                    NormalizedName="CONSTRUCTIONCOMPANY"
-                },
-                new IdentityRole{
-                    Name="ITCompany",
-                    NormalizedName="ITCOMPANY"
 
                 }
 
 
             };
-            modelBuilder.Entity<IdentityRole>().HasData(Role);
+          
         }
         
-    }
-}

@@ -8,10 +8,15 @@
     ".NETCoreApp,Version=v8.0": {
       "RegionServicesapi/1.0.0": {
         "dependencies": {
+<<<<<<< HEAD
           "Microsoft.AspNetCore.Authentication.Google": "8.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.0",
           "Microsoft.AspNetCore.Identity.UI": "8.0.0",
+=======
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.0",
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
           "Microsoft.AspNetCore.OpenApi": "8.0.16",
           "Microsoft.EntityFrameworkCore": "8.0.0",
           "Microsoft.EntityFrameworkCore.Design": "8.0.0",
@@ -66,6 +71,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "Microsoft.AspNetCore.Authentication.Google/8.0.0": {
         "runtime": {
           "lib/net8.0/Microsoft.AspNetCore.Authentication.Google.dll": {
@@ -74,6 +80,8 @@
           }
         }
       },
+=======
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "7.0.3"
@@ -103,6 +111,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "Microsoft.AspNetCore.Identity.UI/8.0.0": {
         "dependencies": {
           "Microsoft.Extensions.FileProviders.Embedded": "8.0.0",
@@ -115,6 +124,8 @@
           }
         }
       },
+=======
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       "Microsoft.AspNetCore.OpenApi/8.0.16": {
         "dependencies": {
           "Microsoft.OpenApi": "1.6.14"
@@ -397,22 +408,38 @@
           "runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-arm",
             "assetType": "native",
+<<<<<<< HEAD
             "fileVersion": "5.1.0.0"
+=======
+            "fileVersion": "0.0.0.0"
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
           },
           "runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-arm64",
             "assetType": "native",
+<<<<<<< HEAD
             "fileVersion": "5.1.0.0"
+=======
+            "fileVersion": "0.0.0.0"
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
           },
           "runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-x64",
             "assetType": "native",
+<<<<<<< HEAD
             "fileVersion": "5.1.0.0"
+=======
+            "fileVersion": "0.0.0.0"
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
           },
           "runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-x86",
             "assetType": "native",
+<<<<<<< HEAD
             "fileVersion": "5.1.0.0"
+=======
+            "fileVersion": "0.0.0.0"
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
           }
         }
       },
@@ -521,6 +548,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "Microsoft.Extensions.FileProviders.Abstractions/8.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "8.0.0"
@@ -531,6 +559,8 @@
           "Microsoft.Extensions.FileProviders.Abstractions": "8.0.0"
         }
       },
+=======
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       "Microsoft.Extensions.Identity.Core/8.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "8.0.0",
@@ -997,6 +1027,7 @@
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Microsoft.AspNetCore.Authentication.Google/8.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1004,6 +1035,8 @@
       "path": "microsoft.aspnetcore.authentication.google/8.0.0",
       "hashPath": "microsoft.aspnetcore.authentication.google.8.0.0.nupkg.sha512"
     },
+=======
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
     "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1032,6 +1065,7 @@
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/8.0.0",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.8.0.0.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Microsoft.AspNetCore.Identity.UI/8.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1039,6 +1073,8 @@
       "path": "microsoft.aspnetcore.identity.ui/8.0.0",
       "hashPath": "microsoft.aspnetcore.identity.ui.8.0.0.nupkg.sha512"
     },
+=======
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
     "Microsoft.AspNetCore.OpenApi/8.0.16": {
       "type": "package",
       "serviceable": true,
@@ -1200,6 +1236,7 @@
       "path": "microsoft.extensions.dependencymodel/8.0.0",
       "hashPath": "microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Microsoft.Extensions.FileProviders.Abstractions/8.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1214,6 +1251,8 @@
       "path": "microsoft.extensions.fileproviders.embedded/8.0.0",
       "hashPath": "microsoft.extensions.fileproviders.embedded.8.0.0.nupkg.sha512"
     },
+=======
+>>>>>>> 40c7716103912476e76d10d313be518b8f89666b
     "Microsoft.Extensions.Identity.Core/8.0.0": {
       "type": "package",
       "serviceable": true,

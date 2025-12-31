@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace RegionServicesapi.Extension
 
+
 {
    
     
@@ -18,8 +19,12 @@ namespace RegionServicesapi.Extension
             if (claim0 == null)
                 throw new Exception("Email claim not found.");
 
+
+
             return claim0.Value;
         }
         
     }
+
 }
+
