@@ -49,11 +49,7 @@
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
-<<<<<<< HEAD
           "lib/net6.0/_._": {
-=======
-          "lib/net6.0/Humanizer.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -63,7 +59,6 @@
           }
         }
       },
-<<<<<<< HEAD
       "Microsoft.AspNetCore.Authentication.Google/8.0.0": {
         "type": "package",
         "compile": {
@@ -80,8 +75,6 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
         "type": "package",
         "dependencies": {
@@ -147,7 +140,6 @@
           }
         }
       },
-<<<<<<< HEAD
       "Microsoft.AspNetCore.Identity.UI/8.0.0": {
         "type": "package",
         "dependencies": {
@@ -175,8 +167,6 @@
           "buildMultiTargeting/Microsoft.AspNetCore.Identity.UI.targets": {}
         }
       },
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       "Microsoft.AspNetCore.OpenApi/8.0.16": {
         "type": "package",
         "dependencies": {
@@ -225,11 +215,7 @@
           "System.Text.Encoding.CodePages": "6.0.0"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/netcoreapp3.1/_._": {
-=======
-          "lib/netcoreapp3.1/Microsoft.CodeAnalysis.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".pdb;.xml"
           }
         },
@@ -286,11 +272,7 @@
           "Microsoft.CodeAnalysis.Common": "[4.5.0]"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/netcoreapp3.1/_._": {
-=======
-          "lib/netcoreapp3.1/Microsoft.CodeAnalysis.CSharp.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".pdb;.xml"
           }
         },
@@ -350,11 +332,7 @@
           "Microsoft.CodeAnalysis.Workspaces.Common": "[4.5.0]"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/netcoreapp3.1/_._": {
-=======
-          "lib/netcoreapp3.1/Microsoft.CodeAnalysis.CSharp.Workspaces.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".pdb;.xml"
           }
         },
@@ -416,11 +394,7 @@
           "System.Threading.Channels": "6.0.0"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/netcoreapp3.1/_._": {
-=======
-          "lib/netcoreapp3.1/Microsoft.CodeAnalysis.Workspaces.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".pdb;.xml"
           }
         },
@@ -584,11 +558,7 @@
           "Mono.TextTemplating": "2.2.1"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/net8.0/_._": {
-=======
-          "lib/net8.0/Microsoft.EntityFrameworkCore.Design.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -761,11 +731,7 @@
           "System.Text.Json": "8.0.0"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/net8.0/_._": {
-=======
-          "lib/net8.0/Microsoft.Extensions.DependencyModel.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -778,7 +744,6 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.Extensions.FileProviders.Abstractions/8.0.0": {
         "type": "package",
         "dependencies": {
@@ -820,8 +785,6 @@
           "buildMultiTargeting/_._": {}
         }
       },
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       "Microsoft.Extensions.Identity.Core/8.0.0": {
         "type": "package",
         "dependencies": {
@@ -1116,11 +1079,7 @@
           "System.CodeDom": "4.4.0"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/netstandard2.0/_._": {}
-=======
-          "lib/netstandard2.0/Mono.TextTemplating.dll": {}
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
         },
         "runtime": {
           "lib/netstandard2.0/Mono.TextTemplating.dll": {}
@@ -1192,11 +1151,7 @@
       "System.CodeDom/4.4.0": {
         "type": "package",
         "compile": {
-<<<<<<< HEAD
           "ref/netstandard2.0/_._": {
-=======
-          "ref/netstandard2.0/System.CodeDom.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -1210,11 +1165,7 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/net6.0/_._": {
-=======
-          "lib/net6.0/System.Collections.Immutable.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -1243,11 +1194,7 @@
       "System.Composition.AttributedModel/6.0.0": {
         "type": "package",
         "compile": {
-<<<<<<< HEAD
           "lib/net6.0/_._": {
-=======
-          "lib/net6.0/System.Composition.AttributedModel.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -1266,11 +1213,7 @@
           "System.Composition.AttributedModel": "6.0.0"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/net6.0/_._": {
-=======
-          "lib/net6.0/System.Composition.Convention.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -1289,11 +1232,7 @@
           "System.Composition.Runtime": "6.0.0"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/net6.0/_._": {
-=======
-          "lib/net6.0/System.Composition.Hosting.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -1309,11 +1248,7 @@
       "System.Composition.Runtime/6.0.0": {
         "type": "package",
         "compile": {
-<<<<<<< HEAD
           "lib/net6.0/_._": {
-=======
-          "lib/net6.0/System.Composition.Runtime.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -1334,11 +1269,7 @@
           "System.Composition.Runtime": "6.0.0"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/net6.0/_._": {
-=======
-          "lib/net6.0/System.Composition.TypedParts.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -1452,11 +1383,7 @@
       "System.IO.Pipelines/6.0.3": {
         "type": "package",
         "compile": {
-<<<<<<< HEAD
           "lib/net6.0/_._": {
-=======
-          "lib/net6.0/System.IO.Pipelines.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -1510,11 +1437,7 @@
           "System.Collections.Immutable": "6.0.0"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/net6.0/_._": {
-=======
-          "lib/net6.0/System.Reflection.Metadata.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -1683,11 +1606,7 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-<<<<<<< HEAD
           "lib/net6.0/_._": {
-=======
-          "lib/net6.0/System.Text.Encoding.CodePages.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -1750,11 +1669,7 @@
       "System.Threading.Channels/6.0.0": {
         "type": "package",
         "compile": {
-<<<<<<< HEAD
           "lib/net6.0/_._": {
-=======
-          "lib/net6.0/System.Threading.Channels.dll": {
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "related": ".xml"
           }
         },
@@ -1857,7 +1772,6 @@
         "logo.png"
       ]
     },
-<<<<<<< HEAD
     "Microsoft.AspNetCore.Authentication.Google/8.0.0": {
       "sha512": "dPE/IiHhBqnJ7WrD72T20+DcHGCaR9F4RmIFap83W1Ts/ze5gBVe4Ii02qJdJzkUniQy5S/v42zpRIgJTPzPqQ==",
       "type": "package",
@@ -1873,8 +1787,6 @@
         "microsoft.aspnetcore.authentication.google.nuspec"
       ]
     },
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
     "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
       "sha512": "rwxaZYHips5M9vqxRkGfJthTx+Ws4O4yCuefn17J371jL3ouC5Ker43h2hXb5yd9BMnImE9rznT75KJHm6bMgg==",
       "type": "package",
@@ -1943,7 +1855,6 @@
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
     },
-<<<<<<< HEAD
     "Microsoft.AspNetCore.Identity.UI/8.0.0": {
       "sha512": "pDr/LtMS23DdDtRdXrQOFZoEUV96SvM2xrW1eWRqbtv+N+tzU1TUoXorEgjDuAA+aijjaFCEOLldd+l38wdmVg==",
       "type": "package",
@@ -2062,8 +1973,6 @@
         "staticwebassets/V5/lib/jquery/dist/jquery.min.map"
       ]
     },
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
     "Microsoft.AspNetCore.OpenApi/8.0.16": {
       "sha512": "jeZBYi62BKGRZXEkXAr9hj1L6u71HRKE7EPaZBouF1xmKdQIX7GO5oSRLTQLQmmST0y/aaI+Mr4OzyyRjmBFog==",
       "type": "package",
@@ -3134,7 +3043,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
-<<<<<<< HEAD
     "Microsoft.Extensions.FileProviders.Abstractions/8.0.0": {
       "sha512": "ZbaMlhJlpisjuWbvXr4LdAst/1XxH3vZ6A0BsgTphZ2L4PGuxRLz7Jr/S7mkAAnOn78Vu0fKhEgNF5JO3zfjqQ==",
       "type": "package",
@@ -3186,8 +3094,6 @@
         "tasks/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.dll"
       ]
     },
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
     "Microsoft.Extensions.Identity.Core/8.0.0": {
       "sha512": "hnXHyIQc+uc2uNMcIbr43+oNBAPEhMpW6lE8ux3MOegRz50WBna4AItlZDY7Y+Id1LLBbf73osUqeTw7CQ371w==",
       "type": "package",
@@ -4748,15 +4654,10 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-<<<<<<< HEAD
       "Microsoft.AspNetCore.Authentication.Google >= 8.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.0",
       "Microsoft.AspNetCore.Identity.UI >= 8.0.0",
-=======
-      "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.0",
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.0",
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       "Microsoft.AspNetCore.OpenApi >= 8.0.16",
       "Microsoft.EntityFrameworkCore >= 8.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.0",
@@ -4767,34 +4668,19 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\dawoo\\.nuget\\packages\\": {}
-=======
-    "/home/dawood/.nuget/packages/": {}
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\RegionServicesapi.csproj",
+      "projectUniqueName": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj",
       "projectName": "RegionServicesapi",
-      "projectPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\RegionServicesapi.csproj",
+      "projectPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj",
       "packagesPath": "C:\\Users\\dawoo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\obj\\",
+      "outputPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dawoo\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-      "projectUniqueName": "/home/dawood/Desktop/RegionServices/RegionServicesapi/RegionServicesapi.csproj",
-      "projectName": "RegionServicesapi",
-      "projectPath": "/home/dawood/Desktop/RegionServices/RegionServicesapi/RegionServicesapi.csproj",
-      "packagesPath": "/home/dawood/.nuget/packages/",
-      "outputPath": "/home/dawood/Desktop/RegionServices/RegionServicesapi/obj/",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "/home/dawood/.nuget/NuGet/NuGet.Config"
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -4812,27 +4698,21 @@
         "warnAsError": [
           "NU1605"
         ]
-<<<<<<< HEAD
       },
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       }
     },
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
-<<<<<<< HEAD
           "Microsoft.AspNetCore.Authentication.Google": {
             "target": "Package",
             "version": "[8.0.0, )"
           },
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[8.0.0, )"
@@ -4841,13 +4721,10 @@
             "target": "Package",
             "version": "[8.0.0, )"
           },
-<<<<<<< HEAD
           "Microsoft.AspNetCore.Identity.UI": {
             "target": "Package",
             "version": "[8.0.0, )"
           },
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[8.0.16, )"
@@ -4857,11 +4734,8 @@
             "version": "[8.0.0, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
-<<<<<<< HEAD
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "target": "Package",
             "version": "[8.0.0, )"
           },
@@ -4870,11 +4744,8 @@
             "version": "[8.0.0, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
-<<<<<<< HEAD
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "target": "Package",
             "version": "[8.0.0, )"
           },
@@ -4906,11 +4777,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.416/PortableRuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.116/PortableRuntimeIdentifierGraph.json"
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
       }
     }
   }

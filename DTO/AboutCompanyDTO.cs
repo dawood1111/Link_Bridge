@@ -1,4 +1,4 @@
-namespace RegionServicesapi.DTO
+namespace RegionServices.DTO
 {
     public class AboutCompanyDTO
     {

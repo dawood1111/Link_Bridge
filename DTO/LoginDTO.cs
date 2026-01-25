@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RegionServicesapi.DTO
+namespace RegionServices.DTO
 {
     public class LoginDTO
     {

@@ -1,6 +1,6 @@
-using RegionServicesapi.Model;
+using RegionServices.Model;
 
-namespace RegionServicesapi.Mapper
+namespace RegionServices.Mapper
 {
     public static class AboutCompaniesMapper
     {

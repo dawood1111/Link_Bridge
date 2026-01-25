@@ -4,12 +4,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
-using RegionServicesapi.Model;
+using RegionServices.Model;
 using System.IdentityModel.Tokens.Jwt;
-using RegionServicesapi.IInterface;
+using RegionServices.IInterface;
 using System.Text;
 
-namespace RegionServicesapi.GenerateToken
+namespace RegionServices.GenerateToken
 {
     public class Token:ICreateToken
     {
@@ -26,8 +26,8 @@ namespace RegionServicesapi.GenerateToken
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email,user.Email),
-                new Claim(ClaimTypes.GivenName,user.UserName),
+                new Claim(ClaimTypes.Email,user.Email ?? ""),
+                new Claim(ClaimTypes.GivenName,user.UserName??" "),
                 new Claim(ClaimTypes.NameIdentifier,user.Id),
                 new Claim(ClaimTypes.Role,user.Role)
             };

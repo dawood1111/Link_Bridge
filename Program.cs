@@ -1,15 +1,18 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using RegionServicesapi.DBcontext;
-using RegionServicesapi.GenerateToken;
-using RegionServicesapi.IInterface;
-using RegionServicesapi.Interface;
-using RegionServicesapi.Model;
-using RegionServicesapi.Repository;
+using RegionServices.DBcontext;
+using RegionServices.Model;
+using RegionServices.Repository;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using RegionServices.IInterface;
+using RegionServices.GenerateToken;
+using RegionServices.Interface;
+using Microsoft.AspNetCore.Antiforgery;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -106,15 +109,16 @@ builder.Services.AddAuthentication().AddGoogle(options =>
 });
 
 
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173")
+            policy.WithOrigins("http://localhost:5173", "http://localhost:3000")
                   .AllowAnyHeader()
-                  .AllowAnyMethod();
+                  .AllowAnyMethod()
+                  .AllowCredentials()
+                  ;
                  
         });
 });
@@ -127,6 +131,7 @@ if (!Directory.Exists(webRootPath))
 {
     Directory.CreateDirectory(webRootPath);
 }
+
 
 if (app.Environment.IsDevelopment())
 {

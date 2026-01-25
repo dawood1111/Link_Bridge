@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using RegionServicesapi.Model;
+using RegionServices.Model;
 
-namespace RegionServicesapi.Interface
+namespace RegionServices.Interface
 {
     public interface IConstructionCompany
     {

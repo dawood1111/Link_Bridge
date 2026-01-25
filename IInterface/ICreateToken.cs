@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RegionServicesapi.Model;
+using RegionServices.Model;
+using RegionServices.IInterface;
 
-namespace RegionServicesapi.IInterface
+namespace RegionServices.IInterface
 {
     public interface ICreateToken
     {

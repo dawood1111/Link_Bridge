@@ -1,24 +1,27 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using RegionServicesapi.DBcontext;
-using RegionServicesapi.DTO;
-using RegionServicesapi.Extension;
-using RegionServicesapi.Mapper;
+using Microsoft.AspNetCore.Identity;
+using RegionServices.Extension;
+using RegionServices.DBcontext;
+using RegionServices.IInterface;
+using RegionServices.Model;
+using RegionServices.DTO;
+using RegionServices.Mapper;
 
-namespace RegionServicesapi.Controller
+namespace RegionServices.Controllers
 {
+    
+    [Route("api/AboutUser")]
     [ApiController]
-    [Route("api/AboutCompanies")]
-    public class AboutCompaniesController:ControllerBase
+    public class AboutCompaniesController: ControllerBase
     {
         private readonly ApplicationDBcontext _context;
         public AboutCompaniesController(ApplicationDBcontext context)
         {
-            _context=context;
+            _context = context;
+
         }
-
-
         [HttpGet("GetAllCompanies")]
         [Authorize(Roles ="Admin")]
         public async Task<IActionResult> GetAllCompanies()
@@ -33,7 +36,6 @@ namespace RegionServicesapi.Controller
         }
 
         [HttpPost("PostCompanyProfile")]
-        [Authorize(Roles ="ITCompany,ConstructionCompany")]
 
         public async Task<IActionResult> PostCompanyProfile([FromBody] AboutCompanyDTO aboutCompanyDTO)
         {
@@ -58,4 +60,4 @@ namespace RegionServicesapi.Controller
 
         
     }
-}
+    }

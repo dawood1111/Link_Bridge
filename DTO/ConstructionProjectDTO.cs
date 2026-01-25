@@ -1,6 +1,6 @@
-using RegionServicesapi.Model;
+using RegionServices.Model;
 
-namespace RegionServicesapi.DTO
+namespace RegionServices.DTO
 {
     public class EngineerProjectDTO
     {

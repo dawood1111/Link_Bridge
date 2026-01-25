@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using RegionServicesapi.Interface;
-using RegionServicesapi.DBcontext;
+using RegionServices.Interface;
+using RegionServices.DBcontext;
 using System.ComponentModel;
-using RegionServicesapi.Model;
+using RegionServices.Model;
 using Microsoft.AspNetCore.Identity;
-using RegionServicesapi.Extension;
-using RegionServicesapi.DTO;
+using RegionServices.Extension;
+using RegionServices.DTO;
 
-namespace RegionServicesapi.Repository
+namespace RegionServices.Repository
 
 {
     public class ConstructionProjectRepo: IConstructionCompany
@@ -20,8 +20,7 @@ namespace RegionServicesapi.Repository
             _context=context;
            
         }
-        
-        public async Task<List<ConstructionProject>> GetCompanyEngineer()
+       public async Task<List<ConstructionProject>> GetCompanyEngineer()
         { 
           var GetEngineerData= await _context.ConstructionProjects.ToListAsync();
 

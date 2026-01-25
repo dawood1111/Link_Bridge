@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RegionServicesapi.DBcontext;
+using RegionServices.DBcontext;
 
 #nullable disable
 
@@ -51,43 +51,21 @@ namespace RegionServicesapi.Migrations
                     b.HasData(
                         new
                         {
-<<<<<<< HEAD
-                            Id = "f25404c3-7e40-4c7b-80b9-c3df5497bc0d",
-=======
-                            Id = "949a91a9-102e-46c6-bc71-17cfe68a82b6",
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
+                            Id = "f5455c71-c8fd-4c70-a9a1-60c6d553a311",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-<<<<<<< HEAD
-                            Id = "c4a53839-64d7-4cba-b7db-01521546187e",
-                            Name = "ConstructionCompany",
-                            NormalizedName = "CONSTRUCTIONCOMPANY"
+                            Id = "650e674f-09c2-4d76-9096-05897db0f419",
+                            Name = "Engineer",
+                            NormalizedName = "ENGINEER"
                         },
                         new
                         {
-                            Id = "d86e22f9-5ed8-41b9-954d-3ef63013d496",
-                            Name = "ITCompany",
-                            NormalizedName = "ITCOMPANY"
-                        },
-                        new
-                        {
-                            Id = "dfe67d69-6ca7-48ab-aecb-c7d0bec3b2cb",
-                            Name = "it",
-                            NormalizedName = "IT"
-=======
-                            Id = "aa38124a-eb51-4a5f-9c5e-c3e16a55fda9",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "3a183d04-d6a9-464b-b048-6d08536dd8af",
-                            Name = "helper",
-                            NormalizedName = "HELPER"
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
+                            Id = "c3fb8bac-842e-42b6-801c-b844331985ba",
+                            Name = "Company",
+                            NormalizedName = "COMPANY"
                         });
                 });
 
@@ -197,7 +175,7 @@ namespace RegionServicesapi.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("RegionServicesapi.Model.AboutHelper", b =>
+            modelBuilder.Entity("RegionServices.Model.AboutCompanies", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -205,32 +183,45 @@ namespace RegionServicesapi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Experience")
+                    b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Location")
+                    b.Property<string>("CompanyDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Major")
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ServiceType")
+                    b.Property<int>("CompanySize")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SolutionType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
+                        .IsUnique();
 
-                    b.ToTable("AboutHelpers");
+                    b.ToTable("AboutCompanies");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("RegionServicesapi.Model.ConstructionProject", b =>
+            modelBuilder.Entity("RegionServices.Model.ConstructionProject", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -245,92 +236,41 @@ namespace RegionServicesapi.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ProjectDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProjectLocation")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProjectSize")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProjectStatus")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProjectTitle")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("ConstructionProjects");
                 });
 
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
-            modelBuilder.Entity("RegionServicesapi.Model.HelpRequest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("PostDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Region")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ServiceId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("HelpRequests");
-                });
-
-            modelBuilder.Entity("RegionServicesapi.Model.ImagePost", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("HelpRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HelpRequestId");
-
-                    b.ToTable("ImagePosts");
-                });
-
-<<<<<<< HEAD
-            modelBuilder.Entity("RegionServicesapi.Model.Images", b =>
+            modelBuilder.Entity("RegionServices.Model.Images", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -342,6 +282,7 @@ namespace RegionServicesapi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -351,54 +292,7 @@ namespace RegionServicesapi.Migrations
                     b.ToTable("Images");
                 });
 
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
-            modelBuilder.Entity("RegionServicesapi.Model.Services", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ServicesName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("userId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("Services");
-                });
-
-<<<<<<< HEAD
-=======
-            modelBuilder.Entity("RegionServicesapi.Model.SubServices", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SubServiceName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("SubCategories");
-                });
-
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
-            modelBuilder.Entity("RegionServicesapi.Model.User", b =>
+            modelBuilder.Entity("RegionServices.Model.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -441,6 +335,7 @@ namespace RegionServicesapi.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Role")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
@@ -477,7 +372,7 @@ namespace RegionServicesapi.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("RegionServicesapi.Model.User", null)
+                    b.HasOne("RegionServices.Model.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -486,7 +381,7 @@ namespace RegionServicesapi.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("RegionServicesapi.Model.User", null)
+                    b.HasOne("RegionServices.Model.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -501,7 +396,7 @@ namespace RegionServicesapi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RegionServicesapi.Model.User", null)
+                    b.HasOne("RegionServices.Model.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -510,66 +405,38 @@ namespace RegionServicesapi.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("RegionServicesapi.Model.User", null)
+                    b.HasOne("RegionServices.Model.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("RegionServicesapi.Model.AboutHelper", b =>
+            modelBuilder.Entity("RegionServices.Model.AboutCompanies", b =>
                 {
-                    b.HasOne("RegionServicesapi.Model.User", "HelperUser")
-                        .WithOne("aboutHelper")
-                        .HasForeignKey("RegionServicesapi.Model.AboutHelper", "UserId");
-
-                    b.Navigation("HelperUser");
-                });
-
-<<<<<<< HEAD
-            modelBuilder.Entity("RegionServicesapi.Model.ConstructionProject", b =>
-                {
-                    b.HasOne("RegionServicesapi.Model.User", "user")
-                        .WithOne("constructionProject")
-                        .HasForeignKey("RegionServicesapi.Model.ConstructionProject", "UserId");
+                    b.HasOne("RegionServices.Model.User", "user")
+                        .WithOne("aboutCompanies")
+                        .HasForeignKey("RegionServices.Model.AboutCompanies", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("user");
                 });
 
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
-            modelBuilder.Entity("RegionServicesapi.Model.HelpRequest", b =>
+            modelBuilder.Entity("RegionServices.Model.ConstructionProject", b =>
                 {
-                    b.HasOne("RegionServicesapi.Model.Services", "Services")
-                        .WithMany("HelpRequests")
-                        .HasForeignKey("ServiceId")
+                    b.HasOne("RegionServices.Model.User", "user")
+                        .WithOne("constructionProject")
+                        .HasForeignKey("RegionServices.Model.ConstructionProject", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RegionServicesapi.Model.User", "Useres")
-                        .WithMany("HelpRequests")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Services");
-
-                    b.Navigation("Useres");
+                    b.Navigation("user");
                 });
 
-            modelBuilder.Entity("RegionServicesapi.Model.ImagePost", b =>
+            modelBuilder.Entity("RegionServices.Model.Images", b =>
                 {
-                    b.HasOne("RegionServicesapi.Model.HelpRequest", "helpRequest")
-                        .WithMany("ImagePosts")
-                        .HasForeignKey("HelpRequestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("helpRequest");
-                });
-
-<<<<<<< HEAD
-            modelBuilder.Entity("RegionServicesapi.Model.Images", b =>
-                {
-                    b.HasOne("RegionServicesapi.Model.ConstructionProject", "ConstructionProject")
+                    b.HasOne("RegionServices.Model.ConstructionProject", "ConstructionProject")
                         .WithMany("Images")
                         .HasForeignKey("ConstructionProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -578,61 +445,18 @@ namespace RegionServicesapi.Migrations
                     b.Navigation("ConstructionProject");
                 });
 
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
-            modelBuilder.Entity("RegionServicesapi.Model.Services", b =>
-                {
-                    b.HasOne("RegionServicesapi.Model.User", "Users")
-                        .WithMany("services")
-                        .HasForeignKey("userId");
-
-                    b.Navigation("Users");
-                });
-
-<<<<<<< HEAD
-            modelBuilder.Entity("RegionServicesapi.Model.ConstructionProject", b =>
+            modelBuilder.Entity("RegionServices.Model.ConstructionProject", b =>
                 {
                     b.Navigation("Images");
-=======
-            modelBuilder.Entity("RegionServicesapi.Model.SubServices", b =>
+                });
+
+            modelBuilder.Entity("RegionServices.Model.User", b =>
                 {
-                    b.HasOne("RegionServicesapi.Model.Services", "services")
-                        .WithMany("SubServices")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.Navigation("aboutCompanies")
                         .IsRequired();
 
-                    b.Navigation("services");
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
-                });
-
-            modelBuilder.Entity("RegionServicesapi.Model.HelpRequest", b =>
-                {
-                    b.Navigation("ImagePosts");
-                });
-
-            modelBuilder.Entity("RegionServicesapi.Model.Services", b =>
-                {
-                    b.Navigation("HelpRequests");
-<<<<<<< HEAD
-=======
-
-                    b.Navigation("SubServices");
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
-                });
-
-            modelBuilder.Entity("RegionServicesapi.Model.User", b =>
-                {
-                    b.Navigation("HelpRequests");
-
-                    b.Navigation("aboutHelper");
-
-<<<<<<< HEAD
-                    b.Navigation("constructionProject");
-
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
-                    b.Navigation("services");
+                    b.Navigation("constructionProject")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

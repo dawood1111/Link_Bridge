@@ -1,37 +1,20 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\RegionServicesapi.csproj": {}
+    "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\RegionServicesapi.csproj": {
+    "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\RegionServicesapi.csproj",
+        "projectUniqueName": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj",
         "projectName": "RegionServicesapi",
-        "projectPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\RegionServicesapi.csproj",
+        "projectPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj",
         "packagesPath": "C:\\Users\\dawoo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\RegionServices\\RegionServicesapi\\obj\\",
+        "outputPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dawoo\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-    "/home/dawood/Desktop/RegionServices/RegionServicesapi/RegionServicesapi.csproj": {}
-  },
-  "projects": {
-    "/home/dawood/Desktop/RegionServices/RegionServicesapi/RegionServicesapi.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/dawood/Desktop/RegionServices/RegionServicesapi/RegionServicesapi.csproj",
-        "projectName": "RegionServicesapi",
-        "projectPath": "/home/dawood/Desktop/RegionServices/RegionServicesapi/RegionServicesapi.csproj",
-        "packagesPath": "/home/dawood/.nuget/packages/",
-        "outputPath": "/home/dawood/Desktop/RegionServices/RegionServicesapi/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/home/dawood/.nuget/NuGet/NuGet.Config"
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -49,27 +32,21 @@
           "warnAsError": [
             "NU1605"
           ]
-<<<<<<< HEAD
         },
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-<<<<<<< HEAD
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -78,13 +55,10 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
-<<<<<<< HEAD
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.16, )"
@@ -94,11 +68,8 @@
               "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
-<<<<<<< HEAD
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
               "target": "Package",
               "version": "[8.0.0, )"
             },
@@ -107,11 +78,8 @@
               "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
-<<<<<<< HEAD
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
-=======
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
               "target": "Package",
               "version": "[8.0.0, )"
             },
@@ -143,11 +111,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.416/PortableRuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.116/PortableRuntimeIdentifierGraph.json"
->>>>>>> 40c7716103912476e76d10d313be518b8f89666b
         }
       }
     }

@@ -1,4 +1,4 @@
-namespace RegionServicesapi.Model
+namespace RegionServices.Model
 {
     public class Images
     {

@@ -1,7 +1,7 @@
 using Microsoft.VisualBasic;
-using RegionServicesapi.DTO;
-using RegionServicesapi.Model;
-namespace RegionServicesapi.Mapper
+using RegionServices.DTO;
+using RegionServices.Model;
+namespace RegionServices.Mapper
 {
      public static class EngineerProjectMapper
     {
