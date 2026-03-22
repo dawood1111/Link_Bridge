@@ -51,21 +51,27 @@ namespace RegionServicesapi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f5455c71-c8fd-4c70-a9a1-60c6d553a311",
+                            Id = "740fb233-3f99-4698-9fbb-474359011ae9",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "650e674f-09c2-4d76-9096-05897db0f419",
-                            Name = "Engineer",
-                            NormalizedName = "ENGINEER"
+                            Id = "75f14ef1-7522-4e46-aac9-90dec617c1df",
+                            Name = "User",
+                            NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "c3fb8bac-842e-42b6-801c-b844331985ba",
-                            Name = "Company",
-                            NormalizedName = "COMPANY"
+                            Id = "18385022-9869-4ddb-9ba5-69968d29296f",
+                            Name = "Construction",
+                            NormalizedName = "CONSTRUCTION"
+                        },
+                        new
+                        {
+                            Id = "0111fc2c-6c7b-499d-9ed6-d18dec1b99e6",
+                            Name = "IT",
+                            NormalizedName = "IT"
                         });
                 });
 
@@ -221,7 +227,29 @@ namespace RegionServicesapi.Migrations
                     b.ToTable("AboutCompanies");
                 });
 
-            modelBuilder.Entity("RegionServices.Model.ConstructionProject", b =>
+            modelBuilder.Entity("RegionServices.Model.Images", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ConstructionProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConstructionProjectId");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("RegionServices.Model.Project", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -247,9 +275,8 @@ namespace RegionServicesapi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProjectStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ProjectStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("ProjectTitle")
                         .IsRequired()
@@ -268,28 +295,6 @@ namespace RegionServicesapi.Migrations
                         .IsUnique();
 
                     b.ToTable("ConstructionProjects");
-                });
-
-            modelBuilder.Entity("RegionServices.Model.Images", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ConstructionProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ConstructionProjectId");
-
-                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("RegionServices.Model.User", b =>
@@ -423,29 +428,27 @@ namespace RegionServicesapi.Migrations
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("RegionServices.Model.ConstructionProject", b =>
+            modelBuilder.Entity("RegionServices.Model.Images", b =>
+                {
+                    b.HasOne("RegionServices.Model.Project", "Project")
+                        .WithMany("Images")
+                        .HasForeignKey("ConstructionProjectId");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("RegionServices.Model.Project", b =>
                 {
                     b.HasOne("RegionServices.Model.User", "user")
                         .WithOne("constructionProject")
-                        .HasForeignKey("RegionServices.Model.ConstructionProject", "UserId")
+                        .HasForeignKey("RegionServices.Model.Project", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("RegionServices.Model.Images", b =>
-                {
-                    b.HasOne("RegionServices.Model.ConstructionProject", "ConstructionProject")
-                        .WithMany("Images")
-                        .HasForeignKey("ConstructionProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ConstructionProject");
-                });
-
-            modelBuilder.Entity("RegionServices.Model.ConstructionProject", b =>
+            modelBuilder.Entity("RegionServices.Model.Project", b =>
                 {
                     b.Navigation("Images");
                 });

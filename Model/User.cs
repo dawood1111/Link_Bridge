@@ -10,7 +10,7 @@ namespace RegionServices.Model
     {
         public string Role { get; set; }
      
-        public ConstructionProject constructionProject { get; set; }
+        public Project constructionProject { get; set; }
         public AboutCompanies aboutCompanies { get; set; }
     }
 

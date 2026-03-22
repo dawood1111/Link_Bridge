@@ -9,6 +9,7 @@ namespace RegionServices.DTO
         public String Address { get; set; }=string.Empty;
         public DateTime StartedAt { get; set; }
         public int CompanySize { get; set; }
+        public String UserId { get; set; }
         
     }
 }

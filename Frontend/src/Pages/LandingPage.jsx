@@ -7,7 +7,7 @@ import Footer from "../Component/LandingPage/Footer";
 function LandingPage(){
 
     return(
-        <div className="min-h-screen bg-[#F97316] font-[Poppins,sans-serif]">
+        <div className="h-full bg-[#dfe0df] font-[Poppins,sans-serif]">
       <Header/>
       
        

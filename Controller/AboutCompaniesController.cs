@@ -23,7 +23,7 @@ namespace RegionServices.Controllers
 
         }
         [HttpGet("GetAllCompanies")]
-        [Authorize(Roles ="Admin")]
+       
         public async Task<IActionResult> GetAllCompanies()
         {
             var GetAllCompaniesModel=await _context.AboutCompanies.ToListAsync();
@@ -49,11 +49,31 @@ namespace RegionServices.Controllers
             {
                 return BadRequest("Data Is Null");
             }
-           var AboutCompanyDTO=  aboutCompanyDTO.ToAboutCompany();
+           var AboutCompanyDTO=  aboutCompanyDTO.ToAboutCompany(FindUser.Id);
             await _context.AboutCompanies.AddAsync(AboutCompanyDTO);
             await _context.SaveChangesAsync();
 
               return Ok("Company profile was created successfully");
+
+
+        }
+        [HttpGet("GetCompanyProfile")]
+        public async Task<IActionResult> QueryCompanyProfile([FromQuery] CompanyProfileQuery query)
+        {
+            var CompanyProfile= _context.AboutCompanies.AsQueryable();
+            if(!string.IsNullOrEmpty(query.CompanyName))
+            {
+                CompanyProfile= CompanyProfile.Where(c=>c.CompanyName==query.CompanyName);
+            }
+            if(!string.IsNullOrEmpty(query.SolutionType))
+            {
+                CompanyProfile= CompanyProfile.Where(c=>c.SolutionType==query.SolutionType);
+            }
+            var companies = await CompanyProfile.ToListAsync();
+            return Ok(companies);
+
+           
+          
 
 
         }

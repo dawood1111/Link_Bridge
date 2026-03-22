@@ -5,21 +5,38 @@ import SignUp from './Pages/SignUp.jsx'
 import SignIn from './Pages/SignIn.jsx'
 import MainPage from './Pages/MainPage.jsx'
 import ErrorPage from './ErrorPage.jsx'
-import {Link} from 'react-router-dom'
+import {Link, Route, Router} from 'react-router-dom'
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
-import ImagesSwiperTest from './ImagesSwipe.jsx'
 import { Provider } from 'react-redux'
 import { store } from './Redux/Store.jsx'
 import LandingPage from './Pages/LandingPage.jsx'
+import {Companies} from './Component/LandingPage/SearchBar.jsx'
+import { Feed } from './Component/LandingPage/Feed.jsx'
+import {TestPage} from './Pages/TestPage.jsx'
+
+
 const router=createBrowserRouter([
 {
   path:'/',
-  element:<SignUp/>,
+  element:<LandingPage/>,
   errorElement:<ErrorPage/>
 },
 {
+
   path:'/MainPage',  
-  element:<MainPage/>
+  element:<MainPage/>,
+  children:[
+    
+    {
+      path:'Companies',
+      element:<Companies/>
+    }
+    ,
+{
+     path:'Feed',
+     element:<Feed/>
+    },
+  ]
 },
 {
   path:'/SignIn',
@@ -27,12 +44,12 @@ const router=createBrowserRouter([
 
 },
 {
-path:'/ImagesSwiperTest',
-element:<ImagesSwiperTest/>
-}
-,{
-  path:'/LandingPage',
-  element:<LandingPage/>
+  path:'/SignUp',
+  element:<SignUp/>
+},
+{
+  path:'/TestPage',
+  element:<TestPage/>
 }
 ])
 

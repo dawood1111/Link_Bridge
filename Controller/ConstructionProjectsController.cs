@@ -46,7 +46,7 @@ namespace RegionServices.Controllers
         }
     
 
-       [Authorize(Roles="ConstructionCompany")]
+     
        [HttpPost("PostEngineerProject")]
        public async Task<IActionResult> CreateEngineerProfile([FromForm]  EngineerProjectDTO engineerProjectDTO)
         {

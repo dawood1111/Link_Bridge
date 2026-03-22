@@ -16,8 +16,8 @@ export const FetchData=createAsyncThunk('FetchUser',async (UserData)=>{
     });
     if(!Response.ok){
 
-        const Error= await Response.json();
-        return Error;
+         const Error = await Response.json();
+        return rejectWithValue(Error);
     }
  
         return await Response.json();
@@ -32,9 +32,9 @@ const SignInSlice=createSlice({
         error:null
     },
     extraReducers:(builder)=>{
-        builder.addCase(FetchData.pending,(state=>{
+        builder.addCase(FetchData.pending,(state)=>{
             state.isloading=true;
-        })),
+        }),
         builder.addCase(FetchData.fulfilled,(state,action)=>{
             state.isloading=false;
             state.userInfo=action.payload;

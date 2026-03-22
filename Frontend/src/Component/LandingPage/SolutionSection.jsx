@@ -8,15 +8,23 @@ import React from 'react';
 
 
 function SolutionSection(){
-    const SolutionContainer="bg-white flex flex-col justify-end  text-black h-90 gap-8 col-span-1 shadow-2xl rounded-md "
-    const CenterSolution="bg-white flex flex-col justify-end   text-black  h-120 col-span-1 shadow-2xl gap-6 rounded-md "
+    const SolutionContainer="bg-white flex flex-col justify-end  text-black h-130 gap-6 col-span-1 shadow-6xl  "
+    const CenterSolution="bg-white flex flex-col justify-end   text-black  h-150 col-span-1 shadow-2xl gap-8  "
     const H1Style="font-bold text-[17px] fomat-sans  pl-2 pr-2 bg-[#0c2b78] w-50 pt-2 pb-2 text-white "
     const PStyle="text-[15px]  pl-3 pr-3 font-normal text-white bg-black/60  mb-10 rounded-md w-100 "
     return (
         <div className="mb-5  mt-5">
-         <h1 className="text-center text-[30px] font-bold text-[#0c2b78] "> Our Solutions</h1>
-        
-        <div className=" grid grid-cols-3 gap-1 items-center justify-center mt-5  p-5 ">
+ <div className="text-center mt-16 mb-4">
+  <h2 className="text-3xl font-bold text-blue-900">
+    Our Solutions
+  </h2>
+  <div className="mt-2 mx-auto h-1 w-16 bg-orange-500 rounded"></div>
+  <p className="text-gray-600 mt-3">
+    Discover the services that connect IT and construction professionals.
+  </p>
+</div>
+
+        <div className=" grid grid-cols-3 gap-10 items-center justify-center mt-5  p-5 ">
             <div className={SolutionContainer}
             style={{
                 backgroundImage:`url(${handShake})`,
