@@ -13,11 +13,16 @@ namespace RegionServices.DBcontext
         {
 
         }
-        public DbSet<ConstructionProject> ConstructionProjects { get; set; }
+        public DbSet<Project> ConstructionProjects { get; set; }
         public  DbSet<AboutCompanies> AboutCompanies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Project>().
+            HasMany(p => p.Images)
+            .WithOne(i => i.Project)
+            .HasForeignKey(i => i.ConstructionProjectId);
+
                 
             base.OnModelCreating(modelBuilder);
             //seed roles(we can also add it to program cs)
@@ -25,8 +30,9 @@ namespace RegionServices.DBcontext
             {
 
                 new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
-                new IdentityRole { Name = "Engineer", NormalizedName = "ENGINEER" },
-                new IdentityRole { Name = "Company", NormalizedName = "COMPANY" }
+                new IdentityRole { Name = "User", NormalizedName = "USER" },
+                 new IdentityRole { Name = "Company", NormalizedName = "COMPANY" }
+                 
 
 
             };

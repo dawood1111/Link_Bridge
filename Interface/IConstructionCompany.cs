@@ -5,7 +5,7 @@ namespace RegionServices.Interface
 {
     public interface IConstructionCompany
     {
-         public Task<List<ConstructionProject>> GetCompanyEngineer();
+         public Task<List<Project>> GetCompanyEngineer();
 
     }
 }

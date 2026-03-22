@@ -2,7 +2,7 @@ import { use, useState } from 'react'
 import { useEffect } from 'react';
 import images2 from '../Images/construction2.jpg';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch} from 'react-redux';
+import { useDispatch,useSelector} from 'react-redux';
 import { FetchData } from '../Redux/Slices/SignInSlice.jsx'; 
 import  { useFormik } from 'formik';
 import {SignInSchema} from '../Schema/Schema.js';   
@@ -12,6 +12,7 @@ import {SignInSchema} from '../Schema/Schema.js';
 
     const Navigate=useNavigate();
     const Dispatch=useDispatch();
+    const {isloading}=useSelector((state)=>state.user2);
     
  
 
@@ -20,7 +21,6 @@ import {SignInSchema} from '../Schema/Schema.js';
      if (FetchData.fulfilled.match(DispatchData)) {
 
       Navigate('/MainPage');
-
     } else {
       console.log("Sign In failed :", DispatchData.payload);
     }
@@ -41,6 +41,7 @@ import {SignInSchema} from '../Schema/Schema.js';
   return (
       
     < div className='flex justify-center items-center min-h-screen bg-[#dfe0df] font-[Poppins,sans-serif]' >
+     
 
       <form onSubmit={handleSubmit} className='flex h-[700px] w-270 shadow-lg rounded-sm mt-[20px]'>
 
@@ -85,9 +86,15 @@ import {SignInSchema} from '../Schema/Schema.js';
   {errors.Password && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif] ml-1 mt-[-6px]'>{errors.Password}</p>}  
 </div>
 
+
+
 <button  type='submit'  className='mx-auto w-50  bg-[#F97316] text-[#3a3e42] pl-1 pr-1  pt-1.5 pb-1.5 border-none 
-mt-6 rounded-[18px] shadow-sm text-center align-middle font-[Poppins,sans-serif] font-semibold text-[14px] '>
-  Sign In</button>
+mt-6 rounded-[18px] shadow-sm text-center flex items-center justify-center  font-[Poppins,sans-serif] font-semibold text-[14px] '>
+  {
+    isloading ? <span className="loading loading-spinner loading-xl"></span>
+ : 'Sign In'
+
+  }</button>
 </div>
 </div>
 </form>

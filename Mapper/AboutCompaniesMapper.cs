@@ -4,7 +4,7 @@ namespace RegionServices.Mapper
 {
     public static class AboutCompaniesMapper
     {
-        public static AboutCompanies ToAboutCompany(this DTO.AboutCompanyDTO dto )
+        public static AboutCompanies ToAboutCompany(this DTO.AboutCompanyDTO dto,string userId)
         {
             return new AboutCompanies
             {
@@ -14,7 +14,8 @@ namespace RegionServices.Mapper
                 ContactNumber = dto.ContactNumber,
                 Address = dto.Address,
                 StartedAt = dto.StartedAt,
-                CompanySize = dto.CompanySize
+                CompanySize = dto.CompanySize,
+                UserId=userId
             };
             
         }

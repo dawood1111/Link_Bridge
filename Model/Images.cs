@@ -4,8 +4,8 @@ namespace RegionServices.Model
     {
         public int Id { get; set; }
         public String Image { get; set; }=string.Empty;
-        public ConstructionProject ConstructionProject { get; set; }
-        public int ConstructionProjectId { get; set; }
+        public Project? Project { get; set; }
+        public int? ConstructionProjectId { get; set; }
 
     }
 }

@@ -7,20 +7,32 @@ function HeroSection(){
 
 
 
-        <div className='bg-white  h-140 flex flex-col justify-center  gap-4 ' 
-        style={{
-            backgroundImage:`url(${SwitchImg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-            ,opacity:'0.9'
-        }}>
-         
-            <h1 className='font-bold text-[40px] text-white mt-11  ml-10'>Connect with Trusted IT & Construction Companies</h1>
-            <h3 className='text-gray-400 font-bold w-100 ml-19'>Find reliable partners, compare ratings, and get your project done faster.</h3>
-            <div className='mt-10'>
-                 <button className=' bg-[#F97316] text-white font-bold h-10 w-33  ml-19 '>Get Started</button>
-                <button className=' bg-[#F97316] text-white font-bold h-10 w-33  ml-8  '>Explore</button>
-            </div>
+        <div className="relative w-full h-[500px] sm:h-[600px] flex  items-center">
+  <img 
+    src={SwitchImg} 
+    className="absolute w-full h-full object-cover"
+  />
+          <div className="relative max-w-3xl px-8 sm:px-16 text-white space-y-6">
+    <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight drop-shadow-xl">
+      Connect with Trusted IT & Construction Companies
+    </h1>
+
+    <p className="text-1xl sm:text-20 text-gray-200">
+      Find reliable partners, compare ratings, and get your project done faster.
+    </p>
+    </div>
+            
+   <div className="   z-10 absolute bottom-28  left-20 flex space-x-4 ">
+      <button className="bg-orange-500 hover:bg-orange-600 px-10 py-3 rounded-sm font-semibold text-white">
+        Get Started
+      </button>
+
+      <button className="border border-white px-8 py-3 rounded-sm  font-semibold text-white hover:bg-white hover:text-black transition">
+        Explore
+      </button>
+    </div>
+                
+          
            
             
         </div>

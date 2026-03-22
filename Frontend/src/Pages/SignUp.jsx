@@ -7,6 +7,8 @@ import { useFormik } from 'formik';
 import {SignUpSchema} from '../Schema/Schema.js';
 
 function SignUp() {
+    const Navigate = useNavigate();
+  const Dispatch= useDispatch();
   async function onSubmit() {
 
     const DispatchData= await Dispatch(FetchData(values));
@@ -33,8 +35,7 @@ function SignUp() {
 
   });
 
-  const Navigate = useNavigate();
-  const Dispatch= useDispatch();
+
 
 
   return (
@@ -151,8 +152,9 @@ function SignUp() {
             onChange={handleChange}
             className='mb-5 py-1.5 px-0 rounded-md text-center border-none shadow-md text-xs bg-slate-200/60 border-1 border-amber-950'
           >
-            <option value="Company"> Company</option>
-            <option value="Engineer">Engineer </option>
+            <option value="user"> user</option>
+            <option value="Construction">Contruction </option>
+            <option value="IT">IT</option>
           </select>
 
      

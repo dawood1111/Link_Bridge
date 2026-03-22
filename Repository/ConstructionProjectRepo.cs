@@ -20,9 +20,9 @@ namespace RegionServices.Repository
             _context=context;
            
         }
-       public async Task<List<ConstructionProject>> GetCompanyEngineer()
+       public async Task<List<Project>> GetCompanyEngineer()
         { 
-          var GetEngineerData= await _context.ConstructionProjects.ToListAsync();
+          var GetEngineerData= await _context.ConstructionProjects.Include(p=>p.Images).Include(u=>u.user).ToListAsync();
 
             return GetEngineerData;
         }

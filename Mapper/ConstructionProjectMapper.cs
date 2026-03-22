@@ -5,9 +5,9 @@ namespace RegionServices.Mapper
 {
      public static class EngineerProjectMapper
     {
-        public static ConstructionProject ToEngineerProject(this EngineerProjectDTO projectEngineerDTO,string userId, IWebHostEnvironment hostEnvironment)
+        public static Project ToEngineerProject(this EngineerProjectDTO projectEngineerDTO,string userId, IWebHostEnvironment hostEnvironment)
         {
-             var NewConstructionProject= new ConstructionProject
+             var NewConstructionProject= new Project
             {
                 ProjectTitle=projectEngineerDTO.ProjectTitle,
                 ProjectDescription=projectEngineerDTO.ProjectDescription,
@@ -15,7 +15,6 @@ namespace RegionServices.Mapper
                 ProjectSize=projectEngineerDTO.ProjectSize ,
                 StartDate=projectEngineerDTO.StartDate,
                 EndDate=projectEngineerDTO.EndDate,
-                ProjectStatus=projectEngineerDTO.ProjectStatus,
                 UserId=userId,
                 Images=new List<Images>()//initialize images list
                 
