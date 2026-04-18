@@ -22,12 +22,12 @@ function SignUp() {
 
   const {handleChange,values,errors,handleSubmit,handleBlur,touched}=useFormik({
     initialValues:{
-      FirstName:'',
-      LastName:'',
-      Email:'',
-      Password:'',
-      PhoneNumber:'',
-      Role:''
+      firstName:'',
+      lastName:'',
+      email:'',
+      password:'',
+      phoneNumber:'',
+      role:''
     },
     validationSchema:SignUpSchema,
     
@@ -68,32 +68,32 @@ function SignUp() {
             <div className="grid gap-2.5">
               <label className='text-[11px] text-black font-semibold '>FirstName</label>
               <input 
-                id='FirstName'
-                name='FirstName'
+                id='firstName'
+                name='firstName'
                 onChange={handleChange}
                  onBlur={handleBlur}
-                value={values.FirstName}
+                value={values.firstName}
                 type="text" 
                 className='w-[160px] shadow-md border-none pt-4 pb-4  h-5 rounded  bg-slate-200/60 border-1 border-amber-950'
               />
               <div>
-                {touched.FirstName && errors.FirstName && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.FirstName}</p>}
+                {touched.firstName && errors.firstName && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.firstName}</p>}
               </div>
             </div>
 
             <div className='grid gap-2.5'>
               <label className='text-[11px] text-black font-semibold'>LastName</label>
               <input 
-              id='LastName'
-              name='LastName'
-              value={values.LastName}
+              id='lastName'
+              name='lastName'
+              value={values.lastName}
               onChange={handleChange}
               onBlur={handleBlur}
                type="text"  
               className='w-[160px]  shadow-md border-none pt-4 pb-4 h-5 rounde bg-slate-200/60 border-1 border-amber-950'
               />
               <div>
-                {touched.LastName && errors.LastName && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.LastName}</p>}
+                {touched.lastName && errors.lastName && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.lastName}</p>}
               </div>
             </div>
           </div>
@@ -101,66 +101,67 @@ function SignUp() {
           {/* Email */}
           <label className='text-[11px] font-semibold text-black '>Email</label>
           <input 
-             id='Email'
+             id='email'
             type="text"
-            name='Email' 
+            name='email' 
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.Email}
+            value={values.email}
             className='w-[400px] bg-[#3a3e42] shadow-md border-none pl-2 pt-2 pb-2  rounded bg-slate-200/60 border-1 border-amber-950'
           />
           <div>
-            {touched.Email && errors.Email && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.Email}</p>}
+            {touched.email && errors.email && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.email}</p>}
           </div>
 
           {/* Password */}
           <label className='text-[11px] font-semibold text-black'>Password</label>
           <input 
             type="password" 
-            id='Password'
-            name='Password'
+            id='password'
+            name='password'
             onBlur={handleBlur}
             onChange={handleChange}
-            value={values.Password}
+            value={values.password}
             className='w-[400px] bg-[#3a3e42] shadow-md border-none pl-2 pt-2 pb-2  rounded  bg-slate-200/60 border-1 border-black'
           />
           <div>
-            {touched.Password && errors.Password && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.Password}</p>}
+            {touched.password && errors.password && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.password}</p>}
           </div>
 
           <label className='text-[11px] font-semibold text-black'>PhoneNumber</label>
           <input 
           
             type="tel" 
-            id='PhoneNumber'
-            name='PhoneNumber'
-            value={values.PhoneNumber}
+            id='phoneNumber'
+            name='phoneNumber'
+            value={values.phoneNumber}
             onChange={handleChange}
             onBlur={handleBlur}
             className='w-[400px]  shadow-md border-nonepl-2 pt-2 pb-2  rounded  bg-slate-200/60 '
           />
           <div>
-            {touched.PhoneNumber && errors.PhoneNumber && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.PhoneNumber}</p>}
+            {touched.phoneNumber && errors.phoneNumber && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.phoneNumber}</p>}
           </div>
 
     
           <label className='text-[11px] font-semibold text-black'>Role</label>
           <select 
-            id='Role'
-            name='Role'
-            value={values.Role}
+            id='role'
+            name='role'
+            value={values.role}
             onChange={handleChange}
             className='mb-5 py-1.5 px-0 rounded-md text-center border-none shadow-md text-xs bg-slate-200/60 border-1 border-amber-950'
           >
             <option value="user"> user</option>
-            <option value="Construction">Contruction </option>
-            <option value="IT">IT</option>
+            <option value="company">company </option>
+           
           </select>
 
      
           <button 
             className='bg-[#F97316] border-none py-1.5 px-1.5 rounded-lg text-[#3a3e42] font-semibold cursor-pointer ' 
             type='submit'
+            onClick={onSubmit}
           >
             Sign Up
           </button>

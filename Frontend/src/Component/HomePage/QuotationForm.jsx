@@ -1,0 +1,316 @@
+import React from "react";
+import { useSelector } from "react-redux";
+import { CloseModal } from "../../Redux/Slices/ModalSlice";
+import { useDispatch } from "react-redux";
+import {
+  FaBuilding,
+  FaFileInvoiceDollar,
+  FaRegHandshake,
+  FaGlobe,
+  FaPlus,
+  FaTrash,
+} from "react-icons/fa";
+import { useState } from "react";
+import PostQuotationReducer from "../../Redux/Slices/PostQuotationSlice";
+function QuotationForm() {
+  const Dispatch = useDispatch();
+  const ModalState = useSelector((state) => state.modal || {});
+
+  const [formData, setFormData] = useState({
+    quotationNumber: "",
+    date: new Date().toISOString().split("T")[0],
+    companyName: "",
+    companyEmail: "",
+    clientCompany: "",
+    companyHistory: "",
+    keyAchievements: [""],
+    financialItems: [
+      { itemNo: "1", description: "", unit: "pcs", quantity: 1, unitPrice: 0 },
+    ],
+    paymentTerms: "",
+    deliveryTimeline: "",
+    termsAndConditions: "",
+    notes: "",
+    discountPercentage: 0,
+    taxPercentage: 15,
+    taxLabel: "VAT",
+    currency: "USD",
+  });
+
+  const dispatch = useDispatch();
+
+  const HandleSubmit = () => {
+    dispatch(PostQuotationReducer(formData));
+  };
+
+  const AddFinancialItems = () => {
+    setFormData((prev) => ({
+      ...prev,
+      financialItems: [
+        ...prev.financialItems,
+        {
+          itemNo: (prev.financialItems.length + 1).toString().padStart(2, "0"),
+          description: "",
+          unit: "pcs",
+          quantity: 1,
+          unitPrice: 0,
+        },
+      ],
+    }));
+  };
+
+  if (!ModalState.isOpen) {
+    return null;
+  }
+
+  return (
+
+      <div className="bg-gray-100 fixed bottom-6 w-200 max-w-5xl max-h-[95vh] overflow-hidden rounded-2xl shadow-2xl flex flex-col border border-white/20 z-50">
+        {/* HEADER SECTION */}
+        <div className="p-6 bg-gray-100 border-b flex justify-between items-end">
+          <div>
+            <h2 className="text-3xl font-black text-[#0c2b78] tracking-tight">
+              QUOTATION
+            </h2>
+        
+          </div>
+          <div className="text-right space-y-1">
+            <div className="flex items-center gap-2 justify-end text-sm">
+              <span className="font-bold text-slate-500 uppercase">No:</span>
+              <span className="bg-slate-100 px-2 py-1 rounded font-mono font-bold">
+                QT-8821
+              </span>
+            </div>
+            <div className="flex items-center gap-2 justify-end text-sm">
+              <span className="font-bold text-slate-500 uppercase">Date:</span>
+              <span className="text-[#0c2b78]">April 17, 2026</span>
+            </div>
+          </div>
+        </div>
+
+        {/* SCROLLABLE CONTENT */}
+        <div className="p-8 overflow-y-auto flex-1 space-y-8 glass">
+          {/* ROW 1: COMPANY & CLIENT PROFILES */}
+          <div className="grid grid-cols-2 gap-8">
+            {/* Left Column: Your Company */}
+            <div className="space-y-4">
+              <h3 className="flex items-center gap-2  text-[#0c2b78]  pb-2 text-[14px] ml-2 font-medium">
+                <FaBuilding /> FROM (SENDER)
+              </h3>
+              <input
+                placeholder="Company Name"
+                className="w-full bg-white pl-3 pr-3 pt-2 pb-2 border rounded-sm  ring-slate-800 outline-none transition"
+                onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+              />
+              <input
+                placeholder="Company Email"
+                className="w-full bg-white pl-3 pr-3 pt-2 pb-2 border rounded-sm focus:ring-2 ring-slate-800 outline-none transition"
+                onChange={(e) => setFormData({ ...formData, companyEmail: e.target.value })}
+              />
+              <textarea
+                placeholder=" Company History"
+                className="w-full bg-white pl-3 pr-3 pt-2 pb-2 border rounded-sm h-24 outline-none  ring-slate-800"
+              />
+            </div>
+
+            {/* Right Column: Key Achievements & Client */}
+            <div className="space-y-4 ">
+              <h3 className="flex items-center gap-2  text-[#0c2b78]  pb-2 font-medium ml-2">
+                <FaGlobe /> CLIENT & ACHIEVEMENTS
+              </h3>
+              <input
+                placeholder="Client Company"
+                className="w-full bg-white pl-3 pr-3 pt-2 pb-2 border rounded-sm focus:ring-2 ring-slate-800 outline-none transition"
+                onChange={(e) => setFormData({ ...formData, clientCompany: e.target.value })}
+              />
+              <div className="space-y-2">
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                  Key Achievements
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    placeholder="e.g. ISO 9001 Certified"
+                    className="flex-1 bg-white p-2 text-sm border rounded-md outline-none"
+                    onChange={(e) => setFormData({ ...formData, keyAchievements: e.target.value })}
+                  />
+                  <button className="bg-slate-200 p-2 rounded hover:bg-slate-300 transition text-slate-600">
+                    <FaPlus size={10} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* SECTION 2: FINANCIAL ITEMS TABLE */}
+          <div className="space-y-3 ">
+            <h3 className="flex items-center gap-2 font-medium text-[#0c2b78] pb-2 uppercase text-sm tracking-wider ml-4">
+              <FaFileInvoiceDollar className="bg-whit" /> Financial Breakdown
+            </h3>
+
+            <div
+              className="bg-white rounded-xl shadow-sm border overflow-hidden"
+              >
+              <table className="w-full text-left border-collapse">
+                <thead className="bg-slate-50 border-b text-[11px] font-black text-slate-500 uppercase tracking-wider">
+                  <tr>
+                    <th className="px-4 py-3 text-center w-16">Item #</th>
+                    <th className="px-4 py-3">Description</th>
+                    <th className="px-4 py-3 w-24">Unit</th>
+                    <th className="px-4 py-3 w-24 text-center">Qty</th>
+                    <th className="px-4 py-3 w-32">Unit Price</th>
+                    <th className="px-4 py-3 w-10"></th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y text-sm">
+                  {formData.financialItems.map((item, index) => (
+                   
+                      <tr
+                        className="hover:bg-slate-50/50 transition"
+                        key={index}
+                      >
+                        {/* Item Number */}
+                        <td className="px-4 py-3 text-center font-mono">
+                          {item.itemNo}
+                        </td>
+
+                        {/* Description */}
+                        <td className="px-4 py-3">
+                          <input
+                            className="w-full bg-transparent outline-none font-medium"
+                            placeholder="Project Description..."
+                            value={item.description}
+                            onChange={(e) => {
+                              const updatedItems = [...formData.financialItems];
+                              updatedItems[index].description = e.target.value;
+                              setFormData({ ...formData, financialItems: updatedItems });
+                            }}
+                          />
+                        </td>
+
+                        {/* Unit */}
+                        <td className="px-4 py-3">
+                          <input
+                            className="w-full bg-transparent outline-none"
+                            placeholder="e.g. M2"
+                            value={item.unit}
+                            onChange={(e) => {
+                              const updatedItems = [...formData.financialItems];
+                              updatedItems[index].unit = e.target.value;
+                              setFormData({ ...formData, financialItems: updatedItems });
+                            }}
+                           
+                          />
+                        </td>
+
+                        {/* Quantity */}
+                        <td className="px-4 py-3">
+                          <input
+                            className="w-full bg-transparent outline-none text-center"
+                            placeholder="0"
+                            value={item.quantity}
+                            onChange={(e)=>{
+                                const updateItems=[...formData.financialItems]
+                                updateItems[index].quantity=e.target.value;
+                                setFormData({...formData , financialItems : updateItems});
+
+                            }}
+                          />
+                        </td>
+
+                        {/* Price */}
+                        <td className="px-4 py-3 font-mono font-bold">
+                          <input
+                            className="w-full bg-transparent outline-none"
+                            placeholder="0.00"
+                            value={item.unitPrice}
+                           onChange={(e)=>{
+                            const updateItems=[...formData.financialItems]
+                            updateItems[index].unitPrice=e.target.value
+                            setFormData({...formData,financialItems:updateItems})
+                           }}
+                          />
+                        </td>
+
+                        {/* Delete Button */}
+                        <td className="px-4 py-3">
+                          <button className="text-slate-300 hover:text-red-500 transition">
+                            <FaTrash size={12} />
+                          </button>
+                        </td>
+                      </tr>
+                  
+                  ))}
+                </tbody>
+              </table>
+              <button
+                className="w-full py-4 text-xs font-bold text-slate-400 hover:text-amber-600 hover:bg-amber-50 transition border-t border-dashed uppercase tracking-widest flex items-center justify-center gap-2"
+                onClick={AddFinancialItems}
+              >
+                <FaPlus size={10} /> Add Line Item
+              </button>
+            </div>
+          </div>
+
+          {/* SECTION 3: TERMS & ADDITIONAL INFO */}
+          <div className="grid grid-cols-3 gap-6">
+            <div className="col-span-1 space-y-4">
+              <h3 className="flex items-center gap-2 font-medium text-[#0c2b78] border-b pb-2 text-xs uppercase">
+                <FaRegHandshake /> Delivery & Payment
+              </h3>
+              <textarea
+                placeholder="Payment Terms..."
+                className="w-full bg-white p-3 border rounded-lg h-24 text-sm"
+              />
+              <textarea
+                placeholder="Delivery Timeline..."
+                className="w-full bg-white p-3 border rounded-lg h-24 text-sm"
+              />
+            </div>
+            <div className="col-span-2 space-y-4">
+              <h3 className="flex items-center gap-2 font-medium text-slate-800 border-b pb-2 text-xs uppercase">
+                Terms & Conditions / Notes
+              </h3>
+              <textarea
+                placeholder="Terms and Conditions..."
+                className="w-full bg-white p-3 border rounded-lg h-24 text-sm"
+              />
+              <textarea
+                placeholder="Extra Notes..."
+                className="w-full bg-white p-3 border rounded-lg h-24 text-sm"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* BOTTOM SUMMARY FOOTER */}
+        <div className="p-4  bg-[#0c2b78] text-white flex justify-between items-center rounded-b-sm">
+         
+            <div className="space-y-1">
+              <p className="text-[10px] text-white font-black uppercase tracking-widest">
+                Grand Total
+              </p>
+              <p className="text-2xl font-black font-mono">
+                0.00{" "}
+                <span className="text-sm font-normal text-slate-400">USD</span>
+              </p>
+            </div>
+           <button
+            className="bg-white hover:bg-white text-[#0c2b78]  pl-6 pr-6 pt-2 pb-2 rounded-sm font-black  shadow-xl  active:scale-95 transition transform"
+            onClick={HandleSubmit}
+          >
+            SUBMIT 
+          </button>
+          </div>
+         
+          <button
+            onClick={() => Dispatch(CloseModal())}
+            className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition"
+          >
+            Close
+          </button>
+        </div>
+      
+ 
+  );
+}
+export default QuotationForm;

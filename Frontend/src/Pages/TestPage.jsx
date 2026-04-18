@@ -1,23 +1,48 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 export function TestPage(){
-    const [event,SetEvent]=useState(false);
-    const HandleClick=()=>{
-        SetEvent(true);
-        console.log(event)
-    
+    const [Quotation,SetQuotation]=useState([]);
+    const fetchData=async()=>{
+        const response=await fetch('http://localhost:5194/api/quotations/getQuotations',{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json'   
+            },
+            credentials:'include'
+        });
+        const data=await response.json();
+        SetQuotation(data);
+        console.log(Quotation);
+        console.log(data);
+
     }
-   return(
+    useEffect(()=>{
+        fetchData();
+    },[])
+    const HandleURL=(url)=>{
+       window.open(url);
+       console.log(url);
+
+    }
+   
     
-     <div className="bg-amber-200 w-100 h-100">
-        
-        <div className="post bg-amber-500 w-100 h-70">
-            dawood
-        </div>
-
-<button className="bg-amber-950 w-100 text-white flex justify-center" onClick={HandleClick}> dropdown</button>
-
-
+   return(
+    <div>
+        {
+            Quotation.map((url,index)=>(
+                <div key={index} className="flex justify-center items-center ">
+                    <button onClick={() => HandleURL(url)}>
+                        View Quotation {index + 1}
+                    </button>
+                </div>
+            ))  
+          
+        }
+    
+       
     </div>
+     
    )
+   
 
 }

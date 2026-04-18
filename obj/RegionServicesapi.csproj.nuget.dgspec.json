@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj": {}
+    "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\RegionServicesapi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj": {
+    "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\RegionServicesapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj",
+        "projectUniqueName": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\RegionServicesapi.csproj",
         "projectName": "RegionServicesapi",
-        "projectPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj",
+        "projectPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\RegionServicesapi.csproj",
         "packagesPath": "C:\\Users\\dawoo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\obj\\",
+        "outputPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dawoo\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -82,6 +82,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "QuestPDF": {
+              "target": "Package",
+              "version": "[2026.2.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

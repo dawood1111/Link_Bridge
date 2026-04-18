@@ -10,9 +10,9 @@ import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './Redux/Store.jsx'
 import LandingPage from './Pages/LandingPage.jsx'
-import {Companies} from './Component/LandingPage/SearchBar.jsx'
-import { Feed } from './Component/LandingPage/Feed.jsx'
 import {TestPage} from './Pages/TestPage.jsx'
+import {HomePages} from './Pages/HomePages.jsx'
+import Projects from './Pages/ProjectSection.jsx'
 
 
 const router=createBrowserRouter([
@@ -28,13 +28,13 @@ const router=createBrowserRouter([
   children:[
     
     {
-      path:'Companies',
-      element:<Companies/>
+      path:'Projects',
+      element:<Projects/>
     }
     ,
 {
-     path:'Feed',
-     element:<Feed/>
+     path:'HomePage',
+     element:<HomePages/>
     },
   ]
 },

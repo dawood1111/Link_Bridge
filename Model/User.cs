@@ -12,6 +12,8 @@ namespace RegionServices.Model
      
         public Project constructionProject { get; set; }
         public AboutCompanies aboutCompanies { get; set; }
+        public List<QuotationRequest> quotationRequests { get; set; }=new List<QuotationRequest>();
+        
     }
 
 

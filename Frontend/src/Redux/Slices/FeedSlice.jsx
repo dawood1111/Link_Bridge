@@ -1,8 +1,11 @@
 import { createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
+
+
+
 export const GetData=createAsyncThunk('GetData',async()=>{
-    const Response= await fetch('http://localhost:5194/api/ConstructionProjects/GetEngineerProject',{
+    const Response= await fetch('http://localhost:5194/api/Projects/GetProjects',{
         method:'GET',
         headers:{
             'Content-Type':'application/json'

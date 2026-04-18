@@ -34,7 +34,7 @@ namespace RegionServices.Controllers
             return Ok(GetAllCompaniesModel);
             
         }
-
+        [Authorize(Roles = "Company")]
         [HttpPost("PostCompanyProfile")]
 
         public async Task<IActionResult> PostCompanyProfile([FromBody] AboutCompanyDTO aboutCompanyDTO)
@@ -70,6 +70,7 @@ namespace RegionServices.Controllers
                 CompanyProfile= CompanyProfile.Where(c=>c.SolutionType==query.SolutionType);
             }
             var companies = await CompanyProfile.ToListAsync();
+            
             return Ok(companies);
 
            

@@ -14,6 +14,7 @@ using RegionServices.IInterface;
 using RegionServices.GenerateToken;
 using RegionServices.Interface;
 using Microsoft.AspNetCore.Antiforgery;
+using Api.Services;
 
 
 
@@ -93,15 +94,26 @@ builder.Services.AddAuthentication(a =>
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])),
         RoleClaimType = ClaimTypes.Role
     };
+        // 👇 Add this block — reads JWT from your "AuthToken" cookie
+    option.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = ctx =>
+        {
+            ctx.Token = ctx.Request.Cookies["AuthToken"];
+            return Task.CompletedTask;
+        }
+    };
 });
 
 
 builder.Services.AddScoped<ICreateToken, Token>();
 builder.Services.AddScoped<IConstructionCompany,ConstructionProjectRepo>();
+builder.Services.AddScoped<QuotationPDFServices>();
 
 
 
 var google=builder.Configuration.GetSection("GoogleAuth");
+
 builder.Services.AddAuthentication().AddGoogle(options =>
 {
     options.ClientId = google["ClientId"];
@@ -114,7 +126,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173", "http://localhost:3000")
+            policy.WithOrigins("http://localhost:5173", "http://localhost:3000" , "http://localhost:73")
                   .AllowAnyHeader()
                   .AllowAnyMethod()
                   .AllowCredentials()
@@ -140,8 +152,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 app.UseCors("AllowReactApp");
+app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseDefaultFiles();
