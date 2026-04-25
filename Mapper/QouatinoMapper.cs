@@ -4,7 +4,7 @@ namespace Api.Mapper
 {
     public static class QouatinoMapper
     {
-        public static QuotationRequest ToQuotationRequest(this QoutationDTO  dto, String pdfUrl )
+        public static QuotationRequest ToQuotationRequest(this QoutationDTO  dto, String pdfUrl , String CompanyLogo,int AboutComapnyId)
         {
          return new QuotationRequest
             {
@@ -37,7 +37,9 @@ namespace Api.Mapper
 
                 }).ToList()
                 ,
-                PDFurl = pdfUrl
+                PDFurl = pdfUrl,
+                CompanyLogo =CompanyLogo,
+                AboutCompaniesId = AboutComapnyId
             };
         }
      

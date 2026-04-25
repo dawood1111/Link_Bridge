@@ -29,11 +29,7 @@ return(
             {
                 SelectData.map((item,index)=>(
 
-                    <button key={index}  className={`btn stat-title w-50 ${
-    Item === item.solutionType
-      ? "bg-red-500 text-white"
-      : "text-black"
-  }`}  onClick={()=>{HandleClick(item)}}>{item.solutionType}</button>
+                    <button key={index} className="btn stat-title text-black w-50 active:text-white active:bg-red-500"  onClick={()=>{HandleClick(item)}}>{item.solutionType}</button>
 
                 ))
             }

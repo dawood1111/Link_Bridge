@@ -86,7 +86,7 @@ namespace RegionServices.Controllers
                 return NotFound("Data Not Found");
             }
 
-            var UserProjects = await _context.ConstructionProjects.Where(p => p.UserId == FindUser.Id).ToListAsync();
+            var UserProjects = await _context.ConstructionProjects.Where(p => p.UserId == FindUser.Id).Include(p=>p.QuotationRequests).ToListAsync();
             if (UserProjects == null || UserProjects.Count == 0)
             {
                 return NotFound("No Projects Found for the User");

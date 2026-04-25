@@ -8,8 +8,8 @@ namespace Api.DTO
     // Header
     public string QuotationNumber { get; set; }
     public DateTime Date { get; set; }
-   // public IFormFile CompanyLogo { get; set; }
-   // public IFormFile? CompanyLogo { get; set; }
+
+   
 
     // Company Info
     public string CompanyName { get; set; }
@@ -48,6 +48,8 @@ namespace Api.DTO
 
     public String UserId { get; set; }
     public int ProjectId { get; set; }
+
+    public int? AboutCompaniesId { get; set; }
 
         
     }

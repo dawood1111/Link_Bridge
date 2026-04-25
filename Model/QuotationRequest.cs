@@ -7,7 +7,7 @@ public class QuotationRequest
     // Header
     public string QuotationNumber { get; set; }
     public DateTime Date { get; set; }
-    public IFormFile? CompanyLogo { get; set; }
+    public String CompanyLogo { get; set; }
 
     // Company Info
     public string CompanyName { get; set; }
@@ -49,5 +49,9 @@ public class QuotationRequest
 
     public Project ProjectPosts { get; set; }
     public int ProjectId { get; set; }
+
+
+    public int? AboutCompaniesId { get; set; }
+    public AboutCompanies? AboutCompany { get; set; }
 
 }

@@ -168,7 +168,7 @@ useEffect(()=>{
   </button>
 
     <button
-    onClick={() => DispatchData(OpenModal())}
+    onClick={() => DispatchData(OpenModal(item))}
     key={idx}
     className='pt-2 pb-2 bg-gray-50 text-[#0c2b78]   w-50 cursor-pointer  ml-10  rounded-2xl mt-2 mb-2 font-sans text-[14px] font-bold'
   >

@@ -94,7 +94,7 @@ builder.Services.AddAuthentication(a =>
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])),
         RoleClaimType = ClaimTypes.Role
     };
-        // 👇 Add this block — reads JWT from your "AuthToken" cookie
+     
     option.Events = new JwtBearerEvents
     {
         OnMessageReceived = ctx =>

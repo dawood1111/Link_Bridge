@@ -12,8 +12,8 @@ using RegionServices.DBcontext;
 namespace RegionServicesapi.Migrations
 {
     [DbContext(typeof(ApplicationDBcontext))]
-    [Migration("20260412151244_AddFinancialItemMig")]
-    partial class AddFinancialItemMig
+    [Migration("20260424124318_MIGJJJ")]
+    partial class MIGJJJ
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,19 +90,19 @@ namespace RegionServicesapi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bc6dba37-fc53-4329-aebb-65cfa5748360",
+                            Id = "ec8e86c3-3958-4bdc-a1b5-514ba4f80afa",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "5600fbec-43bd-4435-b3fc-b0b3cc43e6b4",
+                            Id = "cdb6203b-2b26-41ba-9c90-2ef1fd206703",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "ca6096c4-0bcd-4b43-aa62-9a6bce819270",
+                            Id = "b45fe122-c6e8-4d87-85f1-3b538303fe69",
                             Name = "Company",
                             NormalizedName = "COMPANY"
                         });
@@ -268,6 +268,9 @@ namespace RegionServicesapi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
                     b.Property<string>("QuotationNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -283,7 +286,15 @@ namespace RegionServicesapi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("QuotationRequests");
                 });
@@ -301,6 +312,10 @@ namespace RegionServicesapi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyLogo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -545,6 +560,25 @@ namespace RegionServicesapi.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("QuotationRequest", b =>
+                {
+                    b.HasOne("RegionServices.Model.Project", "ProjectPosts")
+                        .WithMany("QuotationRequests")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("RegionServices.Model.User", "user")
+                        .WithMany("quotationRequests")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("ProjectPosts");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("RegionServices.Model.AboutCompanies", b =>
                 {
                     b.HasOne("RegionServices.Model.User", "user")
@@ -584,6 +618,8 @@ namespace RegionServicesapi.Migrations
             modelBuilder.Entity("RegionServices.Model.Project", b =>
                 {
                     b.Navigation("Images");
+
+                    b.Navigation("QuotationRequests");
                 });
 
             modelBuilder.Entity("RegionServices.Model.User", b =>
@@ -593,6 +629,8 @@ namespace RegionServicesapi.Migrations
 
                     b.Navigation("constructionProject")
                         .IsRequired();
+
+                    b.Navigation("quotationRequests");
                 });
 #pragma warning restore 612, 618
         }

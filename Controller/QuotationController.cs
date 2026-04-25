@@ -11,8 +11,8 @@ using RegionServices.Extension;
 namespace Api.Controller
 {
 
-    // Controllers/QuotationController.cs
-  
+    //Controllers/QuotationController.cs
+
     [ApiController]
     [Route("api/quotations")]
     public class QuotationController : ControllerBase
@@ -27,20 +27,26 @@ namespace Api.Controller
             _env = env;
             _context = context;
         }
-        
+
         [HttpPost("generate")]
-        [Authorize(Roles = "Company")]
         public async Task<IActionResult> Generate([FromBody] QoutationDTO model)
         {
-            // Handle logo
-          
-               // byte[]? logoBytes = null;
-            //if (model.CompanyLogo != null)
-            //{
-              //  using var ms = new MemoryStream();
-               // await model.CompanyLogo.CopyToAsync(ms);
-                //logoBytes = ms.ToArray();
-            //}
+            var getEmail = User.GetEmail();
+            var findUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == getEmail);
+
+            if (findUser == null)
+            {
+                return NotFound("User Not Found");
+
+            }
+
+            var Company = await _context.AboutCompanies.FirstOrDefaultAsync(c => c.UserId == findUser.Id);
+
+            if (Company == null)
+            {
+                return NotFound("Company Not Found");
+            }
+            var AboutComapnyId = Company.Id;
 
 
 
@@ -50,19 +56,29 @@ namespace Api.Controller
             Directory.CreateDirectory(pdfFolder);
             var fileName = $"QUO-{model.QuotationNumber}-{DateTime.Now:yyyyMMddHHmmss}.pdf";
             var filePath = Path.Combine(pdfFolder, fileName);
-           
+
 
             var pdfUrl = $"{Request.Scheme}://{Request.Host}/pdfs/{fileName}";
-              var QouotationModel = model.ToQuotationRequest(pdfUrl);
-              
+            var QouotationModel = model.ToQuotationRequest(pdfUrl, Company.CompanyLogo, AboutComapnyId);
+
+
+            byte[]? logoBytes = null;
+            if (!string.IsNullOrEmpty(Company.CompanyLogo))
+            {
+                var logoPath = Path.Combine(_env.WebRootPath, "logos", Company.CompanyLogo);
+                if (System.IO.File.Exists(logoPath))
+                    logoBytes = await System.IO.File.ReadAllBytesAsync(logoPath);
+
+            }
+
             // Generate PDF
-              
-         //  var pdfBytes = _pdfService.Generate(QouotationModel,logoBytes);
-            //await System.IO.File.WriteAllBytesAsync(filePath, pdfBytes);
 
-             Console.WriteLine("Financial Items : " + QouotationModel.FinancialItems.Count);
+            var pdfBytes = _pdfService.Generate(QouotationModel, logoBytes);
+            await System.IO.File.WriteAllBytesAsync(filePath, pdfBytes);
 
-            await  _context.QuotationRequests.AddAsync(QouotationModel);
+
+
+            await _context.QuotationRequests.AddAsync(QouotationModel);
             await _context.SaveChangesAsync();
 
 
@@ -70,41 +86,29 @@ namespace Api.Controller
 
 
 
-        }
-        [HttpGet("getQuotations")]
-        public async Task<IActionResult> GetQuotations()
-        {
-            var quotations = await _context.QuotationRequests.Select(p=>p.PDFurl).ToListAsync();
-            return Ok(quotations);  
+
         }
 
 
-   [HttpGet("getQuotationsByProjectId")]
+
+        [HttpGet("getQuotationsByProject")]
+        [Authorize]
         public async Task<IActionResult> GetUserQuotations()
         {
             var getEmail = User.GetEmail();
             var findUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == getEmail);
-            if (findUser == null)            {
+            if (findUser == null)
+            {
                 return NotFound("User Not Found");
             }
             var quotations = await _context.QuotationRequests
                 .Where(q => q.UserId == findUser.Id)
+                .Include(q => q.ProjectPosts)
                 .ToListAsync();
 
-            if (quotations == null || quotations.Count == 0)
-            {
-                return NotFound("No quotations found for the specified project ID.");
-            }
 
             return Ok(quotations);
         }
-
-
-
     }
-
-
-
-
 }
 

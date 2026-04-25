@@ -12,6 +12,7 @@ export const FetchData=createAsyncThunk('FetchUser',async (UserData)=>{
             
         },
         credentials:'include',
+
         body:JSON.stringify(UserData)
     });
     if(!Response.ok){
@@ -39,6 +40,7 @@ const SignInSlice=createSlice({
             state.isloading=false;
             state.userInfo=action.payload;
             state.error=null;  
+            
         }),
         builder.addCase(FetchData.rejected,(state,action)=>{
          

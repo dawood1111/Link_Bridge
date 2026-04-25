@@ -3,6 +3,7 @@ namespace RegionServices.Model
     public class AboutCompanies
     {
         public int Id { get; set; }
+        public String CompanyLogo { get; set; }
         public String CompanyName { get; set; }=string.Empty;
         public String SolutionType { get; set; }=string.Empty;
         public String CompanyDescription { get; set; }=string.Empty;
@@ -13,10 +14,7 @@ namespace RegionServices.Model
         public DateTime StartedAt { get; set; }
         public int CompanySize { get; set; }
 
-        //adding rating system in future
-
-
-
+        public List<QuotationRequest> quotationRequest { get; set; }
 
     }
 }
