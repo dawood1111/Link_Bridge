@@ -15,4 +15,8 @@ const SignInSchema =yup.object().shape({
     LastName:yup.string().required('Last Name is required'),
  });
 
+ const QuotationFormSchema=yup.object().shape({
+   
+ })
+
  export {SignUpSchema, SignInSchema};

@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\logos\\4b346cf3-4ae3-44d4-abed-4efdb1f85e6e_apss-removebg-preview.png",
+      "PackagePath": "staticwebassets\\logos\\4b346cf3-4ae3-44d4-abed-4efdb1f85e6e_apss-removebg-preview.png"
+    },
+    {
       "Id": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\pdfs\\QUO--20260424162815.pdf",
       "PackagePath": "staticwebassets\\pdfs\\QUO--20260424162815.pdf"
     },
@@ -23,6 +27,14 @@
     {
       "Id": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\pdfs\\QUO--20260425124833.pdf",
       "PackagePath": "staticwebassets\\pdfs\\QUO--20260425124833.pdf"
+    },
+    {
+      "Id": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\pdfs\\QUO--20260425131118.pdf",
+      "PackagePath": "staticwebassets\\pdfs\\QUO--20260425131118.pdf"
+    },
+    {
+      "Id": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\pdfs\\QUO--20260425200024.pdf",
+      "PackagePath": "staticwebassets\\pdfs\\QUO--20260425200024.pdf"
     },
     {
       "Id": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\pdfs\\QUO-1-20260411193508.pdf",

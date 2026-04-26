@@ -4,7 +4,10 @@ const ModalSlice=createSlice({
     initialState:{  
         isOpen:false,
         Item:{},
-        projectData:null
+        projectData:null,
+        Confirm:false,
+
+
     },
     reducers:{
         OpenModal:(state,action)=>{
@@ -18,8 +21,18 @@ const ModalSlice=createSlice({
             state.Item={};
             state.projectData=null;
             
-        }
+        },
+         OpenConfirm:(state,action)=>{
+            state.Confirm=true;
+            state.Item={}
+
+         },
+         CloseConfirm:(state,action)=>{
+            state.Confirm=false
+
+         }
     }
 })
-export const {OpenModal,CloseModal}=ModalSlice.actions;
+export const {OpenModal,CloseModal,OpenConfirm,CloseConfirm}=ModalSlice.actions;
 export default ModalSlice.reducer;
+

@@ -1,6 +1,6 @@
-import React from "react";
+import React ,{Component} from "react";
 import { useSelector } from "react-redux";
-import { CloseModal } from "../../Redux/Slices/ModalSlice";
+import { CloseModal , OpenConfirm , CloseConfirm } from "../../Redux/Slices/ModalSlice";
 import { useDispatch } from "react-redux";
 import {
   FaBuilding,
@@ -13,10 +13,12 @@ import {
 } from "react-icons/fa";
 import { useState } from "react";
 import { PostData } from "../../Redux/Slices/PostQuotationSlice";
+import {Confirm} from 'semantic-ui-react'
 
-function QuotationForm() {
+function QuotationForm()  {
   const Dispatch = useDispatch();
   const ModalState = useSelector((state) => state.modal || {});
+ 
 
   const [formData, setFormData] = useState({
     quotationNumber: "",
@@ -40,15 +42,21 @@ function QuotationForm() {
   });
 
   const HandleSubmit = () => {
-   
+    Dispatch(OpenConfirm({}))
+  };
+
+  const HandleConfirm=()=>{
+
     const DataForm={
         ...formData,
           UserId: ModalState.projectData?.userId,
           ProjectId: ModalState.projectData?.id,
     }
-    Dispatch(PostData(DataForm));
 
-  };
+    Dispatch(PostData(DataForm));
+    Dispatch(CloseConfirm)
+
+  }
  
 
   const AddFinancialItems = () => {
@@ -67,12 +75,14 @@ function QuotationForm() {
     }));
   };
 
+  
+
   if (!ModalState.isOpen) {
     return null;
   }
 
   return (
-    <div className="bg-gray-100 fixed bottom-6 w-200 max-w-5xl max-h-[95vh] overflow-hidden rounded-2xl shadow-2xl flex flex-col border border-white/20 z-50">
+    <div className="galss fixed top-1 w-170 max-w-5xl max-h-[96vh] overflow-hidden rounded-[6px] shadow-2xl flex flex-col   z-50">
       {/* HEADER SECTION */}
       <div className="p-6 bg-gray-100 border-b flex justify-between items-end">
         <div>
@@ -82,15 +92,9 @@ function QuotationForm() {
         </div>
         <div className="text-right space-y-1">
           <div className="flex items-center gap-2 justify-end text-sm">
-            <span className="font-bold text-slate-500 uppercase">No:</span>
-            <span className="bg-slate-100 px-2 py-1 rounded font-mono font-bold">
-              QT-8821
-            </span>
+           
           </div>
-          <div className="flex items-center gap-2 justify-end text-sm">
-            <span className="font-bold text-slate-500 uppercase">Date:</span>
-            <span className="text-[#0c2b78]">April 17, 2026</span>
-          </div>
+          
         </div>
       </div>
 
@@ -327,7 +331,7 @@ function QuotationForm() {
       </div>
 
       {/* BOTTOM SUMMARY FOOTER */}
-      <div className="p-4  bg-[#0c2b78] text-white flex justify-between items-center rounded-b-sm">
+      <div className="p-4  bg-gray-100 text-white flex justify-between items-center rounded-b-sm">
         <div className="space-y-1">
           <p className="text-[10px] text-white font-black uppercase tracking-widest">
             Grand Total
@@ -337,20 +341,41 @@ function QuotationForm() {
           </p>
         </div>
         <button
-          className="bg-white hover:bg-white text-[#0c2b78]  pl-6 pr-6 pt-2 pb-2 rounded-sm font-black  shadow-xl  active:scale-95 transition transform"
+          className="  bg-[#0c2b78] text-white  pl-6 pr-6 pt-2 pb-2 rounded-sm font-black  shadow-xl  active:scale-95 transition transform"
           onClick={HandleSubmit}
         >
-          SUBMIT
+         Submit
         </button>
       </div>
- 
-      <button
-        onClick={() => Dispatch(CloseModal())}
-        className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition"
-      > 
-     
-    
-      </button>
+     {
+      ModalState.Confirm &&(
+            <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-[60]">
+    <div className="bg-white rounded-xl p-6 shadow-xl w-80 flex flex-col gap-4">
+      <h3 className="text-lg font-bold text-[#0c2b78]">
+        Submit Quotation
+      </h3>
+      <p className="text-sm text-gray-500">
+        Are you sure you want to submit this quotation?
+      </p>
+      <div className="flex gap-3 justify-end">
+        <button
+          onClick={() => Dispatch(CloseConfirm())}
+          className="px-4 py-2 rounded-lg border border-gray-200 text-gray-600 text-sm hover:bg-gray-50"
+        >
+          Never mind
+        </button>
+        <button
+          onClick={HandleConfirm}
+          className="px-4 py-2 rounded-lg bg-[#0c2b78] text-white text-sm hover:bg-[#0a2266] active:scale-95 transition"
+        >
+          Let's do it
+        </button>
+      </div>
+    </div>
+  </div>
+      )
+     }
+      
 
     </div>
   );
