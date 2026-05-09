@@ -153,7 +153,7 @@ export function CompanyProfile({item,BackBtn}){
                         </div>
 
                         <button
-                            className="mt-4 w-full btn btn-sm"
+                            className="mt-4 w-full btn btn-sm bg-[#505081] text-white"
                             onClick={ BackBtn}
                         >
                             Back

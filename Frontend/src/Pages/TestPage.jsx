@@ -1,48 +1,68 @@
-import React, { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownItem,
+  DropdownHeader,
+  DropdownDivider,
+  Dropdown,
+  Input,
+} from "semantic-ui-react";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-export function TestPage(){
-    const [Quotation,SetQuotation]=useState([]);
-    const fetchData=async()=>{
-        const response=await fetch('http://localhost:5194/api/quotations/getQuotations',{
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json'   
-            },
-            credentials:'include'
-        });
-        const data=await response.json();
-        SetQuotation(data);
-        console.log(Quotation);
-        console.log(data);
+import { GetData as FetchFeed } from "../Redux/Slices/FeedSlice";
+import { useState } from "react";
+import { Feed } from "../Component/HomePage/Feed";
 
-    }
-    useEffect(()=>{
-        fetchData();
-    },[])
-    const HandleURL=(url)=>{
-       window.open(url);
-       console.log(url);
+export function TestPage() {
+  const Dispatch = useDispatch();
+  const SelectData = useSelector((state) => state.feed.GetData ?? []);
 
-    }
-   
-    
-   return(
+  useEffect(() => {
+    Dispatch(FetchFeed());
+  }, []);
+  const [Status, SetStatus] = useState(false);
+  const [Item, SetItem] = useState("");
+
+  const Category = ["IT solution", "Construction", "Programing", "Marketing"];
+  const FilterFeed = Item
+    ? SelectData.filter((Post) => Post.projectCategory == Item)
+    : SelectData;
+
+  const HandlePick = (option) => {
+    SetStatus(true);
+    SetItem(option);
+  };
+
+  return (
     <div>
-        {
-            Quotation.map((url,index)=>(
-                <div key={index} className="flex justify-center items-center ">
-                    <button onClick={() => HandleURL(url)}>
-                        View Quotation {index + 1}
-                    </button>
-                </div>
-            ))  
-          
-        }
-    
-       
+      <Dropdown
+        text="Filter Posts"
+        icon="filter"
+        floating
+        labeled
+        button
+        className="icon"
+      >
+        <DropdownMenu>
+          <Input icon="search" iconPosition="left" className="search" />
+          <DropdownDivider />
+          <DropdownHeader icon="tags" content="Tag Label" />
+          <DropdownMenu scrolling>
+            {Category.map((option, index) => (
+              <DropdownItem
+                key={index}
+                text={option}
+                onClick={() => HandlePick(option)}
+              />
+            ))}
+          </DropdownMenu>
+        </DropdownMenu>
+      </Dropdown>
+      {Item && Status && (
+        <div>
+          <Feed data={FilterFeed} />
+        </div>
+      )}
     </div>
-     
-   )
-   
-
+  );
 }
+export default TestPage;

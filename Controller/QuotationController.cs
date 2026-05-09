@@ -59,8 +59,13 @@ namespace Api.Controller
 
 
             var pdfUrl = $"{Request.Scheme}://{Request.Host}/pdfs/{fileName}";
-            var QouotationModel = model.ToQuotationRequest(pdfUrl, Company.CompanyLogo, AboutComapnyId);
-
+            var QouotationModel = model.ToQuotationRequest
+            (
+                pdfUrl,              
+               Company.CompanyLogo,  
+               AboutComapnyId,       
+               Company.CompanyName,  
+               findUser.Email);    
 
             byte[]? logoBytes = null;
             if (!string.IsNullOrEmpty(Company.CompanyLogo))

@@ -17,7 +17,7 @@ namespace RegionServices.Controllers
     public class AboutCompaniesController : ControllerBase
     {
         private readonly ApplicationDBcontext _context;
-     private readonly IWebHostEnvironment _env;
+        private readonly IWebHostEnvironment _env;
         public AboutCompaniesController(ApplicationDBcontext context, IWebHostEnvironment env)
         {
             _context = context;
@@ -47,10 +47,7 @@ namespace RegionServices.Controllers
             {
                 return NotFound("User Not Found ");
             }
-            if (aboutCompanyDTO == null)
-            {
-                return BadRequest("Data Is Null");
-            }
+
 
             string? logoUrl = null;
 
@@ -64,14 +61,22 @@ namespace RegionServices.Controllers
 
                 using var stream = new FileStream(filePath, FileMode.Create);
                 await aboutCompanyDTO.CompanyLogo.CopyToAsync(stream);
-
-                // ✅ Full URL
                 logoUrl = $"{Request.Scheme}://{Request.Host}/logos/{fileName}";
             }
 
+            var existingProfile = await _context.AboutCompanies
+     .FirstOrDefaultAsync(c => c.UserId == FindUser.Id);
 
-            var AboutCompanyDTO = aboutCompanyDTO.ToAboutCompany(FindUser.Id,logoUrl);
+            if (existingProfile != null)
+            {
+                return BadRequest("Company profile already exists for this user.");
+            }
+
+
+
+            var AboutCompanyDTO = aboutCompanyDTO.ToAboutCompany(FindUser.Id, logoUrl);
             await _context.AboutCompanies.AddAsync(AboutCompanyDTO);
+
             await _context.SaveChangesAsync();
 
             return Ok("Company profile was created successfully");

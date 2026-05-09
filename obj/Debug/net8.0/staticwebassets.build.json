@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dpUyHypHpOiSeKhI5BclazZagd9HkZfATSti3EggteE=",
+  "Hash": "aCgpXYfkrijFhjQdvGzlYEmIqoJ5OeRkATgMDuPi3N4=",
   "Source": "RegionServicesapi",
   "BasePath": "_content/RegionServicesapi",
   "Mode": "Default",
@@ -1176,6 +1176,25 @@
       "OriginalItemSpec": "wwwroot\\logos\\4b346cf3-4ae3-44d4-abed-4efdb1f85e6e_apss-removebg-preview.png"
     },
     {
+      "Identity": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\logos\\4cda0c03-0fae-46df-874c-02e8ace9e3e1_1656318407662.png",
+      "SourceId": "RegionServicesapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\",
+      "BasePath": "_content/RegionServicesapi",
+      "RelativePath": "logos/4cda0c03-0fae-46df-874c-02e8ace9e3e1_1656318407662.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\logos\\4cda0c03-0fae-46df-874c-02e8ace9e3e1_1656318407662.png"
+    },
+    {
       "Identity": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\pdfs\\QUO--20260424162815.pdf",
       "SourceId": "RegionServicesapi",
       "SourceType": "Discovered",
@@ -1784,6 +1803,25 @@
       "OriginalItemSpec": "wwwroot\\upload\\ConstructionProject\\1b2a1fd6-cdd2-4113-8c07-15e63f4418f5.jfif"
     },
     {
+      "Identity": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\upload\\ConstructionProject\\1f0fc5e4-af86-4004-b8fd-387571909c57.jpg",
+      "SourceId": "RegionServicesapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\",
+      "BasePath": "_content/RegionServicesapi",
+      "RelativePath": "upload/ConstructionProject/1f0fc5e4-af86-4004-b8fd-387571909c57.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\upload\\ConstructionProject\\1f0fc5e4-af86-4004-b8fd-387571909c57.jpg"
+    },
+    {
       "Identity": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\upload\\ConstructionProject\\2279d486-b90d-4113-a52d-59ce24358ae3.jfif",
       "SourceId": "RegionServicesapi",
       "SourceType": "Discovered",
@@ -1917,6 +1955,25 @@
       "OriginalItemSpec": "wwwroot\\upload\\ConstructionProject\\4929797e-feff-4e09-8e7c-0c1a873d30c0.jpg"
     },
     {
+      "Identity": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\upload\\ConstructionProject\\522bf941-e53e-4a6b-95c8-78e2792d85fb.jpeg",
+      "SourceId": "RegionServicesapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\",
+      "BasePath": "_content/RegionServicesapi",
+      "RelativePath": "upload/ConstructionProject/522bf941-e53e-4a6b-95c8-78e2792d85fb.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\upload\\ConstructionProject\\522bf941-e53e-4a6b-95c8-78e2792d85fb.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\upload\\ConstructionProject\\5517776b-5cb8-437b-ab1f-4f6860e6beb4.png",
       "SourceId": "RegionServicesapi",
       "SourceType": "Discovered",
@@ -1991,6 +2048,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\upload\\ConstructionProject\\9b7cdc48-263b-4f40-9b34-6650ad3dde3f.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\upload\\ConstructionProject\\a012772f-22b1-41ed-a70c-edad2f1ee877.jpg",
+      "SourceId": "RegionServicesapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\",
+      "BasePath": "_content/RegionServicesapi",
+      "RelativePath": "upload/ConstructionProject/a012772f-22b1-41ed-a70c-edad2f1ee877.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\upload\\ConstructionProject\\a012772f-22b1-41ed-a70c-edad2f1ee877.jpg"
     },
     {
       "Identity": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\upload\\ConstructionProject\\b03251bd-5949-4a5b-8e0d-2c06ce877855.webp",
@@ -2086,6 +2162,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\upload\\ConstructionProject\\cc9a618b-f7e5-47e8-81ac-565a8ae4c5b0.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\upload\\ConstructionProject\\d1adf915-5ae5-4002-ab46-4c24e686ad3e.jpeg",
+      "SourceId": "RegionServicesapi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\",
+      "BasePath": "_content/RegionServicesapi",
+      "RelativePath": "upload/ConstructionProject/d1adf915-5ae5-4002-ab46-4c24e686ad3e.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\upload\\ConstructionProject\\d1adf915-5ae5-4002-ab46-4c24e686ad3e.jpeg"
     },
     {
       "Identity": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\wwwroot\\upload\\ConstructionProject\\d24fea80-7d88-4c70-a032-369b68945d65.jfif",

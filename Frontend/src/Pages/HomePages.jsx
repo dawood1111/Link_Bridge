@@ -10,6 +10,9 @@ import { useDispatch } from "react-redux";
 import { FetchSearchQuery } from "../Redux/Slices/SearchQuery";
 import { FetchData } from "../Redux/Slices/GetCompanies";
 import { Post } from "../Component/HomePage/Post";
+import { Loader, Message, MessageHeader } from "semantic-ui-react";
+import { FilterSys } from "../Component/HomePage/FilterSys";
+
 export function HomePages() {
   const [SearchInput, SetInput] = useState("");
   const [Item, SetItem] = useState("");
@@ -17,8 +20,10 @@ export function HomePages() {
   const [Show, SetShow] = useState(false);
   const [index, setIndex] = useState("");
 
-  const selectData = useSelector((S) => S.AllCompanies.GetData);
-  const SelectQuery = useSelector((state) => state.SearchQuery.SearchData);
+  const SelectData = useSelector((S) => S.AllCompanies.GetData);
+  const { SearchData, isloading, isEmpty } = useSelector(
+    (state) => state.SearchQuery,
+  );
 
   const Dispatch = useDispatch();
   useEffect(() => {
@@ -27,7 +32,7 @@ export function HomePages() {
 
   const HandleClick = () => {
     Dispatch(FetchSearchQuery({ CompanyName: SearchInput }));
-    SetShowResults(true);
+    SetInput("");
   };
 
   const HandleReset = () => {
@@ -46,20 +51,21 @@ export function HomePages() {
       <div className=" relative top-3 flex flex-row  justify-center items-center right-50">
         <Post />
       </div>
-
-      <div className="flex flex-row relative right-50 gap-20">
-        <Feed />
+      <div className=" flex justify-center item-center absolute left-50">
+        <FilterSys />
       </div>
-      <div className="flex flex-col items-center gap-4 fixed top-25 left-280 bg-gray-200 shadow-xl pt-6 rounded-sm h-200   w-100">
+      <div className="flex flex-col justify-center"></div>
+      <div className="flex flex-col items-center gap-5 fixed top-25 left-315 bg-white shadow-xl pt-6 rounded-xl h-200 w-118 overflow-scroll">
         <SearchBar
           onChange={SetInput}
           onClick={HandleClick}
           value={SearchInput}
         />
+
         {!ShowResult && (
           <AutoComplete
             SearchInput={SearchInput}
-            data={selectData}
+            data={SelectData}
             onSelect={SetInput}
           />
         )}
@@ -68,12 +74,18 @@ export function HomePages() {
           <CompanyProfile BackBtn={() => SetShow(false)} item={Item} />
         )}
 
-        {ShowResult && !Show && (
+        {!Show && (
           <CompanyCard
             c
-            QuerySearch={SelectQuery}
+            QuerySearch={SearchData}
             ViewCompanyProfile={HandleViewProfile}
           />
+        )}
+
+        {isloading && (
+          <div className="flex justify-center items-center h-96">
+            <Loader active inline="centered" />
+          </div>
         )}
       </div>
     </div>

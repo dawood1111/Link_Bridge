@@ -1,197 +1,248 @@
-import { GetData } from '../../Redux/Slices/FeedSlice';
-import { useDispatch,useSelector } from 'react-redux';
-import { useEffect,useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import {formatDistanceToNow} from 'date-fns';
-import {FaLocationArrow,FaPhone,FaEnvelope} from 'react-icons/fa';
-import { OpenModal } from '../../Redux/Slices/ModalSlice';
-import QuotationForm from './QuotationForm';
+import { GetData as FetchFeed } from "../../Redux/Slices/FeedSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { formatDistanceToNow } from "date-fns";
+import { FaLocationArrow, FaPhone, FaEnvelope, FaTimes } from "react-icons/fa";
+import { OpenModal } from "../../Redux/Slices/ModalSlice";
+import QuotationForm from "./QuotationForm";
+import {
+  PlaceholderParagraph,
+  PlaceholderLine,
+  PlaceholderHeader,
+  Placeholder,
+  Message,
+  MessageHeader,
+} from "semantic-ui-react";
+import { useNavigate } from "react-router-dom";
+import { FilterSys } from "../HomePage/FilterSys";
 
-export function Feed(){
+export function Feed({ data }) {
+  const timeAgo = (date) => {
+    return formatDistanceToNow(new Date(date), { addSuffix: true });
+  };
 
-    const timeAgo=(date)=>{
-       return formatDistanceToNow(new Date(date), { addSuffix: true });
-    }    
+  const [PopupOpen, SetPopupopen] = useState(false);
+  const [Items, SetItems] = useState({});
+  const [OpenViewDetails, setOpenViewDetails] = useState("");
+  const [OpenImage, SetOpenImage] = useState("");
+  const [preview, setPreview] = useState(false);
+  const Navigate = useNavigate();
 
-    const [PopupOpen,SetPopupopen]=useState(false);
-    const [Items,SetItems]=useState({});
-    const [OpenViewDetails,setOpenViewDetails]=useState('');
+  const DispatchData = useDispatch();
+  const {
+    // GetData: feed,
+    isloading,
+    rejected,
+  } = useSelector((state) => state.feed);
 
-
-    const DispatchData=useDispatch();
-    const SelectData=useSelector((state)=>state.feed.GetData);
-    
-    
-    function PopupPost(item,opendetails){
-        if(OpenViewDetails==opendetails){
-        SetPopupopen(false);
-        SetItems('');
-        setOpenViewDetails({})
-
-        }
-        else{
-         SetPopupopen(true);
-        SetItems(item);
-        setOpenViewDetails(opendetails)
-
-        }
-       
-
+  function PopupPost(item, opendetails) {
+    if (OpenViewDetails === opendetails) {
+      SetPopupopen(false);
+      SetItems("");
+      setOpenViewDetails("");
+    } else {
+      SetPopupopen(true);
+      SetItems(item);
+      setOpenViewDetails(opendetails);
     }
+  }
+  const HandleImages = (img) => {
+    setPreview(true);
+    SetOpenImage(img);
+  };
 
+  useEffect(() => {
+    DispatchData(FetchFeed());
+  }, [DispatchData]);
 
-useEffect(()=>{
-
-    DispatchData(GetData());
-
-},[DispatchData]);
-
-    return(
-        <div className='relative top-6'>
-        
-    <div className='flex flex-col justify-center  items-center gap-5   '>
-        {
-            
-            SelectData.map((item,idx)=>(
-                
-    <div className=" bg-gray-200 w-130  shadow-xl  rounded-sm  " key={idx}>
-        <div className=' flex flex-row justify-between  items-center gap-3  '>
-          <div className='relative top-8 left-4'>
-              <div className='bg-amber-700 h-10 w-10 flex  justify-center items-center rounded-4xl'>A</div>
-            <div className='flex relative left-10 bottom-10 justify-between  ml-2 w-30 bg-'>   
-                   <p >{item.user.userName}</p>
-            <p className='text-neutral-400 text-xs mr-4 absolute top-6 '>{timeAgo(item.postDate)}</p>    
-            </div>
-            
-          </div>
-          <div className='bg-amber-600 absolute right-5 top-9 font-bold text-white pr-6 pl-6 pt-1 pb-1 rounded-4xl '>
-            {item.projectCategory}
-          </div>
-            
-          
-
-           
-              
-            
-        </div>
-  <div className="card-body h-25 mt-6 relative" >
-    <h3 className="card-title" >{item.projectTitle}</h3>
-    <p className='text-sm'>{item.projectDescription}</p>
-  </div>
-  <div className='w-130 h-116 '>
-   <Swiper slidesPerView={1} spaceBetween={10} className='h-full'>
-                        {item.images?.map((img, index) => (
-                            <SwiperSlide key={img.id || index}>
-                                <img
-                                    src={`http://localhost:5194${img.image}`}
-                                    alt="Project"
-                                    className="w-full h-full object-cover"
-                                />
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-
-                    
-  
-  </div>
-   {
-        PopupOpen&&Items &&OpenViewDetails==idx &&(
-          
-            
-            <div>
-
-           <div className='flex flex-row justify-around  h-18      items-center  ' >
-            <div className='  flex flex-col text-center justify-center items-center  bg-gray-200 pr-6  pl-6 pt-1 pb-1 rounded-sm shadow '>
-                 <label htmlFor="start-date" className='stat-title'>Start Date</label>
-          <div className="stat-title text-gray-700 font-bold text-[12px]">{new Date(Items.startDate).toLocaleDateString()}</div>
-            </div>
-
-            <div className='  flex flex-col text-center justify-center items-center  bg-gray-200 pr-6 pl-6 pt-1 pb-1 rounded-sm shadow '>
-            <label htmlFor="end-date" className='stat-title'>Deadline</label>
-           <div className="stat-title text-gray-700 font-bold text-[12px]">{new Date(Items.endDate).toLocaleDateString()}</div>
-            </div>
-
-             <div className=' border-gray-200  flex flex-col text-center justify-center items-center text-[12px]  bg-gray-200 pr-6  pl-6 pt-1 pb-1 rounded-sm shadow '>
-               <label className='stat-title'>Status</label>
-
-
-                  <p className=''>  {
-                Items.projectStatus === 0 ?  <span className=' text-amber-500 StatusContainer' >Pending</span>  :
-                Items.projectStatus === 1 ? <span className='text-blue-600 StatusContainer'>In Progress</span> :
-                Items.projectStatus === 2 ? <span className='text-green-600 StatusContainer'>Completed</span> :
-                Items.projectStatus === 3 ? <span className='text-red-600 StatusContainer'>Cancelled</span> :
-                'Unknown'
-            
-            }</p>
-
-         </div>
-          
-           
-           </div>
-    
-              <div className='flex   stat justify-around h-18 '>
-                <div className=' ViewDetailInfoContainer'>
-               <FaEnvelope className='stat-title text-[14px] text-red-700'/>
-               
-                <p className='stat-title text-black text-[13px]'>{Items.user.email}</p>
-                </div>
-                <div className=' ViewDetailInfoContainer'>
-                      <FaPhone className='stat-title text-[14px] text-green-700'/>
-                    <p className='stat-title text-black text-[13px] '>{Items.user.phoneNumber}</p>
-
-                </div>
-                <div className='ViewDetailInfoContainer'>
-                    <FaLocationArrow className='stat-title text-[14px] text-yellow-500' />
-                    <p className='stat-title text-black text-[13px]'>{item.projectLocation}</p>
-                </div>
-              
-           
-            
-
-              </div>
-            
-
- 
-            </div>
-
-            
-         
-         
-        )
-    }
-   
- 
-  <button className='pt-2 pb-2 bg-gray-50 text-[#0c2b78]   w-50 cursor-pointer  ml-10 rounded-2xl mt-2 mb-2 font-sans text-[14px] font-bold ' onClick={() => PopupPost(item,idx)}>Project details
-
-  </button>
-
-    <button
-    onClick={() => DispatchData(OpenModal(item))}
-    key={idx}
-    className='pt-2 pb-2 bg-gray-50 text-[#0c2b78]   w-50 cursor-pointer  ml-10  rounded-2xl mt-2 mb-2 font-sans text-[14px] font-bold'
-  >
-    + Quotation
-  </button>
-
-
-
-</div>
-
-        ))
-        }
-        <QuotationForm />
-
-        
-        </div>
-        
-  
-
-    
-    </div> 
-   
+  if (rejected) {
+    return (
+      <Message negative>
+        <MessageHeader>Connection Error</MessageHeader>
+        <p>Failed to load the feed.</p>
+      </Message>
     );
- 
+  }
+
+  return (
+    <div className="relative top-10 ">
+      <div className="flex flex-col justify-center items-center gap-10">
+        {/* MAP START */}
+        {data.map((item, index) => (
+          <div className="flex flex-col gap-2">
+            <div
+              key={item.id || index}
+              className="flex flex-row bg-white w-230 h-auto shadow-xl relative rounded-2xl"
+            >
+              <div className="w-100 h-auto">
+                {isloading == true ? (
+                  <Placeholder fluid>
+                    <PlaceholderParagraph>
+                      <PlaceholderLine />
+                      <PlaceholderLine />
+                    </PlaceholderParagraph>
+                  </Placeholder>
+                ) : (
+                  <Swiper slidesPerView={1} spaceBetween={10} className="h-80">
+                    {item.images?.map((img, imgIdx) => (
+                      <SwiperSlide key={imgIdx}>
+                        <img
+                          src={`http://localhost:5194${img.image}`}
+                          alt="Project"
+                          className="w-full h-full object-cover rounded-tl-2xl rounded-bl-2xl "
+                          onClick={() => HandleImages(img.image)}
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                )}
+              </div>
+
+              <div className="flex flex-col border-l-5 border-[#F97316] pl-3">
+                {isloading == true ? (
+                  <Placeholder className="w-170 h-40  ">
+                    <PlaceholderHeader image>
+                      <PlaceholderLine length="medium" />
+                      <PlaceholderLine length="full" />
+                      <PlaceholderLine length="medium" />
+                      <PlaceholderLine length="full" />
+                      <PlaceholderLine length="medium" />
+                      <PlaceholderLine length="full" />
+                    </PlaceholderHeader>
+                    <PlaceholderParagraph>
+                      <PlaceholderLine length="full" />
+                      <PlaceholderLine length="medium" />
+                    </PlaceholderParagraph>
+                  </Placeholder>
+                ) : (
+                  <div className="relative w-123">
+                    <div className="mt-5">
+                      <div className="bg-amber-700 h-10 w-10 flex justify-center items-center rounded-sm text-white">
+                        {item.user.userName?.[0] || "U"}
+                      </div>
+                      <div className="flex relative left-10 bottom-10 justify-between ml-4 w-30">
+                        <p>{item.user.userName}</p>
+                        <p className="text-neutral-400 text-xs mr-4 absolute top-6">
+                          {timeAgo(item.postDate)}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="absolute top-0 right-3 mt-6">
+                      <p className="text-[14x] bg-[#0c2b78] text-white px-3 py-1.5 rounded-sm">
+                        {item.projectCategory}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="font-bold">{item.projectTitle}</h3>
+
+                      <p className="stat-title text-[13px]   whitespace-normal">
+                        {item.projectDescription}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className=" absolute right-95 bottom-4">
+                {isloading == true ? (
+                  <PlaceholderLine />
+                ) : (
+                  <h5 className="stat-title text-[#0c2b78] ">
+                    {` $ ${item.minBudget} - ${item.maxBudget} `}
+                  </h5>
+                )}
+              </div>
+
+              {/* Added onClick to trigger your Popup function */}
+              <div className="absolute right-3 bottom-3  w-60">
+                <button
+                  onClick={() => PopupPost(item, index)}
+                  className="border-t w-25 pt-2 stat-title text-[10px] text-gray-400 cursor-pointer  "
+                >
+                  {OpenViewDetails === index ? "Hide Details" : "View Details"}
+                </button>
+                <button
+                  className="border-t w-25 pt-2 stat-title text-[10px] text-gray-400 cursor-pointer relative left-8"
+                  onClick={() =>
+                    Navigate("/QuotationPage", { state: { item } })
+                  }
+                  key={index}
+                >
+                  Quotation +
+                </button>
+              </div>
+            </div>
+
+            {/* Expanded Details Section */}
+            {PopupOpen && Items && OpenViewDetails === index && (
+              <div className=" w-full bg-white z-10 p-4 shadow-xl flex flex-col transition-all duration-300 rounded-3xl">
+                <div className="flex flex-row justify-around h-8 items-center ">
+                  <div className="flex flex-col text-center justify-center items-center bg-gray-200 px-4 py-1 rounded-sm shadow">
+                    <label className="stat-title text-xs">Start Date</label>
+                    <div className="text-gray-700 font-bold text-[12px]">
+                      {new Date(item.startDate).toLocaleDateString()}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col  text-center justify-center items-center bg-gray-200 px-4  py-1 rounded-sm shadow">
+                    <label className="stat-title text-xs">Deadline</label>
+                    <div className="text-gray-700 font-bold text-[12px]">
+                      {new Date(item.endDate).toLocaleDateString()}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col text-center justify-center items-center bg-gray-200 px-6 py-1 rounded-sm shadow">
+                    <label className="stat-title text-xs">Status</label>
+                    <span className="text-[12px] font-bold">
+                      {item.projectStatus === 0 && "Pending"}
+                      {item.projectStatus === 1 && "In Progress"}
+                      {item.projectStatus === 2 && "Completed"}
+                      {item.projectStatus === 3 && "Cancelled"}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col text-center justify-center items-center bg-gray-200 px-4 py-1 rounded-sm shadow">
+                    <FaEnvelope className="text-red-700" />
+                    <p className="text-[13px]">{item.user.email}</p>
+                  </div>
+                  <div className="fflex flex-col text-center justify-center items-center bg-gray-200 px-4 py-1 rounded-sm shadow">
+                    <FaPhone className="text-green-700" />
+                    <p className="text-[13px]">{item.user.phoneNumber}</p>
+                  </div>
+                  <div className="flex flex-col text-center justify-center items-center bg-gray-200 px-6 py-1 rounded-sm shadow">
+                    <FaLocationArrow className="text-yellow-500" />
+                    <p className="text-[13px]">{item.projectLocation}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {preview == true && (
+        <div className="w-200 h-120 fixed top-30 z-20 flex justify-center items-center ml-20 overflow-hidden cursor-grabbing  ">
+          <button
+            className="z-40 text-white text-2xl absolute top-4 right-4 cursor-pointer "
+            onClick={() => setPreview(false)}
+          >
+            <FaTimes />
+          </button>
+          {
+            <img
+              src={`http://localhost:5194${OpenImage}`}
+              alt=""
+              className=" "
+            />
+          }
+        </div>
+      )}
+    </div>
+  );
 }
+
 export default Feed;

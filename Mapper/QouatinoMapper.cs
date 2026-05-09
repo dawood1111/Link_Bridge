@@ -4,14 +4,14 @@ namespace Api.Mapper
 {
     public static class QouatinoMapper
     {
-        public static QuotationRequest ToQuotationRequest(this QoutationDTO  dto, String pdfUrl , String CompanyLogo,int AboutComapnyId)
+        public static QuotationRequest ToQuotationRequest(this QoutationDTO  dto, String pdfUrl , String CompanyLogo,int AboutComapnyId, String compnyName, String companyEmail)
         {
          return new QuotationRequest
             {
                 QuotationNumber = dto.QuotationNumber,
                 Date = dto.Date,
-                CompanyName = dto.CompanyName,
-                CompanyEmail = dto.CompanyEmail,
+                CompanyName = compnyName,
+                CompanyEmail = companyEmail,
                 ClientCompany = dto.ClientCompany,
                 CompanyHistory = dto.CompanyHistory,
                 KeyAchievements = dto.KeyAchievements,

@@ -575,7 +575,6 @@ C:\Users\dawoo\OneDrive\Desktop\Construction_And_Net\Api\obj\Debug\net8.0\refint
 C:\Users\dawoo\OneDrive\Desktop\Construction_And_Net\Api\obj\Debug\net8.0\RegionServicesapi.pdb
 C:\Users\dawoo\OneDrive\Desktop\Construction_And_Net\Api\obj\Debug\net8.0\RegionServicesapi.genruntimeconfig.cache
 C:\Users\dawoo\OneDrive\Desktop\Construction_And_Net\Api\obj\Debug\net8.0\ref\RegionServicesapi.dll
-C:\Users\dawoo\OneDrive\Desktop\Construction_And_Net\Api\bin\Debug\net8.0\package-lock.json
 C:\Users\dawoo\OneDrive\Desktop\Construction_And_Net\Api\bin\Debug\net8.0\package.json
 C:\Users\dawoo\OneDrive\Desktop\Construction_And_Net\api\bin\Debug\net8.0\LatoFont\Lato-Black.ttf
 C:\Users\dawoo\OneDrive\Desktop\Construction_And_Net\api\bin\Debug\net8.0\LatoFont\Lato-BlackItalic.ttf
