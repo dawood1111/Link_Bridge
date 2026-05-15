@@ -12,10 +12,11 @@ import { FetchData } from "../Redux/Slices/GetCompanies";
 import { Post } from "../Component/HomePage/Post";
 import { Loader, Message, MessageHeader } from "semantic-ui-react";
 import { FilterSys } from "../Component/HomePage/FilterSys";
+import { PostForm } from "../Component/HomePage/PostForm";
 
 export function HomePages() {
   const [SearchInput, SetInput] = useState("");
-  const [Item, SetItem] = useState("");
+  const [Item0, SetItem] = useState("");
   const [ShowResult, SetShowResults] = useState(false);
   const [Show, SetShow] = useState(false);
   const [index, setIndex] = useState("");
@@ -24,6 +25,7 @@ export function HomePages() {
   const { SearchData, isloading, isEmpty } = useSelector(
     (state) => state.SearchQuery,
   );
+  const { Item } = useSelector((state) => state.modal);
 
   const Dispatch = useDispatch();
   useEffect(() => {
@@ -51,6 +53,9 @@ export function HomePages() {
       <div className=" relative top-3 flex flex-row  justify-center items-center right-50">
         <Post />
       </div>
+      <div className="fixed z-50 top-1 ">
+        {Item === "CreatePost" && <PostForm />}
+      </div>
       <div className=" flex justify-center item-center absolute left-50">
         <FilterSys />
       </div>
@@ -70,8 +75,8 @@ export function HomePages() {
           />
         )}
 
-        {Show && Item && (
-          <CompanyProfile BackBtn={() => SetShow(false)} item={Item} />
+        {Show && Item0 && (
+          <CompanyProfile BackBtn={() => SetShow(false)} item={Item0} />
         )}
 
         {!Show && (

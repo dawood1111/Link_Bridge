@@ -8,4 +8,7 @@
   .StatusContainer{
     @apply font-bold rounded-sm text-center   stat-title pr-2  pl-2 pt-1 pb-1
   }
+  .InputStyle{
+    @apply bg-gray-100 border-none rounded-sm p-2 text-sm text-gray-900 outline-none font-sans w-full transition-shadow duration-150
+  }
 }

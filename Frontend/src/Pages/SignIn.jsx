@@ -94,7 +94,7 @@ function SignIn() {
             <button
               type="submit"
               className="mx-auto   bg-[#0c2b78] text-white pl-1 pr-1  pt-2.5 pb-2.5 border-none 
- rounded-[18px] shadow-sm text-center flex items-center justify-center   text-[12px] "
+              rounded-[18px] shadow-sm text-center flex items-center justify-center   text-[12px] "
             >
               {isloading ? (
                 <span className="loading loading-spinner loading-xl"></span>
