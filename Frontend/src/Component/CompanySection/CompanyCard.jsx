@@ -5,7 +5,7 @@ export function CompanyCard({ QuerySearch, ViewCompanyProfile }) {
   return (
     <div className="flex flex-col gap-4 justify-center   h-auto ">
       {QuerySearch.map((item, index) => (
-        <div className="card  w-105 h-45 bg-gray-50 shadow-sm " key={index}>
+        <div className="card  w-100 h-45 bg-gray-50 shadow-md " key={index}>
           <div className="card-body">
             <div className="flex flex-row gap-2 ">
               <div className="shadow-2xl bg-gray-200 h-15 w-15 rounded-full flex justify-center items-center">

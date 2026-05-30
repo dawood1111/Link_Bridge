@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export function CompanySetup() {
   const [FileHandling, SetFileHandling] = useState("");
+
   const [form, setForm] = useState({
     companyName: "",
     solutionType: "",
@@ -39,7 +40,7 @@ export function CompanySetup() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-      <div className="bg-white rounded-3xl shadow-xl w-170  p-8">
+      <div className="bg-white rounded-sm shadow-xl w-170  p-8">
         <div className="text-center mb-6">
           <p className="text-[16px] font-bold text-gray-800">Company Setup</p>
         </div>
@@ -78,7 +79,7 @@ export function CompanySetup() {
               value={form.companyName}
               onChange={handleChange}
               placeholder="Enter company name"
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition border-none bg-gray-50"
+              className="w-full border border-gray-200 rounded-sm px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition border-none bg-gray-50"
             />
           </div>
           <div className="flex flex-col items-center gap-1">
@@ -101,7 +102,7 @@ export function CompanySetup() {
           <select
             name="solutionType"
             onChange={handleChange}
-            className="w-full border border-none bg-gray-50 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition  text-gray-500"
+            className="w-full border border-none bg-gray-50 rounded-sm px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition  text-gray-500"
           >
             <option value=""> Solution Type </option>
             {["Construction", "ITsolution", "Programing"].map((s) => (
@@ -122,7 +123,7 @@ export function CompanySetup() {
             onChange={handleChange}
             placeholder="Describe your company..."
             rows={3}
-            className="w-full border border-none bg-gray-50 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition resize-none"
+            className="w-full border border-none bg-gray-50 rounded-sm px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition resize-none"
           />
         </div>
 
@@ -135,7 +136,7 @@ export function CompanySetup() {
               name="contactNumber"
               onChange={handleChange}
               placeholder="+962 7x xxx xxxx"
-              className="w-full border border-none bg-gray-50 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition"
+              className="w-full border border-none bg-gray-50 rounded-sm px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition"
             />
           </div>
           <div className="flex-1">
@@ -161,7 +162,7 @@ export function CompanySetup() {
               name="address"
               onChange={handleChange}
               placeholder="Search address"
-              className="w-full border border-none bg-gray-50 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition pr-9"
+              className="w-full border border-none bg-gray-50 rounded-sm px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition pr-9"
             />
             <svg
               className="w-4 h-4 text-gray-400 absolute right-3 top-3"
@@ -193,13 +194,13 @@ export function CompanySetup() {
             name="startedAt"
             onChange={handleChange}
             type="Date"
-            className="w-full border-none bg-gray-50 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition text-gray-500"
+            className="w-full border-none bg-gray-50 rounded-sm px-3 py-2.5 text-sm outline-none focus:border-orange-400 transition text-gray-500"
           />
         </div>
 
         <button
           onClick={handleSubmit}
-          className="w-full bg-[#0c2b78] hover:bg-orange-600 active:scale-95 text-white font-semibold rounded-xl py-3 text-sm transition"
+          className="w-full bg-[#0c2b78] hover:bg-white hover:text-[#0c2b78] hover:border-[#0c2b78] active:scale-95 text-white font-semibold rounded-sm py-3 text-sm transition"
         >
           Save & Continue
         </button>

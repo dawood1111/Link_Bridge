@@ -1,16 +1,16 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const FetchData = createAsyncThunk(
-  'FetchUser',
+  "FetchUser",
   async (UserData, { rejectWithValue }) => {
     try {
       const Response = await fetch("http://localhost:5194/api/User/CreteUser", {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        credentials: 'include',
-        body: JSON.stringify(UserData)
+        credentials: "include",
+        body: JSON.stringify(UserData),
       });
 
       const data = await Response.json();
@@ -23,22 +23,28 @@ export const FetchData = createAsyncThunk(
     } catch (error) {
       return rejectWithValue({ message: error.message });
     }
-  }
+  },
 );
 
 const UserSlice = createSlice({
-  name: 'SignUpUser',
+  name: "SignUpUser",
   initialState: {
     isloading: false,
     userInfo: null,
-    error: null
+    error: null,
   },
+
   reducers: {
+    clearSignUp: (state) => {
+      isloading: false;
+      userInfo: null;
+      error: null;
+    },
     clearError: (state) => {
       state.error = null;
-    }
+    },
   },
-  extraReducers: (builder) => {  // FIX: "extraReducers" not "extrareducers"
+  extraReducers: (builder) => {
     builder
       .addCase(FetchData.pending, (state) => {
         state.isloading = true;
@@ -52,10 +58,12 @@ const UserSlice = createSlice({
       .addCase(FetchData.rejected, (state, action) => {
         state.isloading = false;
         state.userInfo = null;
-        state.error = action.payload || { message: 'Sign up failed' };
+        state.error = action.payload || { message: "Sign up failed" };
       });
-  }
+  },
 });
 
 export const { clearError } = UserSlice.actions;
+export const { clearSignUp } = UserSlice.actions;
+
 export default UserSlice.reducer;

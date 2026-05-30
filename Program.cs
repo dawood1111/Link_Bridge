@@ -15,6 +15,8 @@ using RegionServices.GenerateToken;
 using RegionServices.Interface;
 using Microsoft.AspNetCore.Antiforgery;
 using Api.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 
 
 
@@ -54,7 +56,8 @@ builder.Services.AddSwaggerGen(option =>
 
 
 
-builder.Services.AddControllers().AddJsonOptions(options => {
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
 
@@ -77,7 +80,7 @@ builder.Services.AddAuthentication(a =>
     a.DefaultAuthenticateScheme =
     a.DefaultChallengeScheme =
     a.DefaultForbidScheme =
-    a.DefaultSignInScheme =
+    a.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
     a.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(option =>
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -94,7 +97,7 @@ builder.Services.AddAuthentication(a =>
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])),
         RoleClaimType = ClaimTypes.Role
     };
-     
+
     option.Events = new JwtBearerEvents
     {
         OnMessageReceived = ctx =>
@@ -103,22 +106,37 @@ builder.Services.AddAuthentication(a =>
             return Task.CompletedTask;
         }
     };
+}).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, Option =>
+{
+    Option.ExpireTimeSpan = TimeSpan.FromMinutes(3);
+    Option.Cookie.HttpOnly = true;
+    Option.Cookie.SameSite = SameSiteMode.Lax;
+    Option.SlidingExpiration = false;
+
+
+}).AddGoogle(options =>
+{
+    options.ClientId = builder.Configuration["GoogleAuth:ClientId"];
+    options.ClientSecret = builder.Configuration["GoogleAuth:ClientSecret"];
+    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.CallbackPath = "/signin-google";
+
+
+
+    options.CorrelationCookie.SameSite = SameSiteMode.Lax;
+    options.CorrelationCookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    options.CorrelationCookie.HttpOnly = true;
+
 });
 
 
 builder.Services.AddScoped<ICreateToken, Token>();
-builder.Services.AddScoped<IConstructionCompany,ConstructionProjectRepo>();
+builder.Services.AddScoped<IConstructionCompany, ConstructionProjectRepo>();
 builder.Services.AddScoped<QuotationPDFServices>();
 
 
 
-var google=builder.Configuration.GetSection("GoogleAuth");
 
-builder.Services.AddAuthentication().AddGoogle(options =>
-{
-    options.ClientId = google["ClientId"];
-    options.ClientSecret = google["ClientSecret"];
-});
 
 
 builder.Services.AddCors(options =>
@@ -126,12 +144,12 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173", "http://localhost:3000" , "http://localhost:73")
+            policy.WithOrigins("http://localhost:5173", "http://localhost:3000", "http://localhost:73")
                   .AllowAnyHeader()
                   .AllowAnyMethod()
                   .AllowCredentials()
                   ;
-                 
+
         });
 });
 
@@ -153,7 +171,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors("AllowReactApp");
+app.Use(async (context, next) =>
+{
+    context.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+    context.Response.Headers["Pragma"] = "no-cache";
+    context.Response.Headers["Expires"] = "0";
+    await next();
+});
 app.UseStaticFiles();
+app.UseCookiePolicy();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseDefaultFiles();

@@ -49,49 +49,56 @@ export function HomePages() {
   };
 
   return (
-    <div className="">
-      <div className=" relative top-3 flex flex-row  justify-center items-center right-50">
-        <Post />
-      </div>
-      <div className="fixed z-50 top-1 ">
-        {Item === "CreatePost" && <PostForm />}
-      </div>
-      <div className=" flex justify-center item-center absolute left-50">
-        <FilterSys />
-      </div>
-      <div className="flex flex-col justify-center"></div>
-      <div className="flex flex-col items-center gap-5 fixed top-25 left-315 bg-white shadow-xl pt-6 rounded-xl h-200 w-118 overflow-scroll">
-        <SearchBar
-          onChange={SetInput}
-          onClick={HandleClick}
-          value={SearchInput}
-        />
-
-        {!ShowResult && (
-          <AutoComplete
-            SearchInput={SearchInput}
-            data={SelectData}
-            onSelect={SetInput}
-          />
-        )}
-
-        {Show && Item0 && (
-          <CompanyProfile BackBtn={() => SetShow(false)} item={Item0} />
-        )}
-
-        {!Show && (
-          <CompanyCard
-            c
-            QuerySearch={SearchData}
-            ViewCompanyProfile={HandleViewProfile}
-          />
-        )}
-
-        {isloading && (
-          <div className="flex justify-center items-center h-96">
-            <Loader active inline="centered" />
+    <div className="bg-gray-100 min-h-screen  gap-10 ">
+      <div>
+        <div>
+          <div className=" mt-3 flex flex-row    ">
+            <Post />
           </div>
-        )}
+          <div className="fixed z-50 top-1 ">
+            {Item === "CreatePost" && <PostForm />}
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-row gap-10 justify-center ml-50   ">
+        <div className=" ">
+          <FilterSys />
+        </div>
+
+        <div className="flex flex-col items-center gap-5   bg-white shadow-sm pt-6 rounded-xl h-160 w-110 overflow-x-auto sticky top-0 mr-30">
+          <SearchBar
+            onChange={SetInput}
+            onClick={HandleClick}
+            value={SearchInput}
+          />
+
+          {!ShowResult && (
+            <AutoComplete
+              SearchInput={SearchInput}
+              data={SelectData}
+              onSelect={SetInput}
+            />
+          )}
+
+          {!Show && (
+            <CompanyCard
+              c
+              QuerySearch={SearchData}
+              ViewCompanyProfile={HandleViewProfile}
+            />
+          )}
+
+          {isloading && (
+            <div className="flex justify-center items-center h-96">
+              <Loader active inline="centered" />
+            </div>
+          )}
+        </div>
+        <div className="fixed left-150 z-50 top-22">
+          {Show && Item0 && (
+            <CompanyProfile BackBtn={() => SetShow(false)} item={Item0} />
+          )}
+        </div>
       </div>
     </div>
   );

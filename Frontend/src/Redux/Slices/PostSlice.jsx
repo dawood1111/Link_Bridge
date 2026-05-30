@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import reducer from "./SignInSlice";
 
 const PostData = createAsyncThunk("PostData", async (data) => {
   const formData = new FormData();
@@ -14,19 +13,19 @@ const PostData = createAsyncThunk("PostData", async (data) => {
   formData.append("MaxBudget", parseFloat(data.maxBudget));
   formData.append("ProjectStatus", data.projectStatus);
   data.imagesList.forEach((file, index) => {
-    formData.append("Images", file);
+    formData.append("ImagesList", file);
   });
 
+  console.log("FormData sent:", formData);
   try {
     const Response = await fetch(
-      "http://localhost:5194/api/Projects/PostProject",
+      "http://localhost:5194/api/Projects/PostProjects",
       {
         method: "POST",
 
         credentials: "include",
         body: formData,
       },
-      console.log("FormData sent:", formData),
     );
     if (!Response.ok) {
       throw new Error("Failed to post data");

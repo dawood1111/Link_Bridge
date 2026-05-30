@@ -1,17 +1,58 @@
 import React from "react";
 
 import SideBar from "../Component/SideBar.jsx";
+import { SearchBar } from "../Component/CompanySection/SearchBar.jsx";
+import { AutoComplete } from "../Component/CompanySection/AutoComplete.jsx";
+import { CompanyCard } from "../Component/CompanySection/CompanyCard.jsx";
+import { CompanyProfile } from "../Component/CompanySection/CompanyProfile.jsx";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { FetchData } from "../Redux/Slices/GetCompanies.jsx";
+import { FetchSearchQuery } from "../Redux/Slices/SearchQuery.jsx";
+import { Loader } from "semantic-ui-react";
 
 function MainPage() {
+  const [SearchInput, SetInput] = useState("");
+  const [Item0, SetItem] = useState("");
+  const [ShowResult, SetShowResults] = useState(false);
+  const [Show, SetShow] = useState(false);
+  const [index, setIndex] = useState("");
+
+  const SelectData = useSelector((S) => S.AllCompanies.GetData);
+  const { SearchData, isloading, isEmpty } = useSelector(
+    (state) => state.SearchQuery,
+  );
+
+  const Dispatch = useDispatch();
+  useEffect(() => {
+    Dispatch(FetchData({}));
+  }, []);
+
+  const HandleClick = () => {
+    Dispatch(FetchSearchQuery({ CompanyName: SearchInput }));
+    SetInput("");
+  };
+
+  const HandleReset = () => {
+    SetShow(false);
+    SetItem("");
+  };
+
+  const HandleViewProfile = (item, index) => {
+    SetShow(true);
+    SetItem(item);
+    setIndex(index);
+  };
   return (
-    <div className="drawer lg:drawer-open ] bg-gray-100 h-screen-full w-screen">
+    <div className="drawer lg:drawer-open bg-gray-100 min-h-screen w-full ">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
 
       {/* Page content */}
-      <div className="drawer-content flex flex-col">
+      <div className="drawer-content flex flex-col min-h-screen w-screen bg-gray-100  ">
         {/* Navbar */}
-        <nav className="navbar w-395  flex   bg-white text-[#0c2b78] shadow-sm sticky top-0 left-100  z-50 h-22 rounded-tl-sm rounded-bl-sm justify-center items-center  ">
+        <nav className="navbar w-395  flex  bg-white text-[#0c2b78] shadow-sm sticky top-0 left-100  z-50 h-26 rounded-tl-sm rounded-bl-sm   ">
           <label
             htmlFor="my-drawer-4"
             aria-label="open sidebar"
@@ -33,14 +74,12 @@ function MainPage() {
             </svg>
           </label>
         </nav>
-
-        {/* Feed / Companies renders here */}
         <div className="flex flex-col items-center p-4">
           <Outlet />
         </div>
-      </div>
 
-      {/* Sidebar */}
+        {/* Feed / Companies renders here */}
+      </div>
       <div className="  drawer-side is-drawer-close:overflow-visible z-50  flex flex-col items-start bg-white text-[#0c2b78] is-drawer-close:w-14 is-drawer-open:w-64">
         <label
           htmlFor="my-drawer-4"
@@ -49,6 +88,8 @@ function MainPage() {
         ></label>
         <SideBar />
       </div>
+
+      {/* Sidebar */}
     </div>
   );
 }

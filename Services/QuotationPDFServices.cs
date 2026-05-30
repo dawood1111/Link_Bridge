@@ -58,7 +58,7 @@ namespace Api.Services
                             {
                                 MetaRow(meta, "Ref :", q.QuotationNumber);
                                 MetaRow(meta, "Date:", q.Date.ToString("dd MMM yyyy"));
-                        
+
                             });
                     });
                 });
@@ -78,9 +78,9 @@ namespace Api.Services
                 // Client Info
                 col.Item().Element(e => BuildInfoBox(e, "PREPARED FOR", new[]
                 {
-                    
+
                     q.ClientCompany,
-                  
+
                 }));
 
                 // Company Profile
@@ -88,17 +88,17 @@ namespace Api.Services
                 {
                     body.Item().Text(q.CompanyHistory).LineHeight(1.5f).FontSize(9);
 
-                  
+
 
                     if (q.KeyAchievements.Any())
                     {
                         body.Item().PaddingTop(4).Text("Key Achievements:").Bold().FontSize(9);
                         foreach (var achievement in q.KeyAchievements)
-                            body.Item().Text($"  ✓  {achievement}").FontSize(9);
+                            body.Item().Text($"  - {achievement}").FontSize(9);
                     }
                 }));
 
-                // Scope of Work & Pricing — flat table
+
                 col.Item().Element(e => BuildSection(e, "SCOPE OF WORK & PRICING", body =>
                 {
                     body.Item().Table(table =>
@@ -122,8 +122,8 @@ namespace Api.Services
                                 $"Unit Price\n({q.Currency})",
                                 $"Total\n({q.Currency})"
                             })
-                            header.Cell().Background("#2d5fa8").Padding(5)
-                                .Text(h).Bold().FontColor(Colors.White).FontSize(8);
+                                header.Cell().Background("#2d5fa8").Padding(5)
+                                    .Text(h).Bold().FontColor(Colors.White).FontSize(8);
                         });
 
                         // Table rows
@@ -140,12 +140,13 @@ namespace Api.Services
                             alt = !alt;
                         }
                     });
+
                 }));
 
                 // Financial Summary
                 col.Item().Element(e => BuildSection(e, "FINANCIAL SUMMARY", body =>
                 {
-                    body.Item().AlignRight().Width(220).Column(totals =>
+                    body.Item().AlignCenter().Width(250).Column(totals =>
                     {
                         TotalRow(totals, "Subtotal:", $"{subtotal:N2} {q.Currency}");
 
@@ -170,37 +171,38 @@ namespace Api.Services
                         });
                     });
 
-                   
+
                 }));
 
                 // Terms & Conditions
                 if (!string.IsNullOrEmpty(q.TermsAndConditions))
                     col.Item().Element(e => BuildSection(e, "TERMS & CONDITIONS", (body =>
                     {
+                        body.Item().Text("Terms And Condition").Bold().FontSize(9);
                         body.Item().Text(q.TermsAndConditions).FontSize(9).LineHeight(1.5f);
-                         if (!string.IsNullOrEmpty(q.PaymentTerms) || !string.IsNullOrEmpty(q.DeliveryTimeline))
-                    {
-                        body.Item().PaddingTop(10).Row(row =>
+                        if (!string.IsNullOrEmpty(q.PaymentTerms) || !string.IsNullOrEmpty(q.DeliveryTimeline))
                         {
-                            if (!string.IsNullOrEmpty(q.PaymentTerms))
-                                row.RelativeItem().Column(c2 =>
-                                {
-                                    c2.Item().Text("Payment Terms").Bold().FontSize(9);
-                                    c2.Item().Text(q.PaymentTerms).FontSize(9);
-                                });
+                            body.Item().PaddingTop(10).Row(row =>
+                            {
+                                if (!string.IsNullOrEmpty(q.PaymentTerms))
+                                    row.RelativeItem().Column(c2 =>
+                                    {
+                                        c2.Item().Text("Payment Terms").Bold().FontSize(9);
+                                        c2.Item().Text(q.PaymentTerms).FontSize(9);
+                                    });
 
-                            if (!string.IsNullOrEmpty(q.DeliveryTimeline))
-                                row.RelativeItem().Column(c2 =>
-                                {
-                                    c2.Item().Text("Delivery / Execution Period").Bold().FontSize(9);
-                                    c2.Item().Text(q.DeliveryTimeline).FontSize(9);
-                                });
-                        });
-                    }
-                
-                    })                     
+                                if (!string.IsNullOrEmpty(q.DeliveryTimeline))
+                                    row.RelativeItem().Column(c2 =>
+                                    {
+                                        c2.Item().Text("Delivery / Execution Period").Bold().FontSize(9);
+                                        c2.Item().Text(q.DeliveryTimeline).FontSize(9);
+                                    });
+                            });
+                        }
+
+                    })
                     ));
-                        
+
 
                 // Notes
                 if (!string.IsNullOrEmpty(q.Notes))
@@ -222,7 +224,7 @@ namespace Api.Services
                     {
                         sig.Item().Text("Client Acceptance").Bold().FontSize(9);
                         sig.Item().PaddingTop(25).BorderBottom(1).Width(160);
-                       
+
                         sig.Item().Text("Date: _______________").FontSize(9);
                     });
                 });

@@ -12,7 +12,6 @@ const ModalSlice = createSlice({
       state.isOpen = true;
       state.Item = action.payload;
       state.projectData = action.payload;
-      console.log("Modal opended");
     },
     CloseModal: (state) => {
       state.isOpen = false;

@@ -8,6 +8,10 @@ using RegionServices.IInterface;
 using RegionServices.Model;
 using RegionServices.Mapper;
 using RegionServices.DTO;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace RegionServices.Controllers
 {
@@ -126,18 +130,31 @@ namespace RegionServices.Controllers
 
 
         }
+        [HttpPost("LogOut")]
+        public async Task<IActionResult> LogOutBtn()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            Response.Cookies.Delete("AuthToken");
+            Response.Cookies.Delete(".AspNetCore.Cookies");
+            Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
+            return Ok(new { message = "Logged out successfully" });
+
+        }
         private void SetAuthCookies(string token)
         {
             var Cookies = new CookieOptions
             {
                 HttpOnly = true,
-                Secure = true,
-                SameSite = SameSiteMode.None,
+                Secure = false,
+                SameSite = SameSiteMode.Lax,
                 Expires = DateTime.Now.AddDays(1)
             };
             Response.Cookies.Append("AuthToken", token, Cookies);
 
         }
+
 
 
 

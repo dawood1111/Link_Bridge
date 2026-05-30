@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link, Form } from "react-router-dom";
 import { FetchData } from "../Redux/Slices/UserSlice.jsx";
 import images3 from "../Images/construction2.jpg";
+import images4 from "../Images/aesthetic.jfif";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { SignUpSchema } from "../Schema/Schema.js";
@@ -36,22 +37,51 @@ function SignUp() {
 
       onSubmit,
     });
+  const GoogleNavigate = () => {
+    window.location.href = "http://localhost:5194/api/Google/login-google";
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 font-[Poppins,sans-serif]">
       <form
-        className="flex h-auto w-270 shadow-lg rounded-sm mt-[20px]"
+        className="flex h-auto w-270 shadow-lg  mt-11"
         onSubmit={handleSubmit}
       >
         {/* Left Side Container */}
-        <div className=" flex justify-center items-center overflow-hidden ">
-          <img src={images3} alt="" className="" />
+        <div className=" relative flex justify-center items-center overflow-hidden  ">
+          <img src={images4} alt="" className="" />
+          {/* Brand overlay — place inside your image container */}
+          <div className="absolute bottom-0 left-0 right-0 z-10 p-8 bg-gradient-to-t from-[#081232] to-transparent">
+            <h1
+              className="font-['Cormorant_Garamond'] text-4xl font-light text-white leading-tight mb-3
+     animate-[fadeUp_0.9s_0.2s_ease_both]"
+            >
+              Welcome to
+              <br />
+              <span className="font-semibold">Link Bridge</span>
+            </h1>
+
+            <div className="w-9 h-0.5 bg-orange-400/80 mb-3 animate-[slideRight_0.8s_0.5s_ease_both]" />
+
+            <p
+              className="text-xs font-light text-white/50 leading-relaxed
+     animate-[fadeUp_0.9s_0.4s_ease_both]"
+            >
+              Connecting projects,
+              <br />
+              building futures.
+            </p>
+          </div>
         </div>
 
         {/* Right Side Container */}
         <div className="grid gap-3 justify-center items-center pl-[90px] pr-[90px]  bg-white text-xs  rounded-tr-[4px] rounded-br-[4px] w-[500px] shadow-sm pt-10 pb-10">
           {/* Google Sign In Button */}
-          <button className="bg-[#0c2b78] border-none py-1.5 px-1.5 rounded-sm text-white font-semibold cursor-pointer pt-2 pb-2">
+          <button
+            className="bg-linear-to-r from-slate-900 to-blue-900 border-none py-1.5 px-1.5 rounded-sm text-white font-semibold cursor-pointer pt-2 pb-2 "
+            onClick={() => GoogleNavigate()}
+            type="button"
+          >
             <i className="fa-brands fa-google mr-1.5"></i>
             Sign in with Google
           </button>
@@ -183,7 +213,7 @@ function SignUp() {
           </select>
 
           <button
-            className="bg-[#0c2b78] border-none py-1.5 px-1.5 rounded-sm text-white font-semibold cursor-pointer  pt-2.5 pb-2.5 "
+            className="bg-linear-to-r from-slate-900 to-blue-900 border-none py-1.5 px-1.5 rounded-sm text-white font-semibold cursor-pointer  pt-2.5 pb-2.5 "
             type="submit"
             onClick={onSubmit}
           >

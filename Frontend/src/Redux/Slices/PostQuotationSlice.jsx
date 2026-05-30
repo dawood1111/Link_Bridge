@@ -4,32 +4,28 @@ import { createSlice } from "@reduxjs/toolkit";
 export const PostData = createAsyncThunk(
   "PostQuotation",
   async (Data, { rejectWithValue }) => {
-  
-     
-        
+    const Response = await fetch(
+      "http://localhost:5194/api/quotations/generate",
 
-      const Response = await fetch("http://localhost:5194/api/quotations/generate",
+      {
+        method: "POST",
 
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-            credentials: "include",
-
-          body: JSON.stringify(Data),
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
 
-      if (!Response.ok) {
-        const Error = await Response.json();
-        return rejectWithValue(Error);
-      }
-      return await Response.json();
-   
-    
+        credentials: "include",
+
+        body: JSON.stringify(Data),
+      },
+    );
+
+    if (!Response.ok) {
+      const Error = await Response.json();
+      console.log("API Error:", Data);
+      return rejectWithValue(Error);
+    }
+    return await Response.json();
   },
 );
 const PostQuotationSlice = createSlice({

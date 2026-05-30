@@ -10,7 +10,7 @@ export function AutoComplete({ data, SearchInput, onSelect }) {
         })
         .map((item, index) => (
           <div
-            className="bg-white w-50 absolute top-20 left-6  h-auto  pl-3 pt-1 rounded-xl pr-2 z-20"
+            className="bg-white w-60  fixed   h-auto  pl-3 pt-1 rounded-xl pr-2 z-20 shadow-2xl "
             key={index}
           >
             <div

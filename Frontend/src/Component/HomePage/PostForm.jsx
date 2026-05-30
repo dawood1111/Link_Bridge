@@ -64,6 +64,7 @@ export function PostForm() {
 
   const handleConfirm = async () => {
     const DataForm = { ...values, imagesList: imageFiles };
+    console.log("Submitting form with data:", DataForm);
 
     const Result = await Dispatch(PostData(DataForm));
     if (PostData.fulfilled.match(Result)) {
@@ -88,7 +89,7 @@ export function PostForm() {
   );
 
   return (
-    <div className="flex justify-center items-center relative left-130 min-h-100 p-6">
+    <div className="flex justify-center items-center relative left-290 h-220 p-6 slide-in-right">
       <form onSubmit={handleSubmit} className="w-full max-w-3xl" noValidate>
         <div className="bg-white  overflow-hidden shadow-sm flex flex-col h-200">
           {/* HEADER */}
@@ -372,7 +373,7 @@ export function PostForm() {
           </div>
 
           {/* FOOTER */}
-          <div className="bg-[#0c2b78] px-7 py-4 flex justify-end gap-3">
+          <div className="bg-linear-to-r from-slate-900 to-blue-900 px-7 py-4 flex justify-end gap-3">
             <button
               type="button"
               className="bg-transparent border border-white/30 text-white/75 px-5 py-2 rounded text-sm cursor-pointer font-sans hover:bg-white/10 transition"

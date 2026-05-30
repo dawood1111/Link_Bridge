@@ -20,72 +20,47 @@ import { Confirm } from "semantic-ui-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { QuotationFormSchema } from "../../Schema/Schema";
 import { useFormik } from "formik";
+import { set } from "date-fns";
 
 export function QuotationPage() {
   const location = useLocation();
   const item = location.state?.item;
+  const [showConfirm, setShowConfirm] = useState(false);
 
-  const Dispatch = useDispatch();
+  const dispatch = useDispatch();
   const ModalState = useSelector((state) => state.modal || {});
 
-  const [formData, setFormData] = useState({
-    quotationNumber: "",
-    date: new Date().toISOString().split("T")[0],
-    companyName: "",
-    companyEmail: "",
-    clientCompany: "",
-    companyHistory: "",
-    keyAchievements: [""],
-    financialItems: [
-      { itemNo: "1", description: "", unit: "pcs", quantity: 1, unitPrice: 0 },
-    ],
-    paymentTerms: "",
-    deliveryTimeline: "",
-    termsAndConditions: "",
-    notes: "",
-    discountPercentage: 0,
-    taxPercentage: 15,
-    taxLabel: "VAT",
-    currency: "USD",
-    pdFurl: "",
-    AboutCompaniesId: null,
-  });
   const Navigate = useNavigate();
-  const OnSubmit = () => {};
-
-  const HandleConfirm = async () => {
-    const DataForm = {
-      ...values,
-      UserId: item?.userId,
-      ProjectId: item?.id,
-    };
-
-    const result = await Dispatch(PostData(DataForm));
-
-    if (PostData.fulfilled.match(result)) {
-      Navigate("/MainPage/HomePage");
-    }
-
-    Dispatch(CloseConfirm());
+  const OnSubmit = () => {
+    setShowConfirm(true);
   };
 
   const AddFinancialItems = () => {
     const newItem = {
-      itemNo: values.financialItems.length + 1,
+      itemNo: (values.financialItems.length + 1).toString(),
       description: "",
       unit: "pcs",
       quantity: 1,
       unitPrice: 0,
     };
+
     setFieldValue("financialItems", [...values.financialItems, newItem]);
+  };
+  const AddKeyAcheviment = () => {
+    setFieldValue("keyAchievements", [...values.keyAchievements, ""]);
   };
   const { errors, values, handleSubmit, handleChange, setFieldValue } =
     useFormik({
       initialValues: {
-        projectName: "",
-        description: "",
-        budget: "",
-        deadline: "",
+        quotationNumber: `QT-${Math.floor(Math.random() * 10000)}`,
+        date: new Date().toISOString().split("T")[0],
+        companyName: "",
+        companyEmail: "",
+        discountPercentage: 0,
+        taxPercentage: 15,
+        taxLabel: "VAT",
+        currency: "USD",
+        pdFurl: "",
         companyHistory: "",
         clientCompany: "",
         keyAchievements: [""],
@@ -102,13 +77,32 @@ export function QuotationPage() {
         deliveryTimeline: "",
         termsAndConditions: "",
         notes: "",
+        aboutCompaniesId: null,
+        userId: item?.userId || "",
+        projectId: item?.id || null,
       },
       validationSchema: QuotationFormSchema,
 
       onSubmit: (values) => {
-        Dispatch(OpenConfirm({}));
+        console.log("Form Values:", values);
+        setShowConfirm(true);
       },
     });
+
+  const HandleConfirm = async () => {
+    const DataForm = {
+      ...values,
+    };
+
+    const result = await dispatch(PostData(DataForm));
+
+    if (PostData.fulfilled.match(result)) {
+      Navigate("/MainPage/HomePage");
+    }
+
+    setShowConfirm(false);
+  };
+
   const HandleDelete = (index) => {
     //splice the financial items array to remove the item at the specified index and should create copy of the array
     const UpdateFinancial = [...values.financialItems];
@@ -119,7 +113,7 @@ export function QuotationPage() {
   return (
     <div className="flex justify-center min-h-screen bg-gray-100">
       <form action="" onSubmit={handleSubmit}>
-        <div className="bg-white   w-260  max-h-[96vh] overflow-hidden mt-5 shadow-sm flex flex-col  justify-center rounded-sm   z-50">
+        <div className="bg-white   w-260  max-h-[96vh] overflow-hidden mt-5 shadow-sm flex flex-col  justify-center rounded-sm  ">
           {/* HEADER SECTION */}
           <div className="p-4 bg-white border-none flex justify-between items-end">
             <div>
@@ -176,16 +170,22 @@ export function QuotationPage() {
                     Key Achievements
                   </label>
                   <div className="flex gap-2">
-                    <input
-                      name="keyAchievements"
-                      placeholder="e.g. ISO 9001 Certified"
-                      className="flex-1 bg-gray-100 p-2 text-sm border-none rounded-md outline-none"
-                      onChange={handleChange}
-                    />
+                    {values.keyAchievements.map((achievement, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <input
+                          name={`keyAchievements[${index}]`}
+                          value={values.keyAchievements[index]}
+                          placeholder="e.g. ISO 9001 Certified"
+                          className="flex-1 bg-gray-100 p-2 text-sm border-none rounded-md outline-none"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    ))}
 
                     <button
                       className="bg-slate-200 p-2 rounded hover:bg-slate-300 transition text-slate-600 block cursor-pointer"
                       type="button"
+                      onClick={() => AddKeyAcheviment()}
                     >
                       <FaPlus size={10} />
                     </button>
@@ -232,11 +232,10 @@ export function QuotationPage() {
                         {/* Description */}
                         <td className="px-4 py-3">
                           <input
-                            name="description"
+                            name={`financialItems[${index}].description`}
                             className="w-full bg-transparent outline-none font-medium border-none"
                             placeholder="Project Description..."
                             value={values.financialItems[index].description}
-                            name={`financialItems[${index}].description`}
                             onChange={handleChange}
                           />
                           {errors.financialItems?.[index]?.description && (
@@ -281,7 +280,7 @@ export function QuotationPage() {
                         {/* Price */}
                         <td className="px-4 py-3 font-mono font-bold">
                           <input
-                            name="unitPrice"
+                            name={`financialItems[${index}].unitPrice`}
                             className="w-full bg-transparent outline-none"
                             placeholder="0.00"
                             value={values.financialItems[index].unitPrice}
@@ -367,6 +366,7 @@ export function QuotationPage() {
                   placeholder="Extra Notes..."
                   className="w-120 bg-gray-100 p-3 border-none rounded-sm max-h-14 h-14 text-sm"
                   value={values.notes}
+                  name="notes"
                   onChange={handleChange}
                 />
                 {errors.notes && (
@@ -377,7 +377,7 @@ export function QuotationPage() {
           </div>
 
           {/* BOTTOM SUMMARY FOOTER */}
-          <div className="p-3  bg-[#0c2b78] text-white flex justify-between items-center rounded-b-sm">
+          <div className="p-3  bg-linear-to-r from-slate-900 to-blue-900 text-white flex justify-between items-center rounded-b-sm">
             <div className="flex gap-5 justify-center   ">
               <p className="text-[16px] text-white  uppercase ">Grand Total</p>
               <div className="text-[16px] font-black font-mono ">
@@ -392,8 +392,8 @@ export function QuotationPage() {
               Submit
             </button>
           </div>
-          {ModalState.Confirm && (
-            <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-[60]">
+          {showConfirm && (
+            <div className="fixed inset-0  bg-black/40 flex items-center justify-center z-[999]">
               <div className="bg-white rounded-xl p-6 shadow-xl w-80 flex flex-col gap-4">
                 <h3 className="text-lg font-bold text-[#0c2b78">
                   Submit Quotation
@@ -403,14 +403,16 @@ export function QuotationPage() {
                 </p>
                 <div className="flex gap-3 justify-end">
                   <button
-                    onClick={() => Dispatch(CloseConfirm())}
+                    onClick={() => dispatch(CloseConfirm())}
                     className="px-4 py-2 rounded-lg border border-gray-200 text-gray-600 text-sm hover:bg-gray-50"
+                    type="button"
                   >
                     Never mind
                   </button>
                   <button
                     onClick={HandleConfirm}
                     className="px-4 py-2 rounded-lg bg-[#0c2b78] text-white text-sm hover:bg-[#0c2b78] active:scale-95 transition"
+                    type="button"
                   >
                     Let's do it
                   </button>

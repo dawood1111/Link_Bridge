@@ -8,13 +8,13 @@ export function Post() {
   const Dispatch = useDispatch();
 
   return (
-    <div className=" ">
-      <div className="post bg-white w-130 h-17 flex justify-center items-center shadow-sm rounded-full relative">
+    <div className=" flex justify-center items-center w-full ">
+      <div className="post bg-white w-130 h-17 flex justify-center items-center shadow-sm rounded-full relative ">
         <div className="text-gray-700 font-bold text-[14px]">
           Create a new post
         </div>
         <button
-          className=" absolute right-3 w-12 h-12 flex justify-center items-center rounded-full cursor-pointer text-white bg-[#0c2b78]"
+          className=" absolute right-3 w-12 h-12 flex justify-center items-center rounded-full cursor-pointer text-white bg-linear-to-r from-slate-900 to-blue-900"
           onClick={() => Dispatch(OpenModal("CreatePost"))}
         >
           {" "}

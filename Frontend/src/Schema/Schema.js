@@ -15,22 +15,17 @@ const SignInSchema =yup.object().shape({
     LastName:yup.string().required('Last Name is required'),
  });
 
- const QuotationFormSchema=yup.object().shape({
-      projectName:yup.string().required('Project Name is required'),
-      description:yup.string().required('Description is required'),
-      budget:yup.number().positive('Budget must be a positive number').required('Budget is required'),
-      deadline:yup.date().min(new Date(), 'Deadline must be in the future').required('Deadline is required'),
+ const QuotationFormSchema=yup.object().shape({ 
       companyHistory:yup.string().required('Company History is required'),
       clientCompany:yup.string().required('Client Company is required'),
-      keyAchievements:yup.array().of(yup.string().required('Key Achievement is required')).min(1, 'At least one Key Achievement is required'),
+      keyAchievements:yup.array().of(yup.string()).min(1, 'At least one Key Achievement is required'),
       financialItems:yup.array().of(yup.object().shape({
         description:yup.string().required('Description is required'),
-        amount:yup.number().positive('Amount must be a positive number').required('Amount is required'),
+        unitPrice:yup.number().min(0, 'Unit Price must be positive').required('Unit Price is required'),
       })).min(1, 'At least one Financial Item is required'),
       termsAndConditions:yup.string().required('Terms and Conditions are required'),
       deliveryTimeline: yup.string().required('Delivery Timeline is required'),
-      
-      notes:yup.string(),  
+      notes:yup.string().required('Notes are required'),  
       paymentTerms:yup.string().required('Payment Terms are required'),
  })
 

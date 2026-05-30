@@ -11,4 +11,26 @@
   .InputStyle{
     @apply bg-gray-100 border-none rounded-sm p-2 text-sm text-gray-900 outline-none font-sans w-full transition-shadow duration-150
   }
+  @keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.35s ease-out forwards;
+}
 }

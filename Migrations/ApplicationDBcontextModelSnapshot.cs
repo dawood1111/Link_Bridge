@@ -87,19 +87,19 @@ namespace RegionServicesapi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a286c2a2-5454-4d7a-a266-5fd4f630da8c",
+                            Id = "d9584a83-8d9c-48e3-97ce-398a793bc404",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "22e83a50-d872-4fdd-9b9d-46401b6807af",
+                            Id = "aed52eb3-fdde-440f-85e1-6e42af0d1d46",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "ad124d03-3fee-4b76-b20d-88f96c53aea6",
+                            Id = "e1aeab5a-a9f4-491f-a0b8-6a76d341122f",
                             Name = "Company",
                             NormalizedName = "COMPANY"
                         });
