@@ -63,20 +63,20 @@ namespace RegionServices.Controllers
             }
 
             var EngineerProjectModel = engineerProjectDTO.ToEngineerProject(FindUser.Id, _hostEnviroment);
-            if(engineerProjectDTO.MinBudget> engineerProjectDTO.MaxBudget)
+            if (engineerProjectDTO.MinBudget > engineerProjectDTO.MaxBudget)
             {
                 return BadRequest("MinBudget cannot be greater than MaxBudget");
             }
-          
 
-          
+
+
             await _context.ConstructionProjects.AddAsync(EngineerProjectModel);
             await _context.SaveChangesAsync();
             return Ok(EngineerProjectModel);
         }
-        
+
         [HttpGet("GetUserProjects")]
-        [Authorize (Roles = "User")]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> GetUserProjects()
         {
             var GetEmail = User.GetEmail();
@@ -86,7 +86,7 @@ namespace RegionServices.Controllers
                 return NotFound("Data Not Found");
             }
 
-            var UserProjects = await _context.ConstructionProjects.Where(p => p.UserId == FindUser.Id).Include(p=>p.QuotationRequests).ToListAsync();
+            var UserProjects = await _context.ConstructionProjects.Where(p => p.UserId == FindUser.Id).Include(p => p.QuotationRequests).ThenInclude(q => q.AboutCompany).ToListAsync();
             if (UserProjects == null || UserProjects.Count == 0)
             {
                 return NotFound("No Projects Found for the User");

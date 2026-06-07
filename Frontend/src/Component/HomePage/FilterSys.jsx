@@ -23,7 +23,7 @@ export function FilterSys() {
   const [Status, SetStatus] = useState(false);
   const [Item, SetItem] = useState("");
 
-  const Category = ["ITsolution", "Construction", "Programing", "Marketing"];
+  const Category = ["IT Solutions", "Construction", "Programing", "Marketing"];
 
   const FilterFeed = Item
     ? SelectData.filter((Post) => {

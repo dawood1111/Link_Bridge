@@ -9,11 +9,13 @@ namespace RegionServices.Model
     public class User : IdentityUser
     {
         public string Role { get; set; }
-     
-        public Project constructionProject { get; set; }
+
+        public List<Project> constructionProject { get; set; } = new List<Project>();
         public AboutCompanies aboutCompanies { get; set; }
-        public List<QuotationRequest> quotationRequests { get; set; }=new List<QuotationRequest>();
-        
+        public List<QuotationRequest> quotationRequests { get; set; } = new List<QuotationRequest>();
+
+        public List<UserNotification> Notifications { get; set; } = new List<UserNotification>();
+
     }
 
 

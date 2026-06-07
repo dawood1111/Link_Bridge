@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RegionServicesapi.Migrations
 {
     /// <inheritdoc />
-    public partial class MIGJJJ : Migration
+    public partial class NotificationMig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -217,6 +217,31 @@ namespace RegionServicesapi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Notifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SenderName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SenderPfp = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReceiverId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SentAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Notifications_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Images",
                 columns: table => new
                 {
@@ -243,6 +268,7 @@ namespace RegionServicesapi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     QuotationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CompanyLogo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CompanyEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ClientCompany = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -258,11 +284,17 @@ namespace RegionServicesapi.Migrations
                     Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PDFurl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: false)
+                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    AboutCompaniesId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_QuotationRequests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_QuotationRequests_AboutCompanies_AboutCompaniesId",
+                        column: x => x.AboutCompaniesId,
+                        principalTable: "AboutCompanies",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_QuotationRequests_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -304,9 +336,9 @@ namespace RegionServicesapi.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "b45fe122-c6e8-4d87-85f1-3b538303fe69", null, "Company", "COMPANY" },
-                    { "cdb6203b-2b26-41ba-9c90-2ef1fd206703", null, "User", "USER" },
-                    { "ec8e86c3-3958-4bdc-a1b5-514ba4f80afa", null, "Admin", "ADMIN" }
+                    { "5750130e-8c3e-442e-9007-bf2bc625dc0e", null, "Company", "COMPANY" },
+                    { "c0656386-3b97-4b23-b7e4-e84e24966227", null, "User", "USER" },
+                    { "d6fb5ce8-a6cc-4d88-9142-0b29a3fa3d6e", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -357,8 +389,7 @@ namespace RegionServicesapi.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ConstructionProjects_UserId",
                 table: "ConstructionProjects",
-                column: "UserId",
-                unique: true);
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FinancialItems_QuotationRequestId",
@@ -369,6 +400,16 @@ namespace RegionServicesapi.Migrations
                 name: "IX_Images_ConstructionProjectId",
                 table: "Images",
                 column: "ConstructionProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Notifications_UserId",
+                table: "Notifications",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QuotationRequests_AboutCompaniesId",
+                table: "QuotationRequests",
+                column: "AboutCompaniesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_QuotationRequests_ProjectId",
@@ -384,9 +425,6 @@ namespace RegionServicesapi.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AboutCompanies");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -409,10 +447,16 @@ namespace RegionServicesapi.Migrations
                 name: "Images");
 
             migrationBuilder.DropTable(
+                name: "Notifications");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "QuotationRequests");
+
+            migrationBuilder.DropTable(
+                name: "AboutCompanies");
 
             migrationBuilder.DropTable(
                 name: "ConstructionProjects");

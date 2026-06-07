@@ -17,7 +17,7 @@ function SignIn() {
   async function onSubmit() {
     const DispatchData = await Dispatch(FetchData(values));
     if (FetchData.fulfilled.match(DispatchData)) {
-      Navigate("/MainPage");
+      Navigate("/MainPage/HomePage");
     } else {
       console.log("Sign In failed :", DispatchData.payload);
     }
@@ -40,15 +40,12 @@ function SignIn() {
     <div className="flex justify-center items-center min-h-screen bg-gray-100 font-[Poppins,sans-serif] ">
       <form
         onSubmit={handleSubmit}
-        className="flex h-auto w-280 shadow-lg rounded-sm mt-[20px ] w-270"
+        className="sm:flex sm:h-auto sm:w-280 shadow-lg rounded-sm mt-[20px ] w-140 "
       >
-        <div className="relative flex justify-center items-center overflow-hidden w-200 ">
+        <div className="hidden relative sm:flex justify-center items-center overflow-hidden w-200 ">
           <img src={images4} alt="" className="" />
-          {/* Brand overlay — place inside your image container */}
-          <div className="absolute bottom-0 left-0 right-0 z-10 p-8 bg-gradient-to-t from-[#081232] to-transparent">
-            {/* Tag line */}
 
-            {/* Main title */}
+          <div className="absolute bottom-0 left-0 right-0 z-10 p-8 bg-gradient-to-t from-[#081232] to-transparent">
             <h1
               className="font-['Cormorant_Garamond'] text-4xl font-light text-white leading-tight mb-3
      animate-[fadeUp_0.9s_0.2s_ease_both]"
@@ -72,20 +69,20 @@ function SignIn() {
             </p>
           </div>
         </div>
-        <div className="flex flex-col gap-14 bg-white  pr-30 pl-30 content-center justify-center   shadow-sm">
+        <div className="flex flex-col items-center gap-14 bg-white  pr-30 pl-30 content-center justify-center   shadow-sm h-180  sm:h-170 rounded-sm sm:rounded-none  w-140 sm:w-180 ">
           <button
-            className="bg-linear-to-r from-slate-900 to-blue-900 text-white pl-4 pr-4  pt-2.5 pb-2.5 border-none shadow-sm rounded-sm flex justify-center gap-2  text-[12px] cursor-pointer"
+            className="bg-linear-to-r from-slate-900 to-blue-900 text-white pl-4 pr-4  pt-2.5 pb-2.5 border-none shadow-sm rounded-sm flex justify-center gap-2  sm:text-[12px] cursor-pointer  text-[10px] font-[Poppins,sans-serif] font-medium  w-90 sm:w-110"
             type="button"
             onClick={GoogleNavigate}
           >
             <Icon className="google" />
-            <p className="stat-title text-white text-[13px]">
+            <p className="stat-title text-white sm:text-[13px] font-[Poppins,sans-serif] font-medium  text-[11px]">
               Sign in with Google
             </p>
           </button>
-          <div className="flex items-center justify-center text-[14px]">
+          <div className="flex items-center justify-center sm:text-[14px] w-90 sm:w-110 font-[Poppins,sans-serif] font-medium text-gray-500">
             <div className="flex-1 h-px bg-gray-950"></div>
-            <span className="pr-2.5 pl-2.5 font-[Poppins,sans-serif] font-semibold ">
+            <span className="pr-2.5 pl-2.5 font-[Poppins,sans-serif] font-semibold  ">
               OR
             </span>
             <div className="flex-1 h-px bg-gray-950"></div>
@@ -100,7 +97,7 @@ function SignIn() {
               value={values.Email}
               name="Email"
               onChange={handleChange}
-              className=" bg-gray-100  w-110 pl-2  pt-3 pb-3 rounded-sm shadow-sm"
+              className=" bg-gray-100  sm:w-110 w-90 pl-2  pt-3 pb-3 rounded-sm shadow-sm"
             />
             <div>
               {errors.Email && (
@@ -119,7 +116,7 @@ function SignIn() {
               name="Password"
               value={values.Password}
               onChange={handleChange}
-              className="  bg-gray-100  w-110 pl-2  pt-3 pb-3 rounded-sm shadow-sm"
+              className="  bg-gray-100  sm:w-110 w-90 pl-2  pt-3 pb-3 rounded-sm shadow-sm"
             />
 
             <div>
@@ -134,7 +131,7 @@ function SignIn() {
               type="submit"
               className="mx-auto   bg-linear-to-r from-slate-900 to-blue-900 text-white  pt-2.5 pb-2.5 border-none 
               rounded-sm  text-center flex items-center justify-center  
-              cursor-pointer text-[12px] "
+              cursor-pointer sm:text-[12px] text-[10px] font-[Poppins,sans-serif] font-medium  w-90 sm:w-110 "
             >
               {isloading ? (
                 <span className="loading loading-spinner loading-xl"></span>

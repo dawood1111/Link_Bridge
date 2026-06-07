@@ -17,7 +17,7 @@ namespace RegionServices.DBcontext
         public DbSet<AboutCompanies> AboutCompanies { get; set; }
         public DbSet<QuotationRequest> QuotationRequests { get; set; }
         public DbSet<FinancialItem> FinancialItems { get; set; }
-
+        public DbSet<UserNotification> Notifications { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Project>().
@@ -36,22 +36,31 @@ namespace RegionServices.DBcontext
             .HasForeignKey(q => q.ProjectId)
             .OnDelete(DeleteBehavior.NoAction);
 
-              modelBuilder.Entity<User>()
-            .HasMany(u => u.quotationRequests).
-               WithOne(q => q.user)
-               .HasForeignKey(q => q.UserId).
-               OnDelete(DeleteBehavior.NoAction);
-               
+            modelBuilder.Entity<User>()
+          .HasMany(u => u.quotationRequests).
+             WithOne(q => q.user)
+             .HasForeignKey(q => q.UserId).
+             OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<AboutCompanies>()
             .HasMany(a => a.quotationRequest)
             .WithOne(q => q.AboutCompany)
             .HasForeignKey(q => q.AboutCompaniesId)
             .IsRequired(false);
+            modelBuilder.Entity<User>().
+            HasMany(a => a.constructionProject).
+            WithOne(u => u.user).
+            HasForeignKey(u => u.UserId);
+            modelBuilder.Entity<User>().
+            HasMany(u => u.Notifications).
+            WithOne(n => n.Users).
+            HasForeignKey(n => n.UserId);
+
 
 
 
             base.OnModelCreating(modelBuilder);
-            //seed roles(we can also add it to program cs)
+
             List<IdentityRole> Role = new List<IdentityRole>
             {
 

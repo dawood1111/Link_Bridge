@@ -13,7 +13,12 @@ import { useDispatch } from "react-redux";
 import { CloseModal } from "../../Redux/Slices/ModalSlice";
 import { PostData } from "../../Redux/Slices/PostSlice";
 
-const STATUS_OPTIONS = ["Pending", "In Progress", "Cancelled", "Completed"];
+const STATUS_OPTIONS = [
+  { label: "Pending", value: 0 },
+  { label: "In Progress", value: 1 },
+  { label: "Completed", value: 2 },
+  { label: "Cancelled", value: 3 },
+];
 const CATEGORY_OPTIONS = [
   "IT Solutions",
   "Programming",
@@ -207,13 +212,15 @@ export function PostForm() {
                     name="projectStatus"
                     className={`${input} cursor-pointer`}
                     value={values.projectStatus}
-                    onChange={handleChange}
+                    onChange={(e) =>
+                      setFieldValue("projectStatus", parseInt(e.target.value))
+                    }
                     onBlur={handleBlur}
                   >
                     <option value="">Select status</option>
                     {STATUS_OPTIONS.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
+                      <option key={s.value} value={s.value}>
+                        {s.label}
                       </option>
                     ))}
                   </select>
@@ -227,16 +234,16 @@ export function PostForm() {
               <div className="flex gap-2 flex-wrap">
                 {STATUS_OPTIONS.map((s) => (
                   <button
-                    key={s}
+                    key={s.value}
                     type="button"
-                    onClick={() => setFieldValue("projectStatus", s)}
+                    onClick={() => setFieldValue("projectStatus", s.value)}
                     className={`px-4 py-1 rounded-full text-xs font-medium border transition-all cursor-pointer ${
-                      values.projectStatus === s
+                      values.projectStatus === s.value
                         ? "bg-[#0c2b78] text-white border-[#0c2b78]"
                         : "bg-gray-100 text-gray-500 border-gray-200"
                     }`}
                   >
-                    {s}
+                    {s.label}
                   </button>
                 ))}
               </div>

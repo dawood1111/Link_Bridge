@@ -12,8 +12,8 @@ using RegionServices.DBcontext;
 namespace RegionServicesapi.Migrations
 {
     [DbContext(typeof(ApplicationDBcontext))]
-    [Migration("20260424124318_MIGJJJ")]
-    partial class MIGJJJ
+    [Migration("20260605115054_ NotificationMig")]
+    partial class NotificationMig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,19 +90,19 @@ namespace RegionServicesapi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ec8e86c3-3958-4bdc-a1b5-514ba4f80afa",
+                            Id = "d6fb5ce8-a6cc-4d88-9142-0b29a3fa3d6e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "cdb6203b-2b26-41ba-9c90-2ef1fd206703",
+                            Id = "c0656386-3b97-4b23-b7e4-e84e24966227",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "b45fe122-c6e8-4d87-85f1-3b538303fe69",
+                            Id = "5750130e-8c3e-442e-9007-bf2bc625dc0e",
                             Name = "Company",
                             NormalizedName = "COMPANY"
                         });
@@ -222,6 +222,9 @@ namespace RegionServicesapi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("AboutCompaniesId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ClientCompany")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -231,6 +234,10 @@ namespace RegionServicesapi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyHistory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyLogo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -291,6 +298,8 @@ namespace RegionServicesapi.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AboutCompaniesId");
 
                     b.HasIndex("ProjectId");
 
@@ -423,8 +432,7 @@ namespace RegionServicesapi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("ConstructionProjects");
                 });
@@ -498,6 +506,48 @@ namespace RegionServicesapi.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("RegionServices.Model.UserNotification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderPfp")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SentAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("FinancialItem", b =>
                 {
                     b.HasOne("QuotationRequest", "QuotationsRequest")
@@ -562,6 +612,10 @@ namespace RegionServicesapi.Migrations
 
             modelBuilder.Entity("QuotationRequest", b =>
                 {
+                    b.HasOne("RegionServices.Model.AboutCompanies", "AboutCompany")
+                        .WithMany("quotationRequest")
+                        .HasForeignKey("AboutCompaniesId");
+
                     b.HasOne("RegionServices.Model.Project", "ProjectPosts")
                         .WithMany("QuotationRequests")
                         .HasForeignKey("ProjectId")
@@ -573,6 +627,8 @@ namespace RegionServicesapi.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.Navigation("AboutCompany");
 
                     b.Navigation("ProjectPosts");
 
@@ -602,17 +658,33 @@ namespace RegionServicesapi.Migrations
             modelBuilder.Entity("RegionServices.Model.Project", b =>
                 {
                     b.HasOne("RegionServices.Model.User", "user")
-                        .WithOne("constructionProject")
-                        .HasForeignKey("RegionServices.Model.Project", "UserId")
+                        .WithMany("constructionProject")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("user");
                 });
 
+            modelBuilder.Entity("RegionServices.Model.UserNotification", b =>
+                {
+                    b.HasOne("RegionServices.Model.User", "Users")
+                        .WithMany("Notifications")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("QuotationRequest", b =>
                 {
                     b.Navigation("FinancialItems");
+                });
+
+            modelBuilder.Entity("RegionServices.Model.AboutCompanies", b =>
+                {
+                    b.Navigation("quotationRequest");
                 });
 
             modelBuilder.Entity("RegionServices.Model.Project", b =>
@@ -624,11 +696,12 @@ namespace RegionServicesapi.Migrations
 
             modelBuilder.Entity("RegionServices.Model.User", b =>
                 {
+                    b.Navigation("Notifications");
+
                     b.Navigation("aboutCompanies")
                         .IsRequired();
 
-                    b.Navigation("constructionProject")
-                        .IsRequired();
+                    b.Navigation("constructionProject");
 
                     b.Navigation("quotationRequests");
                 });

@@ -13,7 +13,7 @@ export const FetchData = createAsyncThunk("FetchUser", async (UserData) => {
   });
   if (!Response.ok) {
     const Error = await Response.json();
-    return rejectWithValue(Error);
+    return thunkAPI.rejectWithValue(Error);
   }
 
   return await Response.json();

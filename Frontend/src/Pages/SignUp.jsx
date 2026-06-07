@@ -10,13 +10,14 @@ import { SignUpSchema } from "../Schema/Schema.js";
 function SignUp() {
   const Navigate = useNavigate();
   const Dispatch = useDispatch();
-  async function onSubmit() {
+  async function onSubmit(values) {
+    console.log("submitting:", values);
     const DispatchData = await Dispatch(FetchData(values));
     if (FetchData.fulfilled.match(DispatchData)) {
       if (values.role == "Company") {
         Navigate("/CompanySetUp");
       } else {
-        Navigate("/MainPage");
+        Navigate("/MainPage/HomePage");
       }
     } else {
       console.log("Sign Up failed");
@@ -31,7 +32,7 @@ function SignUp() {
         email: "",
         password: "",
         phoneNumber: "",
-        role: "",
+        role: "User",
       },
       validationSchema: SignUpSchema,
 
@@ -44,13 +45,13 @@ function SignUp() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 font-[Poppins,sans-serif]">
       <form
-        className="flex h-auto w-270 shadow-lg  mt-11"
+        className="flex h-auto sign shadow-lg  mt-11 sm:w-280 "
         onSubmit={handleSubmit}
       >
         {/* Left Side Container */}
-        <div className=" relative flex justify-center items-center overflow-hidden  ">
+        <div className=" hidden relative sm:flex justify-center items-center overflow-hidden  ">
           <img src={images4} alt="" className="" />
-          {/* Brand overlay — place inside your image container */}
+
           <div className="absolute bottom-0 left-0 right-0 z-10 p-8 bg-gradient-to-t from-[#081232] to-transparent">
             <h1
               className="font-['Cormorant_Garamond'] text-4xl font-light text-white leading-tight mb-3
@@ -74,9 +75,7 @@ function SignUp() {
           </div>
         </div>
 
-        {/* Right Side Container */}
-        <div className="grid gap-3 justify-center items-center pl-[90px] pr-[90px]  bg-white text-xs  rounded-tr-[4px] rounded-br-[4px] w-[500px] shadow-sm pt-10 pb-10">
-          {/* Google Sign In Button */}
+        <div className="grid gap-3 justify-center items-center pl-[90px] pr-[90px]  bg-white text-xs sm:w-160  w-140 shadow-sm pt-10 pb-10 h-180 ">
           <button
             className="bg-linear-to-r from-slate-900 to-blue-900 border-none py-1.5 px-1.5 rounded-sm text-white font-semibold cursor-pointer pt-2 pb-2 "
             onClick={() => GoogleNavigate()}
@@ -86,7 +85,6 @@ function SignUp() {
             Sign in with Google
           </button>
 
-          {/* Divider */}
           <div className="flex items-center text-sm">
             <div className="flex-1 h-px bg-[#4a4e52]"></div>
             <span className="px-2.5 text-black">OR</span>
@@ -215,7 +213,6 @@ function SignUp() {
           <button
             className="bg-linear-to-r from-slate-900 to-blue-900 border-none py-1.5 px-1.5 rounded-sm text-white font-semibold cursor-pointer  pt-2.5 pb-2.5 "
             type="submit"
-            onClick={onSubmit}
           >
             Sign Up
           </button>

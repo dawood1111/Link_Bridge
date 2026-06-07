@@ -4,6 +4,7 @@ import {
   CloseModal,
   OpenConfirm,
   CloseConfirm,
+  OpenModal,
 } from "../../Redux/Slices/ModalSlice";
 import { useDispatch } from "react-redux";
 import {
@@ -21,11 +22,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { QuotationFormSchema } from "../../Schema/Schema";
 import { useFormik } from "formik";
 import { set } from "date-fns";
+import { NotificationData } from "../../Redux/Slices/NotificationSlice";
+import { ConfirmModal } from "../ConfirmModal";
 
 export function QuotationPage() {
   const location = useLocation();
   const item = location.state?.item;
-  const [showConfirm, setShowConfirm] = useState(false);
 
   const dispatch = useDispatch();
   const ModalState = useSelector((state) => state.modal || {});
@@ -84,8 +86,7 @@ export function QuotationPage() {
       validationSchema: QuotationFormSchema,
 
       onSubmit: (values) => {
-        console.log("Form Values:", values);
-        setShowConfirm(true);
+        dispatch(OpenModal("QuotationForm"));
       },
     });
 
@@ -95,12 +96,17 @@ export function QuotationPage() {
     };
 
     const result = await dispatch(PostData(DataForm));
+    const notificationResult = await dispatch(
+      NotificationData({
+        ReceiverId: item?.userId || "",
+        Message: "has submitted quotation for your project",
+        Type: "Quotation",
+      }),
+    );
 
     if (PostData.fulfilled.match(result)) {
       Navigate("/MainPage/HomePage");
     }
-
-    setShowConfirm(false);
   };
 
   const HandleDelete = (index) => {
@@ -150,7 +156,6 @@ export function QuotationPage() {
                 )}
               </div>
 
-              {/* Right Column: Key Achievements & Client */}
               <div className="space-y-4 ">
                 <p className="flex items-center gap-2  text-[#0c2b78]  pb-2 font-bold ml-2">
                   <FaGlobe /> CLIENT & ACHIEVEMENTS
@@ -199,7 +204,6 @@ export function QuotationPage() {
               </div>
             </div>
 
-            {/* SECTION 2: FINANCIAL ITEMS TABLE */}
             <div className="space-y-3 ">
               <p className="flex items-center gap-2 font-bold  text-[#0c2b78] pb-2 uppercase  tracking-wider ml-4">
                 <FaFileInvoiceDollar className="bg-whit text-[#0c2b78]" />{" "}
@@ -376,7 +380,6 @@ export function QuotationPage() {
             </div>
           </div>
 
-          {/* BOTTOM SUMMARY FOOTER */}
           <div className="p-3  bg-linear-to-r from-slate-900 to-blue-900 text-white flex justify-between items-center rounded-b-sm">
             <div className="flex gap-5 justify-center   ">
               <p className="text-[16px] text-white  uppercase ">Grand Total</p>
@@ -392,34 +395,13 @@ export function QuotationPage() {
               Submit
             </button>
           </div>
-          {showConfirm && (
-            <div className="fixed inset-0  bg-black/40 flex items-center justify-center z-[999]">
-              <div className="bg-white rounded-xl p-6 shadow-xl w-80 flex flex-col gap-4">
-                <h3 className="text-lg font-bold text-[#0c2b78">
-                  Submit Quotation
-                </h3>
-                <p className="text-sm text-gray-500">
-                  Are you sure you want to submit this quotation?
-                </p>
-                <div className="flex gap-3 justify-end">
-                  <button
-                    onClick={() => dispatch(CloseConfirm())}
-                    className="px-4 py-2 rounded-lg border border-gray-200 text-gray-600 text-sm hover:bg-gray-50"
-                    type="button"
-                  >
-                    Never mind
-                  </button>
-                  <button
-                    onClick={HandleConfirm}
-                    className="px-4 py-2 rounded-lg bg-[#0c2b78] text-white text-sm hover:bg-[#0c2b78] active:scale-95 transition"
-                    type="button"
-                  >
-                    Let's do it
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
+
+          <ConfirmModal
+            Title={"Submit Quotation"}
+            Message={"Are you sure you want to submit"}
+            modalName={"QuotationForm"}
+            OnConfirm={HandleConfirm}
+          />
         </div>
       </form>
     </div>

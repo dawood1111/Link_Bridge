@@ -13,6 +13,8 @@ import { Post } from "../Component/HomePage/Post";
 import { Loader, Message, MessageHeader } from "semantic-ui-react";
 import { FilterSys } from "../Component/HomePage/FilterSys";
 import { PostForm } from "../Component/HomePage/PostForm";
+import { NotificationsSection } from "../Component/HomePage/NotificationsSection";
+import { UserData } from "../Redux/Slices/LogedUserSlice";
 
 export function HomePages() {
   const [SearchInput, SetInput] = useState("");
@@ -25,10 +27,16 @@ export function HomePages() {
   const { SearchData, isloading, isEmpty } = useSelector(
     (state) => state.SearchQuery,
   );
+
+  const UserLoged = useSelector((state) => state.logedUser.UserData);
+  console.log(UserLoged.email);
+
   const { Item } = useSelector((state) => state.modal);
 
   const Dispatch = useDispatch();
+
   useEffect(() => {
+    Dispatch(UserData());
     Dispatch(FetchData({}));
   }, []);
 
@@ -49,55 +57,30 @@ export function HomePages() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen  gap-10 ">
+    <div className="bg-gray-100 min-h-screen  w-full  ">
       <div>
-        <div>
-          <div className=" mt-3 flex flex-row    ">
-            <Post />
-          </div>
-          <div className="fixed z-50 top-1 ">
-            {Item === "CreatePost" && <PostForm />}
-          </div>
+        <div className=" mt-3 flex flex-row    ">
+          <Post />
+        </div>
+        <div className="fixed z-50 top-1 ">
+          {Item === "CreatePost" && <PostForm />}
         </div>
       </div>
-      <div className="flex flex-row gap-10 justify-center ml-50   ">
+
+      <div className="flex sm:flex-row   justify-center mt-10 sm:mt-0  sm:gap-16   sm:justify-start sm:ml-30 ">
         <div className=" ">
           <FilterSys />
         </div>
-
-        <div className="flex flex-col items-center gap-5   bg-white shadow-sm pt-6 rounded-xl h-160 w-110 overflow-x-auto sticky top-0 mr-30">
-          <SearchBar
-            onChange={SetInput}
-            onClick={HandleClick}
-            value={SearchInput}
-          />
-
-          {!ShowResult && (
-            <AutoComplete
-              SearchInput={SearchInput}
-              data={SelectData}
-              onSelect={SetInput}
-            />
-          )}
-
-          {!Show && (
-            <CompanyCard
-              c
-              QuerySearch={SearchData}
-              ViewCompanyProfile={HandleViewProfile}
-            />
-          )}
-
-          {isloading && (
-            <div className="flex justify-center items-center h-96">
-              <Loader active inline="centered" />
+        <div className="flex flex-col  ">
+          <div className="flex fixed top-40 right-6 justify-start items-center gap-3 bg-white w-100  pt-3 pb-3 rounded-full pl-6">
+            <div className="[background:linear-gradient(90deg,rgba(2,0,36,1)_0%,rgba(9,9,121,1)_35%,rgba(0,212,255,1)_100%)] w-11 h-11 text-white flex justify-center items-center font-bold rounded-full">
+              {UserLoged.userName?.[0] || "U"}
             </div>
-          )}
-        </div>
-        <div className="fixed left-150 z-50 top-22">
-          {Show && Item0 && (
-            <CompanyProfile BackBtn={() => SetShow(false)} item={Item0} />
-          )}
+            <p className="font-semibold">{UserLoged.userName}</p>
+          </div>
+          <div className=" flex flex-col gap-6 w-100  h-160 m-10 ">
+            <NotificationsSection />
+          </div>
         </div>
       </div>
     </div>
