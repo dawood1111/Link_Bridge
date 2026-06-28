@@ -16,7 +16,6 @@ const PostData = createAsyncThunk("PostData", async (data) => {
     formData.append("ImagesList", file);
   });
 
-  console.log("FormData sent:", formData);
   try {
     const Response = await fetch(
       "http://localhost:5194/api/Projects/PostProjects",

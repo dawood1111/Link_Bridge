@@ -47,10 +47,10 @@ export function FilterSys() {
         floating
         labeled
         button
-        className="icon"
+        className="icon "
         style={{
           backgroundColor: "white",
-          borderRadius: "12px",
+          borderRadius: "16px",
           boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
           border: "none",
         }}

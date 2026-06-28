@@ -230,7 +230,6 @@ export function PostForm() {
                 </div>
               </div>
 
-              {/* Status Pills */}
               <div className="flex gap-2 flex-wrap">
                 {STATUS_OPTIONS.map((s) => (
                   <button

@@ -67,18 +67,18 @@ export function HomePages() {
         </div>
       </div>
 
-      <div className="flex sm:flex-row   justify-center mt-10 sm:mt-0  sm:gap-16   sm:justify-start sm:ml-30 ">
+      <div className="flex sm:flex-row  flex-col  justify-center mt-10 sm:mt-0  sm:gap-16   sm:justify-start sm:ml-30 ">
         <div className=" ">
           <FilterSys />
         </div>
-        <div className="flex flex-col  ">
-          <div className="flex fixed top-40 right-6 justify-start items-center gap-3 bg-white w-100  pt-3 pb-3 rounded-full pl-6">
+        <div className="sm:flex flex-col  ">
+          <div className="sm:flex sm:fixed top-40 right-6 justify-start items-center gap-3 bg-white w-100  pt-3 pb-3 rounded-full pl-6">
             <div className="[background:linear-gradient(90deg,rgba(2,0,36,1)_0%,rgba(9,9,121,1)_35%,rgba(0,212,255,1)_100%)] w-11 h-11 text-white flex justify-center items-center font-bold rounded-full">
               {UserLoged.userName?.[0] || "U"}
             </div>
             <p className="font-semibold">{UserLoged.userName}</p>
           </div>
-          <div className=" flex flex-col gap-6 w-100  h-160 m-10 ">
+          <div className=" sm:flex flex-col gap-6 sm:w-100  sm:h-160 sm:m-10   hidden">
             <NotificationsSection />
           </div>
         </div>

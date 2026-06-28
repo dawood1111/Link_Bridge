@@ -9,6 +9,8 @@ using RegionServices.IInterface;
 using RegionServices.Model;
 using RegionServices.DTO;
 using RegionServices.Mapper;
+using System.Threading.Tasks;
+using RegionServices.Interface;
 namespace Api.Controller
 {
 
@@ -17,82 +19,45 @@ namespace Api.Controller
     public class NotificationController : ControllerBase
     {
         private readonly ApplicationDBcontext _context;
-        public NotificationController(ApplicationDBcontext context)
+        private readonly INotification _INotification;
+        public NotificationController(ApplicationDBcontext context, INotification Notification)
         {
             _context = context;
+            _INotification = Notification;
         }
+
 
         [HttpPost("SendNotification")]
         public async Task<IActionResult> SendNotification([FromBody] UserNotificationDTO notificationDTO)
         {
             var GetEmail = User.GetEmail();
-            var FindUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == GetEmail);
-            string SenderName = " ";
-            String Senderpfp = " ";
+            await _INotification.SendNotification(notificationDTO, GetEmail);
 
-
-            if (FindUser == null)
-            {
-                return NotFound("User Not Found");
-            }
-
-
-            if (FindUser.Role == "Company")
-            {
-                var Company = await _context.AboutCompanies.FirstOrDefaultAsync(c => c.UserId == FindUser.Id);
-                if (Company == null)
-                {
-                    NotFound("No company available");
-                }
-                SenderName = Company.CompanyName;
-                SenderName = Company.CompanyLogo;
-            }
-            else
-            {
-                SenderName = FindUser.UserName;
-                Senderpfp = "";
-
-            }
-            var NotificationModel = notificationDTO.ToNotificationDTO(SenderName, Senderpfp, FindUser.Id);
-            await _context.Notifications.AddAsync(NotificationModel);
-            await _context.SaveChangesAsync();
-
-            return Ok("Notification Sent Successfully");
-
-
+            return Ok("Notification Sent Succefully");
         }
+
+
         [Authorize]
         [HttpGet("GetNotifications")]
         public async Task<IActionResult> GetNotifications()
         {
             var GetEmail = User.GetEmail();
-            var FindUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == GetEmail);
-            if (FindUser == null)
+            var notification = await _INotification.GetNotification(GetEmail);
+            return Ok(notification);
+
+
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteNotification(int id)
+        {
+            var FindDeletion = await _context.Notifications.FindAsync(id);
+            if (FindDeletion == null)
             {
-                return NotFound("User Not Found");
+                return NotFound("no Noti with this id");
             }
-            var GetNotifications = await _context.Notifications
-            .Where(n => n.ReceiverId == FindUser.Id)
-                .Select(n => new
-                {
-                    n.Id,
-                    n.SenderName,
-                    n.SenderPfp,
-                    n.Message,
-                    n.Type,
-                    n.SentAt
-                })
-                .OrderByDescending(n => n.SentAt)
-                .ToListAsync();
-
-
-            if (GetNotifications == null)
-            {
-                return NotFound("No Data Found");
-            }
-            return Ok(GetNotifications);
-
-
+            _context.Notifications.Remove(FindDeletion);
+            await _context.SaveChangesAsync();
+            return Ok("Deleted Successfully");
         }
 
     }

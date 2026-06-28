@@ -19,14 +19,14 @@ namespace RegionServices.Controllers
     {
         private readonly ApplicationDBcontext _context;
         private readonly UserManager<User> _userManager;
-        private readonly IConstructionCompany _constructionCompany;
+        private readonly IProjects _Projects;
         private readonly IWebHostEnvironment _hostEnviroment;
 
-        public ConstructionProjectsController(ApplicationDBcontext context, UserManager<User> userManager, IConstructionCompany constructionCompany, IWebHostEnvironment hostEnvironment)
+        public ConstructionProjectsController(ApplicationDBcontext context, UserManager<User> userManager, IProjects projects, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             _userManager = userManager;
-            _constructionCompany = constructionCompany;
+            _Projects = projects;
             _hostEnviroment = hostEnvironment;
         }
 
@@ -34,7 +34,7 @@ namespace RegionServices.Controllers
         public async Task<IActionResult> GetAllEngineerProject()
 
         {
-            var GetEngineerDataRepo = await _constructionCompany.GetCompanyEngineer();
+            var GetEngineerDataRepo = await _Projects.GetCompanyEngineer();
 
             if (GetEngineerDataRepo == null)
             {
@@ -51,28 +51,17 @@ namespace RegionServices.Controllers
         [HttpPost("PostProjects")]
         public async Task<IActionResult> CreateEngineerProfile([FromForm] EngineerProjectDTO engineerProjectDTO)
         {
-            if (engineerProjectDTO == null)
-            {
-                return BadRequest("Data Is Null");
-            }
+
             var GetEmail = User.GetEmail();
             var FindUser = await _userManager.FindByEmailAsync(GetEmail);
             if (FindUser == null)
             {
                 return NotFound("Data Not Found");
             }
-
-            var EngineerProjectModel = engineerProjectDTO.ToEngineerProject(FindUser.Id, _hostEnviroment);
-            if (engineerProjectDTO.MinBudget > engineerProjectDTO.MaxBudget)
-            {
-                return BadRequest("MinBudget cannot be greater than MaxBudget");
-            }
+            var Project = await _Projects.CreateProject(engineerProjectDTO, FindUser.Id);
 
 
-
-            await _context.ConstructionProjects.AddAsync(EngineerProjectModel);
-            await _context.SaveChangesAsync();
-            return Ok(EngineerProjectModel);
+            return Ok(Project);
         }
 
         [HttpGet("GetUserProjects")]
@@ -85,14 +74,9 @@ namespace RegionServices.Controllers
             {
                 return NotFound("Data Not Found");
             }
+            var GetProjectRepo = await _Projects.GetUserProjects(FindUser.Id);
 
-            var UserProjects = await _context.ConstructionProjects.Where(p => p.UserId == FindUser.Id).Include(p => p.QuotationRequests).ThenInclude(q => q.AboutCompany).ToListAsync();
-            if (UserProjects == null || UserProjects.Count == 0)
-            {
-                return NotFound("No Projects Found for the User");
-            }
-
-            return Ok(UserProjects);
+            return Ok(GetProjectRepo);
         }
 
 

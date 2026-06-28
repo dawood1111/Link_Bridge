@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lta3zcJfwGw=",
+  "dgSpecHash": "9jYA8ZhaWr8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\RegionServicesapi.csproj",
+  "projectFilePath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dawoo\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\dawoo\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

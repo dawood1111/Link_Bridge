@@ -55,6 +55,7 @@ export function Feed({ data }) {
   const [PopupOpen, SetPopupopen] = useState(false);
   const [Items, SetItems] = useState({});
   const [OpenViewDetails, setOpenViewDetails] = useState("");
+
   const [OpenImage, SetOpenImage] = useState("");
   const [preview, setPreview] = useState(false);
   const Navigate = useNavigate();
@@ -266,7 +267,6 @@ export function Feed({ data }) {
               </div>
             </div>
 
-            {/* Expanded Details Section */}
             {PopupOpen && Items && OpenViewDetails === index && (
               <div className="w-110 sm:w-full bg-white z-10 p-4 shadow-xl flex flex-col transition-all duration-300 sm:rounded-sm rounded-full ">
                 <div className="flex flex-row justify-around h-8 items-center ">

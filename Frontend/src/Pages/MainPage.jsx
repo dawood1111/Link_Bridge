@@ -85,8 +85,8 @@ function MainPage() {
             </div>
           </div>
           {LastQuery != null && State && (
-            <div className="bg-white fixed h-140 sm:top-70 flex flex-col  items-center w-100 sm:left-326 shadow-xl rounded-sm p-6  overflow-x-hidden hide-scrollbar left-30 top-35  ">
-              <div className="stat-title text-blue-950 text-[14px] shadow-2xl absolute top-0 w-full h-10 flex justify-center items-center   font-bold z-40">
+            <div className="bg-white fixed h-150 sm:top-60 flex flex-col  items-center w-110 sm:left-320 shadow-xl rounded-xl p-4  overflow-x-hidden hide-scrollbar left-30 top-30   ">
+              <div className="stat-title text-blue-950 text-[14px]  relative top-[-12px] w-full h-10   z-40 mb-4">
                 <button
                   className="absolute right-3 top-3 text-[#0c2b78s] cursor-pointer"
                   onClick={() => SetState(false)}
@@ -95,11 +95,13 @@ function MainPage() {
                 </button>
               </div>
               {!Show && (
-                <CompanyCard
-                  c
-                  QuerySearch={SearchData}
-                  ViewCompanyProfile={HandleViewProfile}
-                />
+                <div>
+                  <CompanyCard
+                    c
+                    QuerySearch={SearchData}
+                    ViewCompanyProfile={HandleViewProfile}
+                  />
+                </div>
               )}
 
               {isloading && (

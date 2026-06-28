@@ -36,6 +36,7 @@ namespace RegionServices.Controllers
             return Ok(GetAllCompaniesModel);
 
         }
+
         [Authorize(Roles = "Company")]
         [HttpPost("PostCompanyProfile")]
 

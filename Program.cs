@@ -131,7 +131,9 @@ builder.Services.AddAuthentication(a =>
 
 
 builder.Services.AddScoped<ICreateToken, Token>();
-builder.Services.AddScoped<IConstructionCompany, ConstructionProjectRepo>();
+builder.Services.AddScoped<IProjects, ProjectRepsitory>();
+builder.Services.AddScoped<INotification, NotificationsRepository>();
+
 builder.Services.AddScoped<QuotationPDFServices>();
 
 

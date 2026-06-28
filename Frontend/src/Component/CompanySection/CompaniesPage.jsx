@@ -7,7 +7,7 @@ import { FetchSearchQuery } from "../Redux/Slices/SearchQuery";
 import { CompanyProfile } from "../Component/CompanySection/CompanyProfile";
 import FilterSys from "../Component/CompanySection/Filter";
 import { FetchData } from "../Redux/Slices/GetCompanies";
-import { Placeholder,PlaceholderLine } from "semantic-ui-react";
+import { Placeholder, PlaceholderLine } from "semantic-ui-react";
 
 import { CompanyCard } from "../Component/CompanySection/CompanyCard";
 import { useEffect } from "react";
@@ -46,13 +46,6 @@ export function Companies() {
 
   return (
     <div className="flex justify-center items-center flex-col  bg-amber-200 h-auto  relative left-100">
-          <Placeholder>
-    <PlaceholderLine />
-    <PlaceholderLine />
-    <PlaceholderLine />
-    <PlaceholderLine />
-    <PlaceholderLine />
-  </Placeholder>
       <SearchBar
         onChange={SetInput}
         onClick={HandleClick}

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\RegionServicesapi.csproj": {}
+    "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\RegionServicesapi.csproj": {
+    "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\RegionServicesapi.csproj",
+        "projectUniqueName": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj",
         "projectName": "RegionServicesapi",
-        "projectPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\RegionServicesapi.csproj",
+        "projectPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\RegionServicesapi.csproj",
         "packagesPath": "C:\\Users\\dawoo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\api\\obj\\",
+        "outputPath": "C:\\Users\\dawoo\\OneDrive\\Desktop\\Construction_And_Net\\Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dawoo\\AppData\\Roaming\\NuGet\\NuGet.Config"

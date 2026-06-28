@@ -8,6 +8,7 @@ import { GetData } from "../Redux/Slices/ProjectsSlice";
 import { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa";
 import { Button, Header, Segment } from "semantic-ui-react";
+import { DeleteModal } from "../Component/deleteModal";
 import {
   Icon,
   PlaceholderParagraph,
@@ -20,10 +21,14 @@ import {
 import { NotificationData } from "../Redux/Slices/NotificationSlice";
 import { OpenModal, CloseModal } from "../Redux/Slices/ModalSlice";
 import ConfirmModal from "../Component/ConfirmModal";
+import { DeleteQuotationRequest } from "../Redux/Slices/QuotationDeleteSlice";
+
 export function ProjectSection() {
   const { ProjectsData, isloading } = useSelector(
     (state) => state.UserProjects,
   );
+  const [OpenDelete, SetOpenDelete] = useState("");
+  const [SelectedId, SetSelectedId] = useState("");
   const dispatch = useDispatch();
   const timeAgo = (date) => {
     return formatDistanceToNow(new Date(date), { addSuffix: true });
@@ -204,7 +209,14 @@ export function ProjectSection() {
                         }
                       />
 
-                      <button className="bg-white  text-[#b42828]  w-11 h-11 rounded-full text-2xl">
+                      <button
+                        className="bg-white  text-[#b42828]  w-11 h-11 rounded-full text-2xl"
+                        onClick={() => {
+                          dispatch(OpenModal("DeleteQuotationRequest"));
+                          SetSelectedId(item.id);
+                          SetOpenDelete(index);
+                        }}
+                      >
                         <Icon name="thumbs down" />
                       </button>
                     </div>
@@ -228,6 +240,25 @@ export function ProjectSection() {
                       </svg>
                       View PDF
                     </button>
+
+                    <div className=" ">
+                      <div className="relative right-20 top-1  ">
+                        {index === OpenDelete && (
+                          <ConfirmModal
+                            Title={"Delete Quotation Request"}
+                            Message={"Are you sure you want to delete"}
+                            modalName={"DeleteQuotationRequest"}
+                            OnConfirm={() =>
+                              dispatch(DeleteQuotationRequest(SelectedId)).then(
+                                () => {
+                                  dispatch(GetData());
+                                },
+                              )
+                            }
+                          />
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))
