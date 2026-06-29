@@ -22,6 +22,42 @@ namespace RegionServicesapi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("FinancialItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ItemNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("QuotationRequestId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuotationRequestId");
+
+                    b.ToTable("FinancialItems");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -51,27 +87,21 @@ namespace RegionServicesapi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "740fb233-3f99-4698-9fbb-474359011ae9",
+                            Id = "d6fb5ce8-a6cc-4d88-9142-0b29a3fa3d6e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "75f14ef1-7522-4e46-aac9-90dec617c1df",
+                            Id = "c0656386-3b97-4b23-b7e4-e84e24966227",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "18385022-9869-4ddb-9ba5-69968d29296f",
-                            Name = "Construction",
-                            NormalizedName = "CONSTRUCTION"
-                        },
-                        new
-                        {
-                            Id = "0111fc2c-6c7b-499d-9ed6-d18dec1b99e6",
-                            Name = "IT",
-                            NormalizedName = "IT"
+                            Id = "5750130e-8c3e-442e-9007-bf2bc625dc0e",
+                            Name = "Company",
+                            NormalizedName = "COMPANY"
                         });
                 });
 
@@ -181,6 +211,100 @@ namespace RegionServicesapi.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("QuotationRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AboutCompaniesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClientCompany")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyHistory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyLogo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeliveryTimeline")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("DiscountPercentage")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("KeyAchievements")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PDFurl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentTerms")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QuotationNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaxLabel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TaxPercentage")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TermsAndConditions")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AboutCompaniesId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("QuotationRequests");
+                });
+
             modelBuilder.Entity("RegionServices.Model.AboutCompanies", b =>
                 {
                     b.Property<int>("Id")
@@ -194,6 +318,10 @@ namespace RegionServicesapi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyLogo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -260,8 +388,18 @@ namespace RegionServicesapi.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("MaxBudget")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinBudget")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("PostDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ProjectCategory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProjectDescription")
                         .IsRequired()
@@ -291,8 +429,7 @@ namespace RegionServicesapi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("ConstructionProjects");
                 });
@@ -366,6 +503,59 @@ namespace RegionServicesapi.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("RegionServices.Model.UserNotification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderPfp")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SentAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("FinancialItem", b =>
+                {
+                    b.HasOne("QuotationRequest", "QuotationsRequest")
+                        .WithMany("FinancialItems")
+                        .HasForeignKey("QuotationRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QuotationsRequest");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -417,6 +607,31 @@ namespace RegionServicesapi.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("QuotationRequest", b =>
+                {
+                    b.HasOne("RegionServices.Model.AboutCompanies", "AboutCompany")
+                        .WithMany("quotationRequest")
+                        .HasForeignKey("AboutCompaniesId");
+
+                    b.HasOne("RegionServices.Model.Project", "ProjectPosts")
+                        .WithMany("QuotationRequests")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("RegionServices.Model.User", "user")
+                        .WithMany("quotationRequests")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("AboutCompany");
+
+                    b.Navigation("ProjectPosts");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("RegionServices.Model.AboutCompanies", b =>
                 {
                     b.HasOne("RegionServices.Model.User", "user")
@@ -440,26 +655,52 @@ namespace RegionServicesapi.Migrations
             modelBuilder.Entity("RegionServices.Model.Project", b =>
                 {
                     b.HasOne("RegionServices.Model.User", "user")
-                        .WithOne("constructionProject")
-                        .HasForeignKey("RegionServices.Model.Project", "UserId")
+                        .WithMany("constructionProject")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("user");
                 });
 
+            modelBuilder.Entity("RegionServices.Model.UserNotification", b =>
+                {
+                    b.HasOne("RegionServices.Model.User", "Users")
+                        .WithMany("Notifications")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("QuotationRequest", b =>
+                {
+                    b.Navigation("FinancialItems");
+                });
+
+            modelBuilder.Entity("RegionServices.Model.AboutCompanies", b =>
+                {
+                    b.Navigation("quotationRequest");
+                });
+
             modelBuilder.Entity("RegionServices.Model.Project", b =>
                 {
                     b.Navigation("Images");
+
+                    b.Navigation("QuotationRequests");
                 });
 
             modelBuilder.Entity("RegionServices.Model.User", b =>
                 {
+                    b.Navigation("Notifications");
+
                     b.Navigation("aboutCompanies")
                         .IsRequired();
 
-                    b.Navigation("constructionProject")
-                        .IsRequired();
+                    b.Navigation("constructionProject");
+
+                    b.Navigation("quotationRequests");
                 });
 #pragma warning restore 612, 618
         }

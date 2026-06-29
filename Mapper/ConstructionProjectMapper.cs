@@ -16,6 +16,10 @@ namespace RegionServices.Mapper
                 StartDate=projectEngineerDTO.StartDate,
                 EndDate=projectEngineerDTO.EndDate,
                 UserId=userId,
+                MinBudget=projectEngineerDTO.MinBudget,
+                MaxBudget=projectEngineerDTO.MaxBudget,
+                ProjectCategory=projectEngineerDTO.ProjectCategory,
+                
                 Images=new List<Images>()//initialize images list
                 
             };

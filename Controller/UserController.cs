@@ -8,30 +8,36 @@ using RegionServices.IInterface;
 using RegionServices.Model;
 using RegionServices.Mapper;
 using RegionServices.DTO;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace RegionServices.Controllers
 {
-   
+
     [ApiController]
     [Route("api/User")]
     public class UserController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
-         private readonly SignInManager<User> _SigninManager;
-         private readonly RoleManager<IdentityRole> _RoleManager;
+        private readonly SignInManager<User> _SigninManager;
+        private readonly RoleManager<IdentityRole> _RoleManager;
         private readonly ICreateToken _createToken;
-        public UserController(UserManager<User> userManager, ICreateToken createToken, SignInManager<User> SigninManager, RoleManager<IdentityRole> roleManager)
+        private readonly ApplicationDBcontext _context;
+        public UserController(UserManager<User> userManager, ICreateToken createToken, SignInManager<User> SigninManager, RoleManager<IdentityRole> roleManager, ApplicationDBcontext context)
         {
             _userManager = userManager;
             _createToken = createToken;
             _SigninManager = SigninManager;
             _RoleManager = roleManager;
+            _context = context;
 
 
 
 
         }
-      [HttpPost("CreteUser")]
+        [HttpPost("CreteUser")]
         public async Task<IActionResult> CreteUser([FromBody] RegisterDTO registerDTO)
         {
             var user = new User
@@ -40,9 +46,9 @@ namespace RegionServices.Controllers
                 Email = registerDTO.Email,
                 PhoneNumber = registerDTO.PhoneNumber,
                 Role = registerDTO.Role,
-              
-              
-                
+
+
+
             };
 
             var CreateUser = await _userManager.CreateAsync(user, registerDTO.Password);
@@ -57,17 +63,20 @@ namespace RegionServices.Controllers
 
                 if (AddRole.Succeeded)
                 {
-                    return Ok( new { 
-             token,
-            message = "Signup successful",
-            user = new {
-            email = user.Email,
-            userName = user.UserName,
-            role = user.Role
-            }
-            }
-                    );}
-                
+                    return Ok(new
+                    {
+                        token,
+                        message = "Signup successful",
+                        user = new
+                        {
+                            email = user.Email,
+                            userName = user.UserName,
+                            role = user.Role
+                        }
+                    }
+                    );
+                }
+
                 else
                 {
                     return StatusCode(500, "Failed To add role");
@@ -77,7 +86,7 @@ namespace RegionServices.Controllers
             }
             else
             {
-                return StatusCode(500,"Failed To Create User");
+                return StatusCode(500, "Failed To Create User");
             }
 
 
@@ -92,35 +101,65 @@ namespace RegionServices.Controllers
             if (!CheckPass.Succeeded) return Unauthorized("Invalid Email or Password ");
             var token = _createToken.CreateToken(FindEmail);
             SetAuthCookies(token);
-           return Ok(new { 
-           token = token,
-             message = "Login successful",
-              user = new {
-            email = FindEmail.Email,
-            userName = FindEmail.UserName,
-            role = FindEmail.Role
-            }
-                    
+            return Ok(new
+            {
+                token = token,
+                message = "Login successful",
+                user = new
+                {
+                    email = FindEmail.Email,
+                    userName = FindEmail.UserName,
+                    role = FindEmail.Role
                 }
-                );
-            
+
+            }
+                 );
+
         }
 
+        [HttpGet("GetLogedUser")]
+        public async Task<IActionResult> GetLogedUsres()
+        {
+            var GetEmail = User.GetEmail();
+            var FindUser = await _context.Users.FirstOrDefaultAsync(p => p.Email == GetEmail);
+            if (FindUser == null)
+            {
+                return NotFound("no User Loged");
+            }
+            return Ok(FindUser);
+
+
+        }
+        [HttpPost("LogOut")]
+        public async Task<IActionResult> LogOutBtn()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            Response.Cookies.Delete("AuthToken");
+            Response.Cookies.Delete(".AspNetCore.Cookies");
+            Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
+            return Ok(new { message = "Logged out successfully" });
+
+        }
         private void SetAuthCookies(string token)
         {
-            var Cookies=new CookieOptions
+            var Cookies = new CookieOptions
             {
-                HttpOnly=true,
-                Secure=true,
-                SameSite=SameSiteMode.None,
-                Expires=DateTime.Now.AddDays(1)
-              };
-              Response.Cookies.Append("AuthToken",token,Cookies);
-            
+                HttpOnly = true,
+                Secure = false,
+                SameSite = SameSiteMode.Lax,
+                Expires = DateTime.Now.AddDays(1)
+            };
+            Response.Cookies.Append("AuthToken", token, Cookies);
+
         }
 
 
 
-}}
+
+
+    }
+}
 
 

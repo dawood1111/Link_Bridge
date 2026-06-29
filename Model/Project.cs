@@ -13,9 +13,14 @@ namespace RegionServices.Model
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public ProjectStatus ProjectStatus { get; set; }
+        public String ProjectCategory { get; set; }=string.Empty;//IT solution, construction, etc
         public List<Images> Images { get; set; }=new List<Images>();
+        public int MinBudget { get; set; }
+        public int MaxBudget { get; set; }
         public User user { get; set; }
         public String UserId { get; set; }
+        public List<QuotationRequest> QuotationRequests { get; set; }=new List<QuotationRequest>();
+
        
         
 

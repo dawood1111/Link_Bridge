@@ -3,6 +3,8 @@ import { createSlice,createAsyncThunk } from '@reduxjs/toolkit';
 
 
 export const FetchSearchQuery=createAsyncThunk('SearchQuery/fetch',async({CompanyName})=>{
+     await new Promise((resolve) => setTimeout(resolve, 4000));
+
     const params = new URLSearchParams();
           if (CompanyName) params.append('CompanyName', CompanyName);
           const Response=await fetch(`http://localhost:5194/api/AboutUser/GetCompanyProfile?CompanyName=${CompanyName}`,{
@@ -27,16 +29,23 @@ const SearchQuery=createSlice({
     initialState:{  
         isloading:false,
         SearchData:[],
-        error:null
+        error:null,
+        isEmpty:false,
+        notMatching:false
+
     },
     extraReducers:(builder)=>{
         builder.addCase(FetchSearchQuery.pending,(state)=>{ 
             state.isloading=true;
+            
+
         }),
         builder.addCase(FetchSearchQuery.fulfilled,(state,action)=>{
             state.isloading=false;  
             state.SearchData=action.payload;
             state.error=null;
+            state.isEmpty = action.payload.length === 0;
+            
         }),
         builder.addCase(FetchSearchQuery.rejected,(state,action)=>{     
             state.isloading=false;

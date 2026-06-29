@@ -1,179 +1,232 @@
-import { useEffect, useState } from 'react'
-import { useNavigate, Link, Form } from 'react-router-dom';
-import {FetchData} from '../Redux/Slices/UserSlice.jsx';
-import images3 from '../Images/construction2.jpg';
-import { useDispatch  } from 'react-redux';
-import { useFormik } from 'formik';
-import {SignUpSchema} from '../Schema/Schema.js';
+import { useEffect, useState } from "react";
+import { useNavigate, Link, Form } from "react-router-dom";
+import { FetchData } from "../Redux/Slices/UserSlice.jsx";
+import images3 from "../Images/construction2.jpg";
+import images4 from "../Images/aesthetic.jfif";
+import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
+import { SignUpSchema } from "../Schema/Schema.js";
 
 function SignUp() {
-    const Navigate = useNavigate();
-  const Dispatch= useDispatch();
-  async function onSubmit() {
-
-    const DispatchData= await Dispatch(FetchData(values));
-    if(FetchData.fulfilled.match(DispatchData)){  
-      Navigate('/MainPage');
-    }
-    else{
-      console.log("Sign Up failed");  
+  const Navigate = useNavigate();
+  const Dispatch = useDispatch();
+  async function onSubmit(values) {
+    console.log("submitting:", values);
+    const DispatchData = await Dispatch(FetchData(values));
+    if (FetchData.fulfilled.match(DispatchData)) {
+      if (values.role == "Company") {
+        Navigate("/CompanySetUp");
+      } else {
+        Navigate("/MainPage/HomePage");
+      }
+    } else {
+      console.log("Sign Up failed");
     }
   }
 
-  const {handleChange,values,errors,handleSubmit,handleBlur,touched}=useFormik({
-    initialValues:{
-      FirstName:'',
-      LastName:'',
-      Email:'',
-      Password:'',
-      PhoneNumber:'',
-      Role:''
-    },
-    validationSchema:SignUpSchema,
-    
-    onSubmit,
+  const { handleChange, values, errors, handleSubmit, handleBlur, touched } =
+    useFormik({
+      initialValues: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        phoneNumber: "",
+        role: "User",
+      },
+      validationSchema: SignUpSchema,
 
-  });
-
-
-
+      onSubmit,
+    });
+  const GoogleNavigate = () => {
+    window.location.href = "http://localhost:5194/api/Google/login-google";
+  };
 
   return (
-    <div className='flex justify-center items-center min-h-screen bg-[#dfe0df] font-[Poppins,sans-serif]'>
-      <form className='flex h-[700px] w-260 shadow-lg rounded-sm mt-[20px]' onSubmit={handleSubmit}>
-        
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 font-[Poppins,sans-serif]">
+      <form
+        className="flex h-auto sign shadow-lg  mt-11 sm:w-280 "
+        onSubmit={handleSubmit}
+      >
         {/* Left Side Container */}
-        <div className=' flex justify-center items-center overflow-hidden'>
-          <img src={images3} alt=""  className='o'/>
+        <div className=" hidden relative sm:flex justify-center items-center overflow-hidden  ">
+          <img src={images4} alt="" className="" />
+
+          <div className="absolute bottom-0 left-0 right-0 z-10 p-8 bg-gradient-to-t from-[#081232] to-transparent">
+            <h1
+              className="font-['Cormorant_Garamond'] text-4xl font-light text-white leading-tight mb-3
+     animate-[fadeUp_0.9s_0.2s_ease_both]"
+            >
+              Welcome to
+              <br />
+              <span className="font-semibold">Link Bridge</span>
+            </h1>
+
+            <div className="w-9 h-0.5 bg-orange-400/80 mb-3 animate-[slideRight_0.8s_0.5s_ease_both]" />
+
+            <p
+              className="text-xs font-light text-white/50 leading-relaxed
+     animate-[fadeUp_0.9s_0.4s_ease_both]"
+            >
+              Connecting projects,
+              <br />
+              building futures.
+            </p>
+          </div>
         </div>
 
-        {/* Right Side Container */}
-        <div className='grid gap-3 justify-center items-center pl-[90px] pr-[90px] pt-[40px] pb-[40px] bg-[#dfe0df] text-xs  rounded-tr-[10px] rounded-br-[10px] w-[500px] shadow-2xl'>
-          
-          {/* Google Sign In Button */}
-          <button className="bg-[#F97316] border-none py-1.5 px-1.5 rounded-lg text-[#3a3e42] font-semibold cursor-pointer">
+        <div className="grid gap-3 justify-center items-center pl-[90px] pr-[90px]  bg-white text-xs sm:w-160  w-140 shadow-sm pt-10 pb-10 h-180 ">
+          <button
+            className="bg-linear-to-r from-slate-900 to-blue-900 border-none py-1.5 px-1.5 rounded-sm text-white font-semibold cursor-pointer pt-2 pb-2 "
+            onClick={() => GoogleNavigate()}
+            type="button"
+          >
             <i className="fa-brands fa-google mr-1.5"></i>
             Sign in with Google
           </button>
 
-          {/* Divider */}
-          <div className='flex items-center text-sm'>
-            <div className='flex-1 h-px bg-[#4a4e52]'></div>
-            <span className='px-2.5 text-black'>Or</span>
-            <div className='flex-1 h-px bg-[#4a4e52]'></div>
+          <div className="flex items-center text-sm">
+            <div className="flex-1 h-px bg-[#4a4e52]"></div>
+            <span className="px-2.5 text-black">OR</span>
+            <div className="flex-1 h-px bg-[#4a4e52]"></div>
           </div>
 
           {/* Name Fields */}
-          <div className='flex gap-[68px]'>
-            <div className="grid gap-2.5">
-              <label className='text-[11px] text-black font-semibold '>FirstName</label>
-              <input 
-                id='FirstName'
-                name='FirstName'
+          <div className="flex gap-20">
+            <div className="grid gap-1">
+              <label className="text-[11px] text-black font-semibold ">
+                FirstName
+              </label>
+              <input
+                id="firstName"
+                name="firstName"
                 onChange={handleChange}
-                 onBlur={handleBlur}
-                value={values.FirstName}
-                type="text" 
-                className='w-[160px] shadow-md border-none pt-4 pb-4  h-5 rounded  bg-slate-200/60 border-1 border-amber-950'
+                onBlur={handleBlur}
+                value={values.firstName}
+                type="text"
+                className="w-[170px] shadow-sm border-none pt-4 pb-4  pl-3 h-5  bg-gray-100  border-amber-950"
               />
               <div>
-                {touched.FirstName && errors.FirstName && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.FirstName}</p>}
+                {touched.firstName && errors.firstName && (
+                  <p className="text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]">
+                    {errors.firstName}
+                  </p>
+                )}
               </div>
             </div>
 
-            <div className='grid gap-2.5'>
-              <label className='text-[11px] text-black font-semibold'>LastName</label>
-              <input 
-              id='LastName'
-              name='LastName'
-              value={values.LastName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-               type="text"  
-              className='w-[160px]  shadow-md border-none pt-4 pb-4 h-5 rounde bg-slate-200/60 border-1 border-amber-950'
+            <div className="grid gap-1">
+              <label className="text-[11px] text-black font-semibold">
+                LastName
+              </label>
+              <input
+                id="lastName"
+                name="lastName"
+                value={values.lastName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                type="text"
+                className="w-[170px]  shadow-sm pl-3 border-none pt-4 pb-4 h-5  bg-gray-100  border-amber-950"
               />
               <div>
-                {touched.LastName && errors.LastName && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.LastName}</p>}
+                {touched.lastName && errors.lastName && (
+                  <p className="text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]">
+                    {errors.lastName}
+                  </p>
+                )}
               </div>
             </div>
           </div>
 
           {/* Email */}
-          <label className='text-[11px] font-semibold text-black '>Email</label>
-          <input 
-             id='Email'
+          <label className="text-[11px] font-semibold text-black ">Email</label>
+          <input
+            id="email"
             type="text"
-            name='Email' 
+            name="email"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.Email}
-            className='w-[400px] bg-[#3a3e42] shadow-md border-none pl-2 pt-2 pb-2  rounded bg-slate-200/60 border-1 border-amber-950'
+            value={values.email}
+            className="w-[410px] bg-gray-100 h-9 shadow-sm border-none pl-2 pt-2 pb-2  border-amber-950"
           />
           <div>
-            {touched.Email && errors.Email && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.Email}</p>}
+            {touched.email && errors.email && (
+              <p className="text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]">
+                {errors.email}
+              </p>
+            )}
           </div>
 
           {/* Password */}
-          <label className='text-[11px] font-semibold text-black'>Password</label>
-          <input 
-            type="password" 
-            id='Password'
-            name='Password'
+          <label className="text-[11px] font-semibold text-black">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
             onBlur={handleBlur}
             onChange={handleChange}
-            value={values.Password}
-            className='w-[400px] bg-[#3a3e42] shadow-md border-none pl-2 pt-2 pb-2  rounded  bg-slate-200/60 border-1 border-black'
+            value={values.password}
+            className="w-[410px] bg-gray-100 h-9 shadow-sm border-none pl-2 pt-2 pb-2  border-amber-950"
           />
           <div>
-            {touched.Password && errors.Password && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.Password}</p>}
+            {touched.password && errors.password && (
+              <p className="text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]">
+                {errors.password}
+              </p>
+            )}
           </div>
 
-          <label className='text-[11px] font-semibold text-black'>PhoneNumber</label>
-          <input 
-          
-            type="tel" 
-            id='PhoneNumber'
-            name='PhoneNumber'
-            value={values.PhoneNumber}
+          <label className="text-[11px] font-semibold text-black">
+            PhoneNumber
+          </label>
+          <input
+            type="tel"
+            id="phoneNumber"
+            name="phoneNumber"
+            value={values.phoneNumber}
             onChange={handleChange}
             onBlur={handleBlur}
-            className='w-[400px]  shadow-md border-nonepl-2 pt-2 pb-2  rounded  bg-slate-200/60 '
+            className="w-[410px]  shadow-sm border-nonepl-2 pt-2 pb-2  rounded  bg-gray-100 "
           />
           <div>
-            {touched.PhoneNumber && errors.PhoneNumber && <p className='text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]'>{errors.PhoneNumber}</p>}
+            {touched.phoneNumber && errors.phoneNumber && (
+              <p className="text-red-600 text-[12px] font-[Poppins,sans-serif]  ml-1 mt-[-6px]">
+                {errors.phoneNumber}
+              </p>
+            )}
           </div>
 
-    
-          <label className='text-[11px] font-semibold text-black'>Role</label>
-          <select 
-            id='Role'
-            name='Role'
-            value={values.Role}
+          <label className="text-[11px] font-semibold text-black">Role</label>
+          <select
+            id="role"
+            name="role"
+            value={values.role}
             onChange={handleChange}
-            className='mb-5 py-1.5 px-0 rounded-md text-center border-none shadow-md text-xs bg-slate-200/60 border-1 border-amber-950'
+            className="mb-5 py-1.5 px-0 rounded-md text-center border-none shadow-md text-xs bg-slate-200/60 border-1 border-amber-950"
           >
-            <option value="user"> user</option>
-            <option value="Construction">Contruction </option>
-            <option value="IT">IT</option>
+            <option value="User"> User</option>
+            <option value="Company">Company </option>
           </select>
 
-     
-          <button 
-            className='bg-[#F97316] border-none py-1.5 px-1.5 rounded-lg text-[#3a3e42] font-semibold cursor-pointer ' 
-            type='submit'
+          <button
+            className="bg-linear-to-r from-slate-900 to-blue-900 border-none py-1.5 px-1.5 rounded-sm text-white font-semibold cursor-pointer  pt-2.5 pb-2.5 "
+            type="submit"
           >
             Sign Up
           </button>
 
-        
-          <div className='text-xs flex gap-1.5 justify-center items-center  '>
-            <span>Already have an account?</span> 
-            <Link to="/SignIn" className='text-[#F97316] hover:underline  '>Sign In</Link>
+          <div className="text-xs flex gap-1.5 justify-center items-center  ">
+            <span>Already have an account?</span>
+            <Link to="/SignIn" className="text-[#0c2b78] hover:underline  ">
+              Sign In
+            </Link>
           </div>
         </div>
       </form>
     </div>
-  )
+  );
 }
 
-export default SignUp
+export default SignUp;

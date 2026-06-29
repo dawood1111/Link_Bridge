@@ -1,15 +1,30 @@
-import { configureStore } from "@reduxjs/toolkit";  
-import userReducer from "./Slices/UserSlice";  
-import signInReducer from "./Slices/SignInSlice";  
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "./Slices/UserSlice";
+import signInReducer from "./Slices/SignInSlice";
 import feedReducer from "./Slices/FeedSlice";
 import AllCompaniesReducer from "./Slices/GetCompanies";
 import SearchQueryReducer from "./Slices/SearchQuery";
-export const store =configureStore({
-    reducer:{
-        user:userReducer,
-        user2:signInReducer,
-        feed:feedReducer,
-        AllCompanies:AllCompaniesReducer,
-        SearchQuery:SearchQueryReducer        
-    }
-})
+import UserProjectsSlice from "./Slices/QuotationRequestSlice";
+import ModalSlice from "./Slices/ModalSlice";
+import PostQuotationReducer from "./Slices/PostQuotationSlice";
+import Projects from "./Slices/ProjectsSlice";
+import GoogleRegister from "./Slices/GoogleRegisterSlice";
+import GetNotificationReducer from "./Slices/GetNotificationSlice";
+import userLoged from "./Slices/LogedUserSlice";
+
+export const store = configureStore({
+  reducer: {
+    user: userReducer,
+    user2: signInReducer,
+    feed: feedReducer,
+    AllCompanies: AllCompaniesReducer,
+    SearchQuery: SearchQueryReducer,
+    allUserprojects: UserProjectsSlice,
+    modal: ModalSlice,
+    quotationForm: PostQuotationReducer,
+    UserProjects: Projects,
+    googleRegister: GoogleRegister,
+    notification: GetNotificationReducer,
+    logedUser: userLoged,
+  },
+});
