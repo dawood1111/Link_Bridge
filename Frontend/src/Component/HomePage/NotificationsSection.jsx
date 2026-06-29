@@ -23,7 +23,7 @@ export function NotificationsSection() {
   };
 
   return (
-    <div className="bg-white rounded-4xl shadow-md p-6 w-110 h-140 fixed right-2 overflow-x-scroll">
+    <div className="bg-white rounded-4xl fixed top-65 right-3 shadow-md p-6 w-110 h-140 overflow-x-scroll">
       <div className=" mb-8">
         <h2 className="text-xl font-semibold   text-[#0c2b78] ">
           Notifications

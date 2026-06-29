@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
   CloseModal,
@@ -30,6 +30,7 @@ export function QuotationPage() {
   const item = location.state?.item;
 
   const dispatch = useDispatch();
+
   const ModalState = useSelector((state) => state.modal || {});
 
   const Navigate = useNavigate();

@@ -217,7 +217,7 @@ export function Feed({ data }) {
                 </div>
 
                 {/* Added onClick to trigger your Popup function */}
-                <div className="w-full sm:w-135 flex justify-between  items-center  mb-4 ">
+                <div className="w-full sm:w-135 flex sm:justify-between justify-around items-center  mb-4 ">
                   {isloading == true ? (
                     <PlaceholderLine />
                   ) : (
@@ -225,15 +225,15 @@ export function Feed({ data }) {
                       <label htmlFor="">
                         {<Icon name="currency" className="text-green-800" />}
                       </label>
-                      <p className="text-[13px] font-bold text-gray-700">
+                      <p className="text-[10px] sm:text-[13px]   font-bold text-gray-700">
                         {`${item.minBudget} - ${item.maxBudget} `}
                       </p>
                     </div>
                   )}
-                  <div className=" flex gap-4 ">
+                  <div className=" flex gap-3 ">
                     <button
                       onClick={() => PopupPost(item, index)}
-                      className=" w-35 pt-2 pb-2 rounded-sm shadow-md   text-[#0c2b78] cursor-pointer  flex justify-center items-center gap-2  bg-gray-100  "
+                      className=" sm:w-35 w-25  sm:text-[13px]  text-[10px] pt-2 pb-2 rounded-sm shadow-md   text-[#0c2b78] cursor-pointer  flex justify-center items-center sm:gap-2  bg-gray-100  "
                     >
                       {OpenViewDetails === index ? (
                         <>
@@ -254,7 +254,7 @@ export function Feed({ data }) {
                       )}
                     </button>
                     <button
-                      className="w-35 pt-2 pb-2 rounded-sm shadow-md   cursor-pointer  flex justify-center items-center gap-2  bg-gray-100 text-[#0c2b78] "
+                      className="sm:w-35 w-25 text-[10px] sm:text-[13px] pt-2 pb-2 rounded-sm shadow-md   cursor-pointer  flex justify-center items-center gap-2  bg-gray-100 text-[#0c2b78] "
                       onClick={() =>
                         Navigate("/QuotationPage", { state: { item } })
                       }
