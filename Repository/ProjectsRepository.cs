@@ -50,14 +50,11 @@ namespace RegionServices.Repository
             await _context.SaveChangesAsync();
             return true;
         }
-        public async Task<bool> GetUserProjects(string UserToken)
+        public async Task<List<Project>> GetUserProjects(string UserToken)
         {
             var UserProjects = await _context.ConstructionProjects.Where(p => p.UserId == UserToken).Include(p => p.QuotationRequests).ThenInclude(q => q.AboutCompany).ToListAsync();
-            if (UserProjects == null || UserProjects.Count == 0)
-            {
-                return false;
-            }
-            return true;
+
+            return UserProjects;
         }
 
 

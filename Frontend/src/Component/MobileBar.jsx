@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaBuilding, FaHome } from "react-icons/fa";
+import { FaBuilding, FaHome, FaBell } from "react-icons/fa";
 import { Button, Icon } from "semantic-ui-react";
 import { ClearInfo } from "../Redux/Slices/SignInSlice";
 import { clearSignUp } from "../Redux/Slices/UserSlice";
@@ -73,6 +73,14 @@ function MobileBar() {
             <circle cx="7" cy="7" r="3"></circle>
           </svg>
           <span className="text-[10px]">Settings</span>
+        </button>
+
+        <button
+          onClick={() => navigate("/MainPage/Notifications")}
+          className="flex flex-col items-center justify-center gap-1"
+        >
+          <FaBell className="size-5" />
+          <span className="text-[10px]">Notification</span>
         </button>
 
         <button

@@ -82,15 +82,15 @@ function HowItsWorkSection() {
 
         {/* Image */}
         <div
-          className="flex-shrink-0 w-100 rounded-lg overflow-hidden
+          className="sm:flex-shrink-0 w-100 rounded-lg overflow-hidden
           border-b-4 border-r-4 border-orange-400
           animate-[slideRight_0.8s_0.35s_ease_both]
-          group"
+          group hidden"
         >
           <img
             src={learn}
             alt="How it works"
-            className="w-full block transition-transform duration-500 group-hover:scale-105"
+            className="w-full sm:block transition-transform duration-500 group-hover:scale-105 hidden"
           />
         </div>
       </div>

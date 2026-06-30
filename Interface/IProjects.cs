@@ -9,7 +9,7 @@ namespace RegionServices.Interface
         public Task<List<Project>> GetCompanyEngineer();
         public Task<bool> CreateProject(EngineerProjectDTO ProjectDTO, string UserId);
 
-        public Task<bool> GetUserProjects(string UserToken);
+        public Task<List<Project>> GetUserProjects(string UserToken);
 
     }
 }

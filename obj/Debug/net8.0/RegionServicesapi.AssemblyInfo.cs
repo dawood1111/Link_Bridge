@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RegionServicesapi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8451093cc80eee33c8f098621a55c9b56f12f79e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18a2588fe90951e31a59792e765ff83284d11afa")]
 [assembly: System.Reflection.AssemblyProductAttribute("RegionServicesapi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RegionServicesapi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
