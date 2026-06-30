@@ -23,7 +23,7 @@ export function NotificationsSection() {
   };
 
   return (
-    <div className="bg-white rounded-4xl fixed top-65 right-3 shadow-md p-6 w-110 h-140 overflow-x-scroll">
+    <div className="bg-white rounded-4xl sm:fixed top-65 right-3 shadow-md p-6 sm:w-110 sm:h-140 sm:overflow-x-scroll w-full h-full  ">
       <div className=" mb-8">
         <h2 className="text-xl font-semibold   text-[#0c2b78] ">
           Notifications
@@ -33,12 +33,12 @@ export function NotificationsSection() {
       <div className="space-y-2 flex flex-col gap-2">
         {SelectNotifications.map((notification, index) => (
           <div
-            className="p-1 bg-gray-100 rounded-2xl flex  items-center cursor-pointer shadow-md min-h-14   pt-2  justify-between "
+            className="p-1 bg-gray-100 rounded-2xl flex  items-center cursor-pointer shadow-md min-h-14   pt-2  justify-between  "
             key={index}
           >
             <div className="shrink-0">
               <img
-                className="  w-10 h-10  flex justify-center items-center rounded-full ml-2 bg-white"
+                className="  w-10 h-10  flex justify-center items-center rounded-full ml-2 bg-white mr-6"
                 src={notification.senderPfp}
               />
             </div>

@@ -16,6 +16,7 @@ import Projects from "./Pages/ProjectSection.jsx";
 import "semantic-ui-css/semantic.min.css";
 import { QuotationPage } from "../src/Component/HomePage/QuotationForm.jsx";
 import { TestPage } from "./Pages/TestPage.jsx";
+import NotificationSection from "./Component/HomePage/NotificationsSection.jsx";
 import { GoogleRegisterPage } from "./Pages/GoogleRegister.jsx";
 
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "HomePage",
         element: <HomePages />,
+      },
+      {
+        path: "Notifications",
+        element: <NotificationSection />,
       },
     ],
   },
